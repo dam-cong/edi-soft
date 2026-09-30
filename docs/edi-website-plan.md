@@ -30,12 +30,16 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 | 3 | Về chúng tôi (`#about`) | Sứ mệnh; 3 chỉ số: **2024** thành lập · **6** dự án tiêu biểu · **SME** dưới 300 nhân sự; 3 điểm: Delivery Team chuyên sâu, hiểu vận hành doanh nghiệp Việt, chi phí phù hợp SME |
 | 4 | Lợi thế (`#strengths`) | 6 card: chuyên sâu Odoo CE & EE, BA & Developer đồng hành, ERP kết hợp AI & tự động hóa, quy trình triển khai chuẩn, giải pháp "may đo", đồng hành dài hạn |
 | 5 | Dịch vụ (`#services`) | 5 dịch vụ đánh số 01–05: tư vấn & khảo sát, thiết kế giải pháp ERP, triển khai & tùy biến Odoo, đào tạo & chuyển giao, bảo trì, hỗ trợ & nâng cấp |
-| 6 | Quy trình (`#process`) | Timeline 6 bước: khảo sát → thiết kế & kế hoạch → cấu hình & phát triển → UAT → Go-live → hỗ trợ sau Go-live. Bước đang xem tự sáng lên khi cuộn |
-| 7 | Dự án (`#portfolio`) | 6 dự án, hiển thị **tên và địa chỉ thật** của khách hàng (xem mục 3) |
-| 8 | Đội ngũ (`#team`) | Card **Đàm Công Hiến** (Founder & Solution Architect, có ảnh và LinkedIn) và card tóm tắt "4 thành viên chuyên sâu Odoo". Chỉ công khai thông tin của founder |
-| 9 | Cam kết | Chất lượng & tiến độ · Bảo mật dữ liệu (sẵn sàng ký NDA) · Minh bạch phạm vi & chi phí |
-| 10 | Liên hệ (`#contact`) | Email, hotline, Facebook; form liên hệ (xem mục 4) |
-| 11 | Footer | Mô tả ngắn, cùng 4 link như menu, bản quyền |
+| 6 | Hình thức hợp tác (`#engagement`) | 4 card: Khảo sát & tư vấn · Triển khai trọn gói · Phát triển theo yêu cầu · Bảo trì & đồng hành, mỗi card có mục "Phù hợp khi". **Không công khai giá**: "Chi phí được báo giá theo phạm vi sau buổi khảo sát" + nút Nhận tư vấn. Khi cuộn tới, menu sáng "Dịch vụ" |
+| 7 | Quy trình (`#process`) | Timeline 6 bước: khảo sát → thiết kế & kế hoạch → cấu hình & phát triển → UAT → Go-live → hỗ trợ sau Go-live. Bước đang xem tự sáng lên khi cuộn |
+| 8 | Dự án (`#portfolio`) | 6 dự án, hiển thị **tên và địa chỉ thật** của khách hàng (xem mục 3) |
+| 9 | Đội ngũ (`#team`) | Card **Đàm Công Hiến** (Founder & Solution Architect, có ảnh và LinkedIn) và card tóm tắt "4 thành viên chuyên sâu Odoo". Chỉ công khai thông tin của founder |
+| 10 | Cam kết | Chất lượng & tiến độ · Bảo mật dữ liệu (sẵn sàng ký NDA) · Minh bạch phạm vi & chi phí |
+| 11 | FAQ (`#faq`) | 7 câu hỏi dạng accordion (`<details>`, không cần JS): CE hay EE · thời gian triển khai · license Odoo · chuyển dữ liệu cũ · cloud hay máy chủ riêng · tích hợp AI/OCR vào Odoo đang dùng · hỗ trợ sau Go-live. Câu trả lời **không đưa con số thời gian hay giá** chưa xác nhận |
+| 12 | Liên hệ (`#contact`) | Email, hotline, Facebook; form liên hệ (xem mục 4) |
+| 13 | Footer | Mô tả ngắn, cùng 4 link như menu, bản quyền |
+
+**Sửa FAQ:** nội dung câu hỏi và trả lời nằm ở 3 chỗ, phải sửa cả 3 cho khớp: `index.html` (bản VI mặc định), `src/js/i18n.js` (key `faq-N-q` / `faq-N-a`, cả `vi` và `en`), và node `FAQPage` trong JSON-LD ở `<head>` (bản VI).
 
 ---
 
@@ -123,7 +127,7 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 - **SEO:**
   - Title khoảng 56 ký tự và description khoảng 154 ký tự; canonical, Open Graph và Twitter card trỏ về `https://edi-soft.vercel.app/`.
   - Ảnh chia sẻ `assets/img/og-image.png` kích thước 1200×630. Khi đổi thông điệp chính, nhớ làm lại ảnh này.
-  - JSON-LD trong `<head>` gồm `Organization` (dịch vụ, liên hệ, Facebook), `Person` (founder, LinkedIn) và `WebSite`. Không khai báo địa chỉ vì team chưa có pháp nhân.
+  - JSON-LD trong `<head>` gồm `Organization` (dịch vụ, liên hệ, Facebook), `Person` (founder, LinkedIn), `WebSite` và `FAQPage` (7 câu hỏi, bản VI). Không khai báo địa chỉ vì team chưa có pháp nhân.
   - `robots.txt` và `sitemap.xml` ở thư mục gốc. Cập nhật `<lastmod>` trong sitemap mỗi khi nội dung thay đổi đáng kể.
   - Thứ bậc heading: 1 `h1`; mỗi section một `h2`; card dùng `h3`, nhãn con dùng `h4`; không nhảy cóc cấp heading.
   - Mọi `<img>` phải có `width` và `height` để trang không bị nhảy bố cục khi tải.
@@ -145,7 +149,7 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 ## 8. Việc còn lại (đề xuất)
 
 - Section **AI & tự động hóa** với 3–4 use case cụ thể (ví dụ OCR hóa đơn → bút toán, chatbot tra tồn kho), là điểm khác biệt chính.
-- **FAQ:** chọn CE hay EE, thời gian go-live, license Odoo, chuyển dữ liệu cũ.
+- **Nút Zalo nổi** trên mobile (cần số Zalo tư vấn).
 - Số liệu kết quả cho từng dự án (trước/sau) và lời nhận xét của khách hàng.
 - Sau khi deploy: khai báo `sitemap.xml` trong Google Search Console, đo Core Web Vitals bằng PageSpeed Insights, kiểm tra JSON-LD bằng Rich Results Test.
 - Trang tiếng Anh riêng (`/en/`) nếu muốn được index cho thị trường nước ngoài. Hiện bản EN chỉ sinh ra bằng JavaScript nên Google gần như chỉ index bản tiếng Việt.
