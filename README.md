@@ -2,7 +2,7 @@
 
 Website giới thiệu năng lực của **EDI Soft** (EDI Team) — tư vấn, thiết kế và triển khai giải pháp Odoo Community & Enterprise tích hợp AI Agent, Chatbot, OCR và tự động hóa quy trình cho doanh nghiệp SME.
 
-🌐 **Website**: [web-edi.vercel.app](https://web-edi.vercel.app/)
+🌐 **Website**: [edi-soft.vercel.app](https://edi-soft.vercel.app/)
 
 ---
 
@@ -18,7 +18,7 @@ Website giới thiệu năng lực của **EDI Soft** (EDI Team) — tư vấn, 
 - Dark/Light mode (nhớ lựa chọn, theo hệ thống)
 - Chuyển ngôn ngữ VI/EN
 - Scroll-reveal animations, timeline quy trình tương tác
-- Form liên hệ có validation (hiện chỉ mô phỏng gửi, chưa nối backend)
+- Form liên hệ có validation, gửi dữ liệu về Google Form (cấu hình `GOOGLE_FORM_URL` / `GOOGLE_FORM_FIELDS` trong `src/js/main.js`)
 - Responsive (mobile, tablet, desktop)
 
 ## Chạy trên máy

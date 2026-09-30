@@ -1,142 +1,153 @@
-# Tài liệu Triển khai Website Landing Page EDI Soft
+# Tài liệu Website Landing Page EDI Soft
 
-Tài liệu này tổng hợp chi tiết các nội dung, giao diện và giải pháp công nghệ đã được triển khai cho website Landing Page giới thiệu năng lực của **EDI Soft** (EDI Team) tại thư mục `D:\sourcecode\website\web-edi`.
+Tài liệu mô tả nội dung, thiết kế và cách vận hành website giới thiệu năng lực của **EDI Soft** (EDI Team), hiện chạy tại [edi-soft.vercel.app](https://edi-soft.vercel.app/).
 
----
-
-## 1. Tổng quan Dự án & Ý tưởng Thiết kế
-
-### Ý tưởng Chủ đạo (Concept)
-- **Phong cách**: Thiết kế theo xu hướng **Deep Dark Space Tech** hiện đại, mang tính tương lai, phản ánh đúng đặc thù của một doanh nghiệp công nghệ thông tin chuyên sâu về ERP và tích hợp.
-- **Màu sắc thương hiệu**: Sử dụng dải màu gradient trích xuất trực tiếp từ logo chính thức của EDI ([icon.png](file:///d:/sourcecode/website/edi-web/icon.png)):
-  - **Tím** (`#8A2BE2`)
-  - **Xanh dương** (`#1E90FF`)
-  - **Xanh ngọc/Teal** (`#00F5FF`)
-- **Hiệu ứng thị giác (Visual FX)**:
-   - **Glassmorphism**: Các thẻ nội dung được thiết kế dạng kính mờ (nền bán trong suốt với hiệu ứng `backdrop-filter: blur()`).
-   - **Neon Glow Border**: Viền các phần tử tự động phát sáng nhẹ khi di chuột qua.
-   - **Scroll-Reveal**: Các phần nội dung tự động xuất hiện mượt mà khi người dùng cuộn trang tới.
-
-### Floating Tech Icons (Hero Visual)
-- 7 icon công nghệ nổi (Odoo, AI, Chatbot, DevOps, API, Website, iOS, Android) được bố trí xung quanh đồ họa SVG trung tâm.
-- Mỗi icon có hiệu ứng **float-drift** (lên xuống nhẹ) với thời gian và độ trễ khác nhau, tạo cảm giác sống động.
-- Thiết kế dạng pill badge (kính mờ) với icon + label, màu sắc tự động thích ứng theme.
-- Ẩn bớt icon trên màn hình nhỏ (≤1024px ẩn AI & API, ≤500px ẩn Chatbot).
-
-### Chế độ Giao diện (Theme)
-- Hỗ trợ **Dark Mode** (mặc định) và **Light Mode** đầy đủ.
-- Nút chuyển đổi hình mặt trời/mặt trăng ở góc phải Header.
-- **Tự động phát hiện**: Lần đầu truy cập, website đọc cấu hình `prefers-color-scheme` từ hệ điều hành/trình duyệt để chọn theme phù hợp.
-- **Ghi nhớ lựa chọn**: Khi người dùng tự chuyển đổi, lựa chọn được lưu vào `localStorage` và ưu tiên hơn cấu hình hệ thống ở các lần truy cập sau.
-- **CSS Variables**: Toàn bộ màu sắc được kiểm soát qua CSS Variables tập trung, chỉ cần override trong block `[data-theme="light"]` để chuyển đổi toàn bộ giao diện.
-
-### Đa Ngôn ngữ (i18n)
-- Hỗ trợ **Tiếng Việt** (mặc định) và **Tiếng Anh** đầy đủ.
-- Nút chuyển đổi **VI/EN** hình tròn ở Header, cạnh nút theme toggle.
-- **Ghi nhớ lựa chọn**: Ngôn ngữ được lưu vào `localStorage` (`preferred-lang`) và khôi phục ở các lần truy cập sau.
-- **Cơ chế hoạt động**: Tất cả text trong HTML được gắn `data-i18n` key, JS đọc từ object translations và cập nhật DOM khi chuyển ngôn ngữ.
-- **Hỗ trợ đầy đủ**: Placeholder form, aria-label, title, và form validation messages đều được dịch.
+Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước git: [git-convention.md](git-convention.md).
 
 ---
 
-## 2. Các Phân hệ Nội dung đã Triển khai (Sections)
+## 1. Định vị & nguyên tắc nội dung
 
-Website được xây dựng theo cấu trúc Single Page Application (SPA) gồm các phân vùng nội dung logic:
-
-1. **Header (Thanh điều hướng)**
-   - Logo tròn EDI Soft và tên thương hiệu nổi bật.
-   - Thanh menu điều hướng nhanh đến các phần nội dung chính.
-   - Nút kêu gọi hành động (CTA) *"Nhận tư vấn ngay"* hướng trực tiếp xuống form liên hệ.
-   - Menu Hamburger di động tối ưu cho màn hình nhỏ.
-
-2. **Hero Section (Màn hình đầu trang)**
-   - Khẩu hiệu đắt giá (Slogan): **"Chúng tôi không bán phần mềm, chúng tôi triển khai giải pháp tối ưu vận hành."**
-   - Đồ họa SVG tương tác động với các liên kết quỹ đạo mô phỏng dòng chảy dữ liệu ERP quanh lõi EDI Soft.
-   - Các nút CTA hướng nghiệp vụ giúp tăng tỷ lệ chuyển đổi khách hàng.
-
-3. **Về chúng tôi (About Us)**
-   - Tóm tắt hành trình hoạt động từ tháng 7/2024.
-   - Nêu rõ mô hình hoạt động chuyên sâu **Delivery Team** và định vị phân khúc khách hàng mục tiêu là doanh nghiệp **SME dưới 300 nhân sự**.
-
-4. **Lợi thế cạnh tranh (Why Us - Giá trị nổi bật)**
-   Tiêu đề: **"Tại sao doanh nghiệp lựa chọn EDI Soft?"**
-   Khắc họa rõ nét 6 điểm mạnh cốt lõi giúp EDI Soft nổi bật hoàn toàn so với các đối tác Odoo khác:
-   - **Chuyên sâu Odoo Community & Enterprise**: Năng lực tư vấn toàn diện trên cả hai nền tảng Odoo Community và Enterprise.
-   - **Business Analyst & Developer Đồng Hành**: Đảm bảo nghiệp vụ thực tế được chuyển dịch chính xác thành giải pháp phần mềm.
-   - **ERP Kết Hợp AI & Tự Động Hóa**: Sẵn sàng tích hợp AI Agent, Chatbot, OCR, RPA và tự động hóa quy trình.
-   - **Quy Trình Triển Khai Chuẩn**: Phương pháp luận rõ ràng, quản lý chặt chẽ từng giai đoạn.
-   - **Giải Pháp "May Đo" Theo Doanh Nghiệp**: Thiết kế riêng theo mô hình vận hành của từng khách hàng.
-   - **Đồng Hành Phát Triển Dài Hạn**: Cam kết đồng hành vận hành, tối ưu và mở rộng hệ thống liên tục.
-
-5. **Dịch vụ Cung cấp (Core Services)**
-   Mô tả chi tiết 5 nhóm dịch vụ chính:
-   - Tư vấn & khảo sát nghiệp vụ.
-   - Thiết kế giải pháp ERP.
-   - Triển khai & Tùy biến Odoo.
-   - Đào tạo người dùng & chuyển giao.
-   - Bảo trì, hỗ trợ & nâng cấp.
-
-6. **Quy trình triển khai 6 bước (ERP Implementation Process)**
-   Thể hiện dưới dạng dòng thời gian (Interactive Timeline) liên kết cuộn trang tự động kích hoạt:
-   - *Bước 1: Khảo sát & Phân tích hiện trạng* (Tài liệu BRD)
-   - *Bước 2: Thiết kế giải pháp & Lên kế hoạch* (Chốt Scope)
-   - *Bước 3: Cấu hình & Phát triển phần mềm* (Code Review)
-   - *Bước 4: UAT & Hiệu chỉnh lỗi* (Nghiệm thu UAT)
-   - *Bước 5: Go-live & Chạy chính thức* (Vận hành thực tế)
-   - *Bước 6: Hỗ trợ & Vận hành sau Go-live* (Hỗ trợ lâu dài)
-
-7. **Dự án Tiêu biểu (Case Studies)**
-   Trình bày 4 case study thực tế từ profile của EDI:
-   - **ENKEI**: Phân hệ CRM, Inventory, Purchase (Mua hàng & Kho vận).
-   - **KRA**: Phân hệ CRM, Sale, Project, Inventory, HRM (Nhân sự & Bán hàng).
-   - **VTE**: Phân hệ CRM, MRP, Inventory, HRM (Quản trị sản xuất & Kho).
-   - **VITUS**: Phân hệ POS, Sale, Inventory, Accounting (Bán lẻ & Kế toán).
-   - Tổng kết giá trị: Chuẩn hóa quy trình, dữ liệu tập trung real-time, giảm Excel thủ công.
-
-8. **Đội ngũ chuyên gia (Our Team)**
-   Thông tin chi tiết về 5 thành viên sáng lập & chuyên gia Odoo/BA thực chiến, đính kèm link LinkedIn:
-   - **Đàm Công Hiến**: Founder / Technical Lead
-   - **Lê Mạnh Dũng**: BA Lead
-   - **Cao Thị Linh**: BA Odoo
-   - **Đỗ Văn Quyết**: Developer Odoo
-   - **Lê Hoàng Duy**: BA Odoo
-
-9. **Liên hệ & Tư vấn (Contact Section)**
-   - Form điền thông tin đăng ký tư vấn hiện đại.
-   - Tích hợp kiểm duyệt dữ liệu (Validation) tức thì đối với Họ tên, Số điện thoại (định dạng Việt Nam) và Email.
-   - Popup thông báo gửi thành công kính mờ (Glassmorphism) đẹp mắt sau khi gửi form.
+- **Định vị**: team tư vấn và triển khai **Odoo ERP (Community & Enterprise) kết hợp AI & tự động hóa** cho doanh nghiệp **SME dưới 300 nhân sự**. Thành lập 07/2024.
+- **Thông điệp chính**: *"Chúng tôi không bán phần mềm, chúng tôi triển khai giải pháp tối ưu vận hành."*
+- **Nguyên tắc khi viết nội dung**:
+  - Chỉ nói những gì làm được và chứng minh được. Không dùng "24/7", "tuyệt đối", "trọn đời", "hàng đầu", "SME & Enterprise".
+  - Không nhắc tới "sản phẩm phần mềm", để khớp với thông điệp "không bán phần mềm".
+  - Mỗi ý chỉ xuất hiện ở một section, không lặp giữa "Về chúng tôi", "Lợi thế" và "Cam kết".
+  - Cam kết thời gian phản hồi thống nhất một câu: **"trong 1 ngày làm việc"**.
+  - Tiêu đề tiếng Việt viết hoa kiểu câu (chỉ viết hoa chữ đầu và tên riêng). Bản tiếng Anh dùng Title Case.
+  - Nút hành động chính: **"Nhận tư vấn"** (header, menu mobile), **"Nhận tư vấn giải pháp"** (hero), **"Gửi yêu cầu tư vấn"** (form).
+- **Pháp lý**: EDI hiện là team startup, **chưa có pháp nhân**. Không hiển thị tên công ty, MST hay địa chỉ văn phòng.
 
 ---
 
-## 3. Kiến trúc Công nghệ sử dụng (Tech Stack)
+## 2. Cấu trúc trang
 
-Để tối ưu hóa tốc độ tải trang, điểm SEO tối đa và dễ bảo trì, website được triển khai trên nền tảng tối giản hiệu năng cao:
-
-- **Build Tool / Bundler**: **Vite** (Vanilla JS) giúp bundle tài nguyên siêu nhanh và hỗ trợ Hot Module Replacement khi phát triển.
-- **HTML**: Sử dụng cấu trúc HTML5 semantic đầy đủ kết hợp các thẻ meta tối ưu hóa **SEO** (Title, Meta Description, Keywords) và thẻ **Open Graph** chia sẻ mạng xã hội.
-- **CSS**: Sử dụng Vanilla CSS thuần túy tận dụng CSS Variables, Grid Layout, Flexbox và CSS Animations. Không phụ thuộc vào các thư viện ngoài cồng kềnh. Hỗ trợ **Dark/Light Theme** thông qua attribute `data-theme="dark|light"` trên thẻ `<html>`.
-- **Javascript**: Sử dụng các API ES6+ hiện đại, tận dụng `IntersectionObserver` để tự động hóa hiệu ứng scroll-reveal và highlight timeline quy trình. Theme toggle sử dụng `localStorage` để ghi nhớ lựa chọn và `matchMedia('prefers-color-scheme')` để phát hiện cấu hình hệ thống.
-- **Đa ngôn ngữ (i18n)**: Xây dựng thủ công không dùng thư viện. File `src/js/i18n.js` chứa object translations cho cả VI và EN (~300 keys). Hàm `applyLanguage()` quét DOM tìm `[data-i18n]`, `[data-i18n-aria]`, `[data-i18n-title]`, `[data-i18n-placeholder]` và cập nhật nội dung tương ứng. Ngôn ngữ được lưu trong `localStorage`.
+| # | Section (`id`) | Nội dung |
+|---|---|---|
+| 1 | Header | Logo, menu 4 mục **Giới thiệu · Dịch vụ · Quy trình · Dự án**, nút VI/EN, nút sáng/tối, CTA "Nhận tư vấn". Menu hamburger khi màn hình ≤ 900px. Menu mobile và footer dùng cùng 4 mục. "Lợi thế" được tính là một phần của Giới thiệu, "Đội ngũ" là một phần của Dự án (menu sáng theo mục cha khi cuộn qua) |
+| 2 | Hero (`#hero`) | Badge "Odoo ERP · AI Agent · Tự động hóa quy trình", thông điệp chính, 2 CTA (tư vấn → `#contact`, xem dự án → `#portfolio`), đồ họa lõi EDI với các icon Odoo / AI / Chatbot / OCR / RPA / API / BI / DevOps |
+| 3 | Về chúng tôi (`#about`) | Sứ mệnh; 3 chỉ số: **2024** thành lập · **6** dự án tiêu biểu · **SME** dưới 300 nhân sự; 3 điểm: Delivery Team chuyên sâu, hiểu vận hành doanh nghiệp Việt, chi phí phù hợp SME |
+| 4 | Lợi thế (`#strengths`) | 6 card: chuyên sâu Odoo CE & EE, BA & Developer đồng hành, ERP kết hợp AI & tự động hóa, quy trình triển khai chuẩn, giải pháp "may đo", đồng hành dài hạn |
+| 5 | Dịch vụ (`#services`) | 5 dịch vụ đánh số 01–05: tư vấn & khảo sát, thiết kế giải pháp ERP, triển khai & tùy biến Odoo, đào tạo & chuyển giao, bảo trì, hỗ trợ & nâng cấp |
+| 6 | Quy trình (`#process`) | Timeline 6 bước: khảo sát → thiết kế & kế hoạch → cấu hình & phát triển → UAT → Go-live → hỗ trợ sau Go-live. Bước đang xem tự sáng lên khi cuộn |
+| 7 | Dự án (`#portfolio`) | 6 dự án, hiển thị **tên và địa chỉ thật** của khách hàng (xem mục 3) |
+| 8 | Đội ngũ (`#team`) | Card **Đàm Công Hiến** (Founder & Solution Architect, có ảnh và LinkedIn) và card tóm tắt "4 thành viên chuyên sâu Odoo". Chỉ công khai thông tin của founder |
+| 9 | Cam kết | Chất lượng & tiến độ · Bảo mật dữ liệu (sẵn sàng ký NDA) · Minh bạch phạm vi & chi phí |
+| 10 | Liên hệ (`#contact`) | Email, hotline, Facebook; form liên hệ (xem mục 4) |
+| 11 | Footer | Mô tả ngắn, cùng 4 link như menu, bản quyền |
 
 ---
 
-## 4. Cấu trúc Thư mục Dự án
+## 3. Dự án tiêu biểu
+
+| # | Khách hàng | Địa chỉ | Giải pháp |
+|---|---|---|---|
+| 1 | Enkei Vietnam Co., Ltd | KCN Thăng Long, Thiên Lộc, Hà Nội | CRM, Purchase, Inventory |
+| 2 | Krapower (KRA Group JSC) | Số 23 Louis VII, KĐT Louis, Hoàng Mai, Hà Nội | CRM, Sales, Project, Inventory, HRM |
+| 3 | Công ty Cổ phần VTE (VTE.JSC) | Thôn Cổ Điển A, Tứ Hiệp, Thanh Trì, Hà Nội | CRM, MRP, Inventory, HRM |
+| 4 | Pack Vitus GmbH | Siegfriedstr. 182, 10365 Berlin, Germany | POS, Sales, Inventory, Accounting |
+| 5 | Velora Vietnam Travel | The Manor Central Park, Định Công, Hà Nội | CRM, Website |
+| 6 | Công ty Cổ phần Đầu tư và Công nghệ THG | Lô B12/D21 KĐT mới Cầu Giấy, Dịch Vọng Hậu, Cầu Giấy, Hà Nội | DMS (quản lý tài liệu, tích hợp OnlyOffice, đánh mã & template xuất báo cáo) |
+
+**Thêm một dự án mới:**
+1. Sao chép một khối `.portfolio-card` trong `index.html`, đổi key thành `p7-*` (`p7-client`, `p7-location`, `p7-tag`, `p7-role-1..4`).
+2. Thêm các key đó vào **cả hai** khối `vi` và `en` trong `src/js/i18n.js`. Nội dung mặc định trong HTML phải giống hệt bản `vi`.
+3. Cập nhật con số "6 dự án tiêu biểu" ở section Về chúng tôi.
+
+---
+
+## 4. Form liên hệ
+
+- Dữ liệu được gửi thẳng vào Google Form ([forms.gle/DLQCKXufRs3km3WE9](https://forms.gle/DLQCKXufRs3km3WE9)). Không cần backend.
+- Cấu hình nằm trong `src/js/main.js`:
+  - `GOOGLE_FORM_URL`: link `.../formResponse` của form.
+  - `GOOGLE_FORM_FIELDS`: map từ ô trên web sang `entry.<id>` của từng câu hỏi (Tên, Email, Số điện thoại, Tên doanh nghiệp, Nhu cầu).
+- **Nếu sửa câu hỏi trong Google Form**, ID `entry.*` sẽ thay đổi. Lấy lại ID (xem biến `FB_PUBLIC_LOAD_DATA_` trong mã nguồn trang form) rồi cập nhật `GOOGLE_FORM_FIELDS`. Form **không được** bật "Yêu cầu đăng nhập".
+- Google không trả về kết quả cho website (request `no-cors`), nên web chỉ phát hiện được lỗi mạng. Khi lỗi, web hiện thông báo kèm số hotline.
+- **Validation:**
+  - Họ tên: bắt buộc.
+  - Số điện thoại: di động Việt Nam `0xxxxxxxxx` hoặc `+84xxxxxxxxx`, chấp nhận dấu cách và dấu chấm.
+  - Email: bắt buộc, đúng định dạng.
+  - Ô đồng ý sử dụng thông tin: bắt buộc.
+
+---
+
+## 5. Thiết kế
+
+### Màu & theme
+- Gradient thương hiệu lấy từ logo: tím `#8A2BE2` → xanh dương `#1E90FF` → teal `#00F5FF` (bản sáng dùng teal `#0d9488`).
+- Có Dark và Light mode. Toàn bộ màu nằm trong CSS variables ở `:root`; bản sáng chỉ override lại trong `[data-theme="light"]`.
+- Lần truy cập đầu, trang theo cài đặt sáng/tối của hệ điều hành. Chỉ khi người dùng bấm nút thì lựa chọn mới được lưu vào `localStorage` (`theme`).
+- Theme được áp dụng bằng script inline trong `<head>` trước khi trang hiển thị, nên không bị nháy màn hình.
+
+### Hiệu ứng
+- **Hover** dùng một kiểu thống nhất cho mọi card (card thường, dịch vụ, timeline): nổi lên 4px, viền màu nhấn, phát sáng xanh nhẹ. Khung form và khung cam kết không có hiệu ứng hover.
+- **Scroll-reveal:** các section hiện dần khi cuộn tới. **Timeline:** bước đang xem tự sáng lên. **Menu:** tự đánh dấu mục tương ứng section đang xem.
+- Tôn trọng cài đặt `prefers-reduced-motion`: tắt animation với người dùng đã chọn giảm chuyển động.
+
+### Responsive
+
+| Mốc | Thay đổi |
+|---|---|
+| > 900px | Menu desktop 4 mục (vừa từ ~860px với bản EN) |
+| ≤ 900px | Menu hamburger (vẫn giữ nút "Nhận tư vấn" ở header đến 768px) |
+| ≤ 1024px | Hero 1 cột; giảm padding section xuống 80px |
+| 601–768px | Lưới "Lợi thế" và "Dự án" giữ 2 cột |
+| ≤ 768px | Bố cục mobile; timeline 1 cột; padding section 64px |
+| ≤ 500px | Giảm cỡ chữ tiêu đề và padding card |
+
+- Hero cao tối thiểu `min(90vh, 860px)`, tránh khoảng trống lớn trên màn hình dọc.
+- Các lớp glow nền được bọc trong `.bg-glows` (`overflow-x: clip`) để trang **không bao giờ cuộn ngang**. Không đặt `overflow` trên `html`/`body` để thay thế: thuộc tính đó bị truyền lên viewport và vẫn cho cuộn ngang trên mobile.
+- Vùng bấm trên mobile ≥ 40px (nút hamburger 44×44px).
+
+---
+
+## 6. Đa ngôn ngữ (i18n)
+
+- Có tiếng Việt (mặc định) và tiếng Anh. Lựa chọn lưu trong `localStorage` (`preferred-lang`).
+- Phần tử được dịch gắn thuộc tính `data-i18n` (nội dung chữ), `data-i18n-aria`, `data-i18n-title` hoặc `data-i18n-placeholder`. Hàm `applyLanguage()` trong `src/js/i18n.js` cập nhật DOM theo các thuộc tính này.
+- **Lưu ý khi viết HTML:**
+  - `data-i18n` ghi đè **toàn bộ** nội dung chữ của phần tử. Không đặt nó lên phần tử có thẻ con cần giữ lại (ví dụ dấu `*` bắt buộc); hãy bọc riêng phần chữ trong `<span data-i18n="...">`.
+  - Mọi key phải có ở cả `vi` và `en`, và nội dung mặc định trong HTML phải trùng với bản `vi`.
+
+---
+
+## 7. Kỹ thuật
+
+- **HTML / CSS / JS thuần**, không framework, không cần build. Mở được trực tiếp qua `file://`.
+  - Chỉ dùng đường dẫn tương đối.
+  - Không dùng `type="module"` hay `import` / `export`.
+  - `i18n.js` phải nạp trước `main.js`.
+- Font: Inter (nội dung) và Outfit (tiêu đề), tải từ Google Fonts.
+- **SEO:**
+  - Title khoảng 56 ký tự và description khoảng 154 ký tự; canonical, Open Graph và Twitter card trỏ về `https://edi-soft.vercel.app/`.
+  - Ảnh chia sẻ `assets/img/og-image.png` kích thước 1200×630. Khi đổi thông điệp chính, nhớ làm lại ảnh này.
+  - JSON-LD trong `<head>` gồm `Organization` (dịch vụ, liên hệ, Facebook), `Person` (founder, LinkedIn) và `WebSite`. Không khai báo địa chỉ vì team chưa có pháp nhân.
+  - `robots.txt` và `sitemap.xml` ở thư mục gốc. Cập nhật `<lastmod>` trong sitemap mỗi khi nội dung thay đổi đáng kể.
+  - Thứ bậc heading: 1 `h1`; mỗi section một `h2`; card dùng `h3`, nhãn con dùng `h4`; không nhảy cóc cấp heading.
+  - Mọi `<img>` phải có `width` và `height` để trang không bị nhảy bố cục khi tải.
+- Deploy trên Vercel theo cấu hình tĩnh trong `vercel.json`. Mỗi lần push lên `main` Vercel tự deploy.
 
 ```text
-edi-web/
-├── dist/                     # Mã nguồn tối ưu sau khi build sản xuất
-├── node_modules/             # Các dependency của dự án (Vite)
-├── public/
-│   ├── favicon.png           # Biểu tượng trang web trên tab trình duyệt
-│   └── icon.png              # Logo gốc của EDI Soft
+├── assets/img/        # favicon.png, icon.png (logo), hiendc.jpg (avatar founder, 200×200)
+├── docs/              # Tài liệu, hồ sơ năng lực (PDF)
 ├── src/
-│   ├── js/
-│   │   ├── i18n.js           # Translations VI/EN (~300 keys) + hàm applyLanguage()
-│   │   └── main.js           # Logic tương tác: theme toggle, lang toggle, validation form, animation, scroll-reveal
-│   └── styles/
-│       └── main.css          # Định nghĩa giao diện, màu sắc, responsive và lang toggle styles
-├── index.html                # Cấu trúc HTML chính của website (có data-i18n attributes)
-├── package.json              # Khai báo script chạy/build dự án
-├── vite.config.js            # Cấu hình Vite dev server và build path
-└── edi-website-plan.md       # Tài liệu này (Tổng quan triển khai)
+│   ├── js/i18n.js     # Bản dịch VI/EN + applyLanguage()
+│   ├── js/main.js     # Theme, ngôn ngữ, menu, scroll-reveal, timeline, form → Google Form
+│   └── styles/main.css
+├── index.html
+└── vercel.json
 ```
+
+---
+
+## 8. Việc còn lại (đề xuất)
+
+- Section **AI & tự động hóa** với 3–4 use case cụ thể (ví dụ OCR hóa đơn → bút toán, chatbot tra tồn kho), là điểm khác biệt chính.
+- **FAQ:** chọn CE hay EE, thời gian go-live, license Odoo, chuyển dữ liệu cũ.
+- Số liệu kết quả cho từng dự án (trước/sau) và lời nhận xét của khách hàng.
+- Sau khi deploy: khai báo `sitemap.xml` trong Google Search Console, đo Core Web Vitals bằng PageSpeed Insights, kiểm tra JSON-LD bằng Rich Results Test.
+- Trang tiếng Anh riêng (`/en/`) nếu muốn được index cho thị trường nước ngoài. Hiện bản EN chỉ sinh ra bằng JavaScript nên Google gần như chỉ index bản tiếng Việt.
+- Analytics (Vercel Analytics hoặc GA4) và theo dõi số lần gửi form.
+- Email theo tên miền riêng thay cho `@gmail.com`.

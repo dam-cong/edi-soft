@@ -28,18 +28,16 @@ function initThemeToggle() {
     return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   };
 
-  const applyTheme = (theme) => {
-    html.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  };
+  const applyTheme = (theme) => html.setAttribute('data-theme', theme);
 
   // Apply initial theme
   applyTheme(getPreferredTheme());
 
-  // Toggle on click
+  // Toggle on click — only an explicit choice is saved, so system changes still apply otherwise
   toggleBtn.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme');
-    applyTheme(current === 'light' ? 'dark' : 'light');
+    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    localStorage.setItem('theme', next);
   });
 
   // Listen for system preference changes (only if no saved preference)
@@ -68,6 +66,7 @@ function initLangToggle() {
   // Apply saved language on load
   const currentLang = getCurrentLang();
   switchLang(currentLang);
+  document.documentElement.classList.remove('i18n-pending');
 
   // Toggle on click
   toggleBtn.addEventListener('click', () => {
@@ -218,140 +217,97 @@ function initBackToTop() {
 }
 
 /**
- * 7. Contact Form Validation & Success Modal
+ * 7. Contact Form — validate, then submit to Google Form
  */
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSegSaT3W1BEAazwCOSxqSdRe9sVWh6NFSd6CRXLRG-ceNP78A/formResponse';
+const GOOGLE_FORM_FIELDS = {
+  name: 'entry.2005620554',
+  email: 'entry.1045781291',
+  phone: 'entry.1166974658',
+  company: 'entry.839337160',
+  message: 'entry.1793144384'
+};
+
 function initContactForm() {
   const form = document.getElementById('contact-form');
   const successModal = document.getElementById('success-modal');
   const closeModalBtn = document.getElementById('btn-close-modal');
   const submitBtn = document.getElementById('btn-submit-form');
+  const submitError = document.getElementById('error-submit');
 
   if (!form || !successModal || !closeModalBtn) return;
 
-  // Validation patterns
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^(03|05|07|08|09|01[2|6|8|9])\d{8}$/; // Standard Vietnamese phone format
-
-  // Helper to show/hide errors
-  const showError = (fieldId, errorId, message) => {
-    const input = document.getElementById(fieldId);
-    const errorSpan = document.getElementById(errorId);
-    if (input && errorSpan) {
-      input.classList.add('invalid');
-      errorSpan.textContent = message;
-    }
-  };
-
-  const clearError = (fieldId, errorId) => {
-    const input = document.getElementById(fieldId);
-    const errorSpan = document.getElementById(errorId);
-    if (input && errorSpan) {
-      input.classList.remove('invalid');
-      errorSpan.textContent = '';
-    }
-  };
-
-  // Live validation on blur
-  const nameInput = document.getElementById('form-name');
-  const phoneInput = document.getElementById('form-phone');
-  const emailInput = document.getElementById('form-email');
-
+  const phoneRegex = /^(0|\+?84)(3|5|7|8|9)\d{8}$/; // Vietnamese mobile: 0xxxxxxxxx or +84xxxxxxxxx
+  const normalizePhone = (v) => v.replace(/[\s.\-()]/g, '');
   const t = () => translations[getCurrentLang()];
 
-  nameInput.addEventListener('blur', () => {
-    if (!nameInput.value.trim()) {
-      showError('form-name', 'error-name', t()['error-name']);
-    } else {
-      clearError('form-name', 'error-name');
-    }
+  // Each rule returns an i18n error key, or '' when the field is valid
+  const rules = {
+    name: (el) => el.value.trim() ? '' : 'error-name',
+    phone: (el) => {
+      const v = normalizePhone(el.value.trim());
+      return !v ? 'error-phone-empty' : phoneRegex.test(v) ? '' : 'error-phone-format';
+    },
+    email: (el) => {
+      const v = el.value.trim();
+      return !v ? 'error-email-empty' : emailRegex.test(v) ? '' : 'error-email-format';
+    },
+    consent: (el) => el.checked ? '' : 'error-consent'
+  };
+
+  const validate = (field) => {
+    const input = document.getElementById(`form-${field}`);
+    const key = rules[field](input);
+    input.classList.toggle('invalid', !!key);
+    document.getElementById(`error-${field}`).textContent = key ? t()[key] : '';
+    return !key;
+  };
+
+  Object.keys(rules).forEach(field => {
+    document.getElementById(`form-${field}`)
+      .addEventListener(field === 'consent' ? 'change' : 'blur', () => validate(field));
   });
 
-  phoneInput.addEventListener('blur', () => {
-    const val = phoneInput.value.trim();
-    if (!val) {
-      showError('form-phone', 'error-phone', t()['error-phone-empty']);
-    } else if (!phoneRegex.test(val)) {
-      showError('form-phone', 'error-phone', t()['error-phone-format']);
-    } else {
-      clearError('form-phone', 'error-phone');
-    }
-  });
-
-  emailInput.addEventListener('blur', () => {
-    const val = emailInput.value.trim();
-    if (!val) {
-      showError('form-email', 'error-email', t()['error-email-empty']);
-    } else if (!emailRegex.test(val)) {
-      showError('form-email', 'error-email', t()['error-email-format']);
-    } else {
-      clearError('form-email', 'error-email');
-    }
-  });
+  const openModal = () => {
+    successModal.classList.add('open');
+    successModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeModalBtn.focus();
+  };
 
   // Submit Handler
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    submitError.textContent = '';
 
-    let isValid = true;
-    const nameVal = nameInput.value.trim();
-    const phoneVal = phoneInput.value.trim();
-    const emailVal = emailInput.value.trim();
-
-    const t2 = translations[getCurrentLang()];
-
-    if (!nameVal) {
-      showError('form-name', 'error-name', t2['error-name']);
-      isValid = false;
-    } else {
-      clearError('form-name', 'error-name');
-    }
-
-    if (!phoneVal) {
-      showError('form-phone', 'error-phone', t2['error-phone-empty']);
-      isValid = false;
-    } else if (!phoneRegex.test(phoneVal)) {
-      showError('form-phone', 'error-phone', t2['error-phone-format']);
-      isValid = false;
-    } else {
-      clearError('form-phone', 'error-phone');
-    }
-
-    if (!emailVal) {
-      showError('form-email', 'error-email', t2['error-email-empty']);
-      isValid = false;
-    } else if (!emailRegex.test(emailVal)) {
-      showError('form-email', 'error-email', t2['error-email-format']);
-      isValid = false;
-    } else {
-      clearError('form-email', 'error-email');
-    }
-
-    if (!isValid) {
-      // Focus on first invalid input
-      const firstInvalid = form.querySelector('.invalid');
-      if (firstInvalid) firstInvalid.focus();
+    // Validate every field so all errors show at once
+    if (Object.keys(rules).map(validate).includes(false)) {
+      form.querySelector('.invalid').focus();
       return;
     }
 
-    // Simulate sending data
-    const originalBtnText = submitBtn.innerHTML;
+    const data = new URLSearchParams();
+    Object.entries(GOOGLE_FORM_FIELDS).forEach(([field, entry]) => {
+      const value = form.elements[field].value.trim();
+      data.append(entry, field === 'phone' ? normalizePhone(value) : value);
+    });
+
+    const label = submitBtn.querySelector('[data-i18n="form-submit"]');
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span data-i18n="form-submit-loading">' + translations[getCurrentLang()]['form-submit-loading'] + '</span> <span class="spinner"></span>';
+    label.textContent = t()['form-submit-loading'];
 
-    // Add inline spinner CSS dynamically if needed (already styled button transition generally)
-    setTimeout(() => {
-      // Restore Button state
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalBtnText;
-
-      // Show Success Modal
-      successModal.classList.add('open');
-      successModal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-
-      // Reset form
+    try {
+      // Google Forms sends no CORS headers: the response is opaque, only network failures are detectable
+      await fetch(GOOGLE_FORM_URL, { method: 'POST', mode: 'no-cors', body: data });
       form.reset();
-    }, 1500);
+      openModal();
+    } catch {
+      submitError.textContent = t()['error-submit'];
+    } finally {
+      submitBtn.disabled = false;
+      label.textContent = t()['form-submit'];
+    }
   });
 
   // Modal closing logic
@@ -387,10 +343,13 @@ function initNavScrollSpy() {
 
   if (sections.length === 0 || navLinks.length === 0) return;
 
+  // Sections without their own menu item highlight the item they belong to
+  const NAV_PARENT = { strengths: 'about', team: 'portfolio' };
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const id = entry.target.id;
+        const id = NAV_PARENT[entry.target.id] || entry.target.id;
         navLinks.forEach(link => {
           link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
         });

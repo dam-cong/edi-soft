@@ -72,6 +72,22 @@
   --gradient-dark: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
 }
 
+/* Hide content until the saved language is applied (set by inline script in <head>) */
+.i18n-pending body {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 [data-theme="light"] .bg-glow {
   opacity: 0.1;
 }
@@ -129,6 +145,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -165,14 +182,41 @@ body {
   transition: var(--transition-smooth);
 }
 
-.glass-card:hover {
+/* One hover language for every interactive card: lift 4px, accent border, soft blue glow */
+.glass-card:hover,
+.service-item:hover,
+.timeline-content:hover {
   border-color: var(--border-glass-active);
   background: var(--bg-card-hover);
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-glow-blue);
 }
 
+/* Large static containers (form, commitments) stay still */
+.commit-container:hover,
+.contact-form-wrapper:hover {
+  transform: none;
+  border-color: var(--border-glass);
+  background: var(--bg-card);
+  box-shadow: none;
+}
+
 /* Background Atmospheric Glows */
+/* Clips the glows horizontally so they never widen the page (overflow on html/body can't do this:
+   it is propagated to the viewport, which still allows sideways scrolling on mobile) */
+.bg-glows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; /* fallback */
+  overflow-x: clip;
+  overflow-y: visible;
+  pointer-events: none;
+  z-index: -1;
+}
+
 .bg-glow {
   position: absolute;
   border-radius: 50%;
@@ -517,8 +561,10 @@ h1, h2, h3, h4 {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 24px;
-  height: 18px;
+  width: 44px; /* 44px tap target, bars stay 24x18 via padding */
+  height: 44px;
+  padding: 13px 10px;
+  margin-right: -10px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -605,7 +651,7 @@ h1, h2, h3, h4 {
 .hero-section {
   padding: 180px 0 100px;
   position: relative;
-  min-height: 90vh;
+  min-height: min(90vh, 860px); /* cap so tall/portrait screens don't get huge empty bands */
   display: flex;
   align-items: center;
 }
@@ -766,19 +812,19 @@ h1, h2, h3, h4 {
   animation: float-drift 6.5s ease-in-out 0.8s infinite;
 }
 
-.float-icon-website {
+.float-icon-ocr {
   top: -10%;
   left: 34%;
   animation: float-drift 6s ease-in-out 0.3s infinite;
 }
 
-.float-icon-ios {
+.float-icon-rpa {
   top: 44%;
   left: -10%;
   animation: float-drift 7s ease-in-out 1.2s infinite;
 }
 
-.float-icon-android {
+.float-icon-bi {
   bottom: -8%;
   left: 34%;
   animation: float-drift 5.5s ease-in-out 0.6s infinite;
@@ -837,9 +883,10 @@ h1, h2, h3, h4 {
 }
 
 .about-stats {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 1.5rem;
   border-top: 1px solid var(--border-glass);
   padding-top: 2rem;
 }
@@ -970,22 +1017,19 @@ h1, h2, h3, h4 {
   align-items: center;
 }
 
-.service-item:hover {
-  border-color: var(--primary-teal);
-  box-shadow: var(--shadow-glow-teal);
-  transform: translateX(10px);
-}
-
 .service-number {
   font-family: var(--font-display);
   font-size: 3.5rem;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.05);
+  line-height: 1;
+  color: var(--text-muted);
+  opacity: 0.4;
   transition: var(--transition-smooth);
 }
 
 .service-item:hover .service-number {
   color: var(--primary-teal);
+  opacity: 1;
   text-shadow: 0 0 15px rgba(0, 245, 255, 0.4);
 }
 
@@ -1032,8 +1076,26 @@ h1, h2, h3, h4 {
 .timeline-step {
   position: relative;
   display: flex;
-  margin-bottom: 4rem;
+  margin-bottom: 1.5rem;
   z-index: 2;
+}
+
+/* Alternating layout: pull each step up alongside the previous card (they sit on opposite sides) */
+@media (min-width: 769px) {
+  .timeline-step {
+    margin-bottom: 0;
+  }
+  .timeline-step + .timeline-step {
+    margin-top: -6rem;
+  }
+  /* Overlapping rows are transparent: let the pointer reach the card underneath */
+  .timeline-step {
+    pointer-events: none;
+  }
+  .timeline-content,
+  .timeline-dot {
+    pointer-events: auto;
+  }
 }
 
 .timeline-step:last-child {
@@ -1105,7 +1167,7 @@ h1, h2, h3, h4 {
 }
 
 .timeline-step.active .timeline-content {
-  border-color: var(--primary-blue);
+  border-color: var(--border-glass-active);
   box-shadow: var(--shadow-glow-blue);
 }
 
@@ -1210,17 +1272,6 @@ h1, h2, h3, h4 {
   color: var(--primary-teal);
 }
 
-.portfolio-outro {
-  max-width: 900px;
-  margin: 3rem auto 0;
-  border-top: 1px solid var(--border-glass);
-  padding-top: 2.5rem;
-  font-size: 1rem;
-  color: var(--text-light);
-  line-height: 1.7;
-  text-align: center;
-}
-
 .portfolio-summary-values {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1269,28 +1320,31 @@ h1, h2, h3, h4 {
   align-items: center;
 }
 
+.team-summary-num {
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
 .member-avatar-wrapper {
-  width: 90px;
-  height: 90px;
+  width: 112px;
+  height: 112px;
   border-radius: 50%;
   background: var(--gradient-primary);
-  padding: 2px;
+  padding: 3px;
   margin-bottom: 1.5rem;
   box-shadow: var(--shadow-glow-blue);
 }
 
-.member-avatar-fallback {
+.member-avatar-img {
+  display: block;
   width: 100%;
   height: 100%;
-  background: var(--bg-space);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.5rem;
-  color: var(--text-white);
+  object-fit: cover;
+  background: var(--bg-space);
 }
 
 .member-name {
@@ -1356,11 +1410,6 @@ h1, h2, h3, h4 {
 .commit-container {
   padding: 4rem;
   border-radius: var(--border-radius-lg);
-}
-
-.commit-container:hover {
-  box-shadow: var(--shadow-glow-purple);
-  border-color: rgba(138, 43, 226, 0.25);
 }
 
 .commit-header {
@@ -1465,7 +1514,10 @@ h1, h2, h3, h4 {
 }
 
 .contact-value {
+  display: inline-block;
+  padding: 0.4rem 0; /* taller tap target */
   font-size: 1.2rem;
+  overflow-wrap: anywhere;
   color: var(--text-white);
   text-decoration: none;
   font-weight: 600;
@@ -1480,11 +1532,6 @@ a.contact-value:hover {
 .contact-form-wrapper {
   padding: 3rem;
   border-radius: var(--border-radius-lg);
-}
-
-.contact-form-wrapper:hover {
-  box-shadow: var(--shadow-glow-teal);
-  border-color: rgba(0, 245, 255, 0.2);
 }
 
 .form-group {
@@ -1543,6 +1590,30 @@ a.contact-value:hover {
   min-height: 18px;
 }
 
+.form-consent label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-gray);
+  cursor: pointer;
+}
+
+.contact-form .form-consent input {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  padding: 0;
+  accent-color: var(--primary-blue);
+}
+
+.form-submit-error {
+  text-align: center;
+  margin-top: 1rem;
+}
+
 /* ==========================================
    13. FOOTER
    ========================================== */
@@ -1569,7 +1640,10 @@ a.contact-value:hover {
 }
 
 .footer-links-title {
+  font-family: var(--font-display);
   font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-white);
   margin-bottom: 1.5rem;
 }
 
@@ -1582,6 +1656,8 @@ a.contact-value:hover {
 }
 
 .footer-links-list a {
+  display: inline-block;
+  padding: 0.5rem 0; /* taller tap target */
   color: var(--text-gray);
   text-decoration: none;
   transition: var(--transition-smooth);
@@ -1736,15 +1812,15 @@ a.contact-value:hover {
   }
   .float-icon-ai,
   .float-icon-api,
-  .float-icon-ios,
-  .float-icon-android {
+  .float-icon-rpa,
+  .float-icon-bi {
     display: none;
   }
   .float-icon-odoo {
     top: -6%;
     left: 0%;
   }
-  .float-icon-website {
+  .float-icon-ocr {
     top: -12%;
     left: 28%;
   }
@@ -1795,7 +1871,7 @@ a.contact-value:hover {
   .hero-title {
     font-size: 2.5rem;
   }
-  .float-icon-website {
+  .float-icon-ocr {
     display: none;
   }
   .float-icon-odoo {
@@ -1885,5 +1961,174 @@ a.contact-value:hover {
   .float-icon-devops {
     bottom: -4%;
     right: 4%;
+  }
+}
+
+/* ==========================================
+   16. RESPONSIVE SPACING (tablet & mobile)
+   ========================================== */
+.logo-text,
+.nav-link,
+.btn {
+  white-space: nowrap;
+}
+
+.hero-section {
+  overflow-x: clip; /* floating icons must never widen the page */
+}
+
+/* Narrow two-column hero: pull the right-side icons inside the viewport */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .float-icon-api {
+    right: -3%;
+  }
+  .float-icon-ai {
+    right: -2%;
+  }
+}
+
+/* The 4-item desktop menu fits from ~860px (EN is the longest); below 900px use the hamburger menu */
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none;
+  }
+  .mobile-nav-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-section {
+    min-height: auto;
+    padding: 140px 0 80px;
+  }
+  .hero-container {
+    gap: 4.5rem; /* room for the floating icons above the visual */
+  }
+  .about-section,
+  .strengths-section,
+  .services-section,
+  .process-section,
+  .portfolio-section,
+  .team-section,
+  .contact-section {
+    padding: 80px 0;
+  }
+  .commit-section {
+    padding: 40px 0 80px;
+  }
+  .commit-container {
+    padding: 3rem 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 112px 0 56px;
+  }
+  .about-section,
+  .strengths-section,
+  .services-section,
+  .process-section,
+  .portfolio-section,
+  .team-section,
+  .contact-section {
+    padding: 64px 0;
+  }
+  .commit-section {
+    padding: 24px 0 64px;
+  }
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+  .section-desc {
+    font-size: 1rem;
+  }
+  /* Service number sits beside the title instead of on its own row */
+  .service-item {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.75rem 1.5rem;
+  }
+  .service-number {
+    font-size: 2rem;
+  }
+  .service-title {
+    font-size: 1.25rem;
+  }
+  .strength-card,
+  .portfolio-card {
+    padding: 1.75rem;
+  }
+  .about-info-card {
+    padding: 2rem;
+  }
+  .commit-container {
+    padding: 2.5rem 1.75rem;
+  }
+  .commit-title {
+    font-size: 1.75rem;
+  }
+  .contact-container {
+    gap: 3rem;
+  }
+  .form-group {
+    margin-bottom: 1.1rem;
+  }
+}
+
+/* Small tablets: keep two columns instead of full-width single cards */
+@media (min-width: 601px) and (max-width: 768px) {
+  .strengths-grid,
+  .portfolio-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+  .hero-title {
+    font-size: 2.125rem;
+  }
+  .hero-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  .hero-visual-container {
+    max-width: 260px;
+  }
+  .section-title {
+    font-size: 1.875rem;
+  }
+  .service-item {
+    padding: 1.5rem 1.25rem;
+  }
+  .strength-card,
+  .portfolio-card,
+  .about-info-card,
+  .contact-form-wrapper {
+    padding: 1.5rem 1.25rem;
+  }
+  .team-card {
+    padding: 1.75rem 1.25rem;
+  }
+  .commit-container {
+    padding: 2rem 1.25rem;
+  }
+  .commit-item {
+    padding-left: 1.25rem;
+  }
+  .about-stats {
+    gap: 1rem;
+  }
+  .stat-num {
+    font-size: 1.75rem;
+  }
+  .contact-value {
+    font-size: 1.05rem;
   }
 }

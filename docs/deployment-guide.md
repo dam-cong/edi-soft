@@ -88,7 +88,7 @@ server {
 
 ```bash
 # Kiểm tra meta tags (chạy trên server sau deploy)
-curl -s https://edi-soft.vn | grep -E '<title>|<meta name="description"|<meta property="og:'
+curl -s https://edi-soft.vercel.app | grep -E '<title>|<meta name="description"|<meta property="og:'
 ```
 
 - [ ] Title tag hiển thị đúng
@@ -126,5 +126,5 @@ Khi có thay đổi nội dung:
 |--------|-------------|-----------|
 | 404 khi refresh trang | Server không config fallback | Thêm `try_files $uri $uri/ /index.html` vào Nginx |
 | Ảnh/icon không load | Đường dẫn sai | Kiểm tra đường dẫn trong `<img src="">` và thư mục `public/` |
-| API form không gửi được | Dạng static site | Form submit chỉ là mô phỏng (demo). Cần tích hợp backend/form service (Google Form, Formspree, etc.) |
+| Form gửi nhưng không thấy câu trả lời trong Google Form | Form bị đổi câu hỏi → `entry.*` thay đổi, hoặc form bật "yêu cầu đăng nhập" | Lấy lại ID `entry.*` của form và cập nhật `GOOGLE_FORM_FIELDS` trong `src/js/main.js`; tắt yêu cầu đăng nhập |
 | Ngôn ngữ không lưu | Browser block localStorage | Kiểm tra setting Privacy & Security của trình duyệt |
