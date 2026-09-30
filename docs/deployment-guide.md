@@ -21,11 +21,15 @@ Tất cả đường dẫn trong `index.html` đều là đường dẫn tương
 
 ```
 index.html
-assets/img/        # favicon, logo
-src/js/i18n.js     # bản dịch VI/EN (nạp trước)
-src/js/main.js     # logic chính
+assets/img/                   # favicon, logo, ảnh founder, og-image
+src/js/i18n.js                # bản dịch VI/EN (nạp trước)
+src/js/main.js                # logic chính
 src/styles/main.css
+robots.txt, sitemap.xml
+google325a807a1bdab251.html   # xác minh Google Search Console — không xóa, không đổi tên
 ```
+
+Thư mục `docs/` (tài liệu nội bộ, hồ sơ năng lực PDF) **không được deploy**: đã loại trong `.vercelignore`. Khi thêm tài liệu nội bộ mới, đặt vào `docs/`. Khi dùng cPanel/VPS (mục 4.2, 4.3), cũng không upload `docs/`.
 
 ---
 

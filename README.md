@@ -39,8 +39,8 @@ Chi tiết và các cách deploy khác: [docs/deployment-guide.md](docs/deployme
 ## Cấu trúc thư mục
 
 ```
-├── assets/img/           # Favicon, logo
-├── docs/                 # Tài liệu
+├── assets/img/           # Favicon, logo, ảnh founder, ảnh chia sẻ (og-image)
+├── docs/                 # Tài liệu nội bộ — KHÔNG deploy (xem .vercelignore)
 ├── src/
 │   ├── js/
 │   │   ├── i18n.js       # Bản dịch VI/EN
@@ -48,19 +48,15 @@ Chi tiết và các cách deploy khác: [docs/deployment-guide.md](docs/deployme
 │   └── styles/
 │       └── main.css      # Styles
 ├── index.html            # Trang chính
+├── robots.txt, sitemap.xml
+├── google*.html          # File xác minh Google Search Console (không xóa)
+├── .vercelignore         # Loại docs/ khỏi bản deploy
 └── vercel.json           # Cấu hình Vercel
 ```
 
 ## Nhánh
 
-Quy tắc đặt tên branch, commit, merge: [docs/git-convention.md](docs/git-convention.md)
-
-| Nhánh | Nội dung |
-|---|---|
-| `main` | Website EDI Soft hiện tại (deploy Vercel) |
-| `edi-2.0` | Bản EDI Soft dùng Vite (trước khi chuyển sang HTML tĩnh) |
-| `main-2.0` | Backup website EDI Tech nhiều trang (bản `main` cũ) |
-| `main-1.0`, `edi-1.0` | Các phiên bản 1.0 cũ |
+Nhánh production là `main`, mỗi lần merge vào `main` Vercel tự deploy. Tính năng mới làm trên nhánh `<type>/<mô-tả>` rồi tạo Pull Request, theo [docs/git-convention.md](docs/git-convention.md).
 
 ## Liên hệ
 

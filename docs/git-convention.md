@@ -1,6 +1,6 @@
 # Quy tắc sử dụng Git
 
-Áp dụng cho repo `edi-tech/web-edi` (GitLab). Nhánh production: `main`, deploy tự động lên Vercel.
+Áp dụng cho repo [`dam-cong/edi-soft`](https://github.com/dam-cong/edi-soft) (GitHub). Nhánh production: `main`, deploy tự động lên Vercel ([edi-soft.vercel.app](https://edi-soft.vercel.app/)).
 
 ---
 
@@ -100,7 +100,7 @@ git commit -m "feat(contact): send form data to email service"
 git push -u origin feat/contact-form-email
 ```
 
-4. Tạo **Merge Request → `main`** trên GitLab.
+4. Tạo **Pull Request → `main`** trên GitHub (hoặc `gh pr create --base main`).
 5. Review xong → merge → Vercel tự deploy.
 
 > Dùng `git add <files>` thay vì `git add .` để tránh commit nhầm file (`.claude/`, file tạm...).
@@ -110,14 +110,17 @@ git push -u origin feat/contact-form-email
 ## 5. Không commit trực tiếp vào `main`
 
 ```text
-Developer → feat/fix branch → Merge Request → Review → main → Vercel deploy
+Developer → feat/fix branch → Pull Request → Review → main → Vercel deploy
 ```
 
-Cấu hình protected branch `main` trên GitLab:
+Cấu hình bảo vệ nhánh `main` trên GitHub (**Settings → Branches → Branch protection rules**, hoặc **Rulesets**):
 
 - Không push trực tiếp, không force push
-- Bắt buộc Merge Request
+- Bắt buộc Pull Request trước khi merge
 - Yêu cầu ít nhất 1 approval
+- Chỉ cho phép **Squash merging** (Settings → General → Pull Requests)
+
+> Mỗi Pull Request được Vercel tạo một bản **Preview** riêng để kiểm tra trước khi merge.
 
 ---
 
@@ -133,7 +136,7 @@ Lịch sử `main` gọn, mỗi commit = một thay đổi có ý nghĩa.
 
 ---
 
-## 7. Checklist trước khi tạo Merge Request
+## 7. Checklist trước khi tạo Pull Request
 
 - [ ] Tên branch đúng format `<type>/<short-description>`
 - [ ] Commit message đúng Conventional Commits
