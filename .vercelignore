@@ -1,0 +1,2 @@
+# Files in the repo that must not be deployed (internal docs, company profile PDF)
+docs/
