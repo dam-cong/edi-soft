@@ -19,6 +19,8 @@ Website giới thiệu năng lực của **EDI Soft** (EDI Team) — tư vấn, 
 - Chuyển ngôn ngữ VI/EN
 - Scroll-reveal animations, timeline quy trình tương tác
 - Form liên hệ có validation, gửi dữ liệu về Google Form (cấu hình `GOOGLE_FORM_URL` / `GOOGLE_FORM_FIELDS` trong `src/js/main.js`)
+- Nút chat nổi Zalo và Messenger, FAQ dạng accordion (không cần JS)
+- SEO: JSON-LD (Organization, FAQPage…), sitemap, robots, ảnh chia sẻ 1200×630
 - Responsive (mobile, tablet, desktop)
 
 ## Chạy trên máy

@@ -26,17 +26,18 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 | # | Section (`id`) | Nội dung |
 |---|---|---|
 | 1 | Header | Logo, menu 4 mục **Giới thiệu · Dịch vụ · Quy trình · Dự án**, nút VI/EN, nút sáng/tối, CTA "Nhận tư vấn". Menu hamburger khi màn hình ≤ 900px. Menu mobile và footer dùng cùng 4 mục. "Lợi thế" được tính là một phần của Giới thiệu, "Đội ngũ" là một phần của Dự án (menu sáng theo mục cha khi cuộn qua) |
-| 2 | Hero (`#hero`) | Badge "Odoo ERP · AI Agent · Tự động hóa quy trình", thông điệp chính, 2 CTA (tư vấn → `#contact`, xem dự án → `#portfolio`), đồ họa lõi EDI với các icon Odoo / AI / Chatbot / OCR / RPA / API / BI / DevOps |
+| 2 | Hero (`#hero`) | Badge "Odoo ERP · AI Agent · Tự động hóa quy trình", thông điệp chính, 2 CTA (tư vấn → `#contact`, xem dự án → `#portfolio`), đồ họa lõi EDI với các icon Odoo / AI / Chatbot / OCR / RPA / API / Mobile / DevOps. Ngay dưới hero: **dải công nghệ** Odoo 10 → 19 · Python · PostgreSQL · Django · Laravel · Flutter · Claude AI · MCP |
 | 3 | Về chúng tôi (`#about`) | Sứ mệnh; 3 chỉ số: **2024** thành lập · **6** dự án tiêu biểu · **SME** dưới 300 nhân sự; 3 điểm: Delivery Team chuyên sâu, hiểu vận hành doanh nghiệp Việt, chi phí phù hợp SME |
 | 4 | Lợi thế (`#strengths`) | 6 card: chuyên sâu Odoo CE & EE, BA & Developer đồng hành, ERP kết hợp AI & tự động hóa, quy trình triển khai chuẩn, giải pháp "may đo", đồng hành dài hạn |
-| 5 | Dịch vụ (`#services`) | 5 dịch vụ đánh số 01–05: tư vấn & khảo sát, thiết kế giải pháp ERP, triển khai & tùy biến Odoo, đào tạo & chuyển giao, bảo trì, hỗ trợ & nâng cấp |
+| 5 | Dịch vụ (`#services`) | 6 dịch vụ đánh số 01–06: tư vấn & khảo sát, thiết kế giải pháp ERP, triển khai & tùy biến Odoo, đào tạo & chuyển giao, bảo trì, hỗ trợ & nâng cấp, **phát triển ứng dụng mobile (Flutter)** kết nối Odoo |
+| 5b | AI & tự động hóa (`#ai`) | Use case thực tế: **Claude AI kết nối Odoo qua MCP** để tạo dự án, tạo & giao nhiệm vụ, log work (timesheet), thống kê tình trạng dự án. Khung chat **có nhãn "Minh họa"**, dùng dự án giả "Công ty ABC" (không dùng tên khách thật). Sơ đồ: Claude AI ⇄ MCP Server ⇄ Odoo. Menu sáng "Dịch vụ" |
 | 6 | Hình thức hợp tác (`#engagement`) | 4 card: Khảo sát & tư vấn · Triển khai trọn gói · Phát triển theo yêu cầu · Bảo trì & đồng hành, mỗi card có mục "Phù hợp khi". **Không công khai giá**: "Chi phí được báo giá theo phạm vi sau buổi khảo sát" + nút Nhận tư vấn. Khi cuộn tới, menu sáng "Dịch vụ" |
 | 7 | Quy trình (`#process`) | Timeline 6 bước: khảo sát → thiết kế & kế hoạch → cấu hình & phát triển → UAT → Go-live → hỗ trợ sau Go-live. Bước đang xem tự sáng lên khi cuộn |
-| 8 | Dự án (`#portfolio`) | 6 dự án, hiển thị **tên và địa chỉ thật** của khách hàng (xem mục 3) |
+| 8 | Dự án (`#portfolio`) | 6 dự án, hiển thị **tên và địa chỉ thật** của khách hàng (xem mục 3). Mỗi card có dòng **"Giá trị mang lại"** (định tính, chỉ diễn đạt lại phạm vi đã làm, không có số liệu). Nhận xét khách hàng: bản nháp chờ duyệt ở [testimonial-drafts.md](testimonial-drafts.md), **chưa đưa lên web** |
 | 9 | Đội ngũ (`#team`) | Card **Đàm Công Hiến** (Founder & Solution Architect, có ảnh và LinkedIn) và card tóm tắt "4 thành viên chuyên sâu Odoo". Chỉ công khai thông tin của founder |
 | 10 | Cam kết | Chất lượng & tiến độ · Bảo mật dữ liệu (sẵn sàng ký NDA) · Minh bạch phạm vi & chi phí |
 | 11 | FAQ (`#faq`) | 7 câu hỏi dạng accordion (`<details>`, không cần JS): CE hay EE · thời gian triển khai · license Odoo · chuyển dữ liệu cũ · cloud hay máy chủ riêng · tích hợp AI/OCR vào Odoo đang dùng · hỗ trợ sau Go-live. Câu trả lời **không đưa con số thời gian hay giá** chưa xác nhận |
-| 12 | Liên hệ (`#contact`) | Email, hotline, Facebook; form liên hệ (xem mục 4) |
+| 12 | Liên hệ (`#contact`) | Email, hotline, **Zalo** (zalo.me/0363729276), **Messenger** (m.me/edisoft.vn), Facebook; form liên hệ (xem mục 4). Góc dưới bên phải có nút nổi xếp chồng từ dưới lên: **Zalo → Messenger → back-to-top** (class chung `.chat-float`, khoảng cách chỉnh bằng biến `--float-edge` / `--float-step`) |
 | 13 | Footer | Mô tả ngắn, cùng 4 link như menu, bản quyền |
 
 **Sửa FAQ:** nội dung câu hỏi và trả lời nằm ở 3 chỗ, phải sửa cả 3 cho khớp: `index.html` (bản VI mặc định), `src/js/i18n.js` (key `faq-N-q` / `faq-N-a`, cả `vi` và `en`), và node `FAQPage` trong JSON-LD ở `<head>` (bản VI).
@@ -148,9 +149,8 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 
 ## 8. Việc còn lại (đề xuất)
 
-- Section **AI & tự động hóa** với 3–4 use case cụ thể (ví dụ OCR hóa đơn → bút toán, chatbot tra tồn kho), là điểm khác biệt chính.
-- **Nút Zalo nổi** trên mobile (cần số Zalo tư vấn).
-- Số liệu kết quả cho từng dự án (trước/sau) và lời nhận xét của khách hàng.
+- Thêm use case AI khi đã làm thực tế (ví dụ OCR hóa đơn → bút toán, chatbot tra tồn kho).
+- Gửi khách duyệt nhận xét và số liệu theo [testimonial-drafts.md](testimonial-drafts.md), rồi đưa câu đã duyệt lên card dự án.
 - Sau khi deploy: khai báo `sitemap.xml` trong Google Search Console, đo Core Web Vitals bằng PageSpeed Insights, kiểm tra JSON-LD bằng Rich Results Test.
 - Trang tiếng Anh riêng (`/en/`) nếu muốn được index cho thị trường nước ngoài. Hiện bản EN chỉ sinh ra bằng JavaScript nên Google gần như chỉ index bản tiếng Việt.
 - Analytics (Vercel Analytics hoặc GA4) và theo dõi số lần gửi form.
