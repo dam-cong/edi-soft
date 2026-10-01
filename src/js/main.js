@@ -344,7 +344,7 @@ function initNavScrollSpy() {
   if (sections.length === 0 || navLinks.length === 0) return;
 
   // Sections without their own menu item highlight the item they belong to
-  const NAV_PARENT = { strengths: 'about', engagement: 'services', team: 'portfolio' };
+  const NAV_PARENT = { strengths: 'about', ai: 'services', engagement: 'services', team: 'portfolio' };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {

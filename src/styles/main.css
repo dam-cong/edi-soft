@@ -824,7 +824,7 @@ h1, h2, h3, h4 {
   animation: float-drift 7s ease-in-out 1.2s infinite;
 }
 
-.float-icon-bi {
+.float-icon-mobile {
   bottom: -8%;
   left: 34%;
   animation: float-drift 5.5s ease-in-out 0.6s infinite;
@@ -1813,7 +1813,7 @@ a.contact-value:hover {
   .float-icon-ai,
   .float-icon-api,
   .float-icon-rpa,
-  .float-icon-bi {
+  .float-icon-mobile {
     display: none;
   }
   .float-icon-odoo {
@@ -2304,5 +2304,279 @@ a.contact-value:hover {
   }
   .faq-a {
     padding: 0 1.25rem 1.1rem;
+  }
+}
+
+/* ==========================================
+   19. TECH STACK STRIP
+   ========================================== */
+.tech-strip {
+  padding: 0; /* the next section already provides top spacing */
+}
+
+.tech-label {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.tech-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.tech-list li {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-glass);
+  border-radius: 999px;
+  background: var(--bg-card);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+/* ==========================================
+   20. AI & AUTOMATION (Claude + MCP)
+   ========================================== */
+.ai-section {
+  padding: 100px 0;
+}
+
+.ai-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.ai-caps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.ai-cap {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.ai-cap .strength-icon-container {
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.ai-cap-title {
+  font-size: 1.15rem;
+  margin-bottom: 0.35rem;
+}
+
+.ai-cap-desc {
+  font-size: 0.95rem;
+  color: var(--text-gray);
+}
+
+.ai-demo {
+  padding: 1.5rem;
+}
+
+/* The demo is not clickable: no hover lift */
+.ai-demo:hover {
+  transform: none;
+  border-color: var(--border-glass);
+  background: var(--bg-card);
+  box-shadow: none;
+}
+
+.ai-chat-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-white);
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.ai-chat-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary-teal);
+  box-shadow: 0 0 8px var(--primary-teal);
+}
+
+.ai-chat-badge {
+  margin-left: auto;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--border-glass);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.ai-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ai-msg {
+  max-width: 88%;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.ai-msg-user {
+  align-self: flex-end;
+  background: var(--gradient-primary);
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+}
+
+.ai-msg-bot {
+  align-self: flex-start;
+  background: rgba(127, 127, 127, 0.1);
+  border: 1px solid var(--border-glass);
+  color: var(--text-light);
+  border-bottom-left-radius: 4px;
+}
+
+.ai-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-glass);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-gray);
+}
+
+.ai-flow span:not(.ai-flow-arrow) {
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  background: var(--bg-card);
+}
+
+.ai-flow-arrow {
+  color: var(--primary-teal);
+}
+
+/* ==========================================
+   21. PORTFOLIO VALUE + ZALO BUTTON
+   ========================================== */
+.portfolio-value {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-glass);
+  font-size: 0.92rem;
+  color: var(--text-light);
+}
+
+.portfolio-value .portfolio-label {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+/* Floating chat buttons, bottom-right, stacked upward: Zalo → Messenger → back-to-top.
+   Each step = 52px button + 12px gap; --float-edge is the distance from the screen edge. */
+:root {
+  --float-edge: 2rem;
+  --float-step: 64px;
+}
+
+.chat-float {
+  position: fixed;
+  right: var(--float-edge);
+  bottom: var(--float-edge);
+  z-index: 99;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.chat-float:hover {
+  transform: translateY(-3px);
+}
+
+.chat-float:focus-visible {
+  outline: 2px solid var(--primary-teal);
+  outline-offset: 3px;
+}
+
+.chat-zalo {
+  background: #0068ff;
+  box-shadow: 0 6px 20px rgba(0, 104, 255, 0.35);
+}
+
+.chat-messenger {
+  bottom: calc(var(--float-edge) + var(--float-step));
+  background: linear-gradient(45deg, #0099ff 0%, #a033ff 60%, #ff5280 100%);
+  box-shadow: 0 6px 20px rgba(160, 51, 255, 0.35);
+}
+
+/* Back-to-top (48px) sits above both chat buttons, centered on the same axis */
+.back-to-top {
+  right: calc(var(--float-edge) + 2px);
+  bottom: calc(var(--float-edge) + 2 * var(--float-step));
+}
+
+/* Responsive for sections 19–21 */
+@media (max-width: 1024px) {
+  .ai-section {
+    padding: 80px 0;
+  }
+  .ai-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ai-section {
+    padding: 64px 0;
+  }
+  :root {
+    --float-edge: 1.25rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .tech-list {
+    gap: 0.5rem;
+  }
+  .tech-list li {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.85rem;
+  }
+  .ai-demo {
+    padding: 1.25rem;
+  }
+  .ai-msg {
+    max-width: 95%;
   }
 }
