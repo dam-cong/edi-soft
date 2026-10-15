@@ -51,7 +51,7 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 | 1 | Enkei Vietnam Co., Ltd | KCN Thăng Long, Thiên Lộc, Hà Nội | CRM, Purchase, Inventory |
 | 2 | Krapower (KRA Group JSC) | Số 23 Louis VII, KĐT Louis, Hoàng Mai, Hà Nội | CRM, Sales, Project, Inventory, HRM |
 | 3 | Công ty Cổ phần VTE (VTE.JSC) | Thôn Cổ Điển A, Tứ Hiệp, Thanh Trì, Hà Nội | CRM, MRP, Inventory, HRM |
-| 4 | Pack Vitus GmbH | Siegfriedstr. 182, 10365 Berlin, Germany | POS, Sales, Inventory, Accounting |
+| 4 | Pack Vitus GmbH | Siegfriedstr. 182, 10365 Berlin, Germany | Đa công ty (Pack Vitus GmbH & Pack Vitus Erlangen), bán lẻ (POS) & bán buôn, Sales, Inventory, Accounting |
 | 5 | Velora Vietnam Travel | The Manor Central Park, Định Công, Hà Nội | CRM, Website |
 | 6 | Công ty Cổ phần Đầu tư và Công nghệ THG | Lô B12/D21 KĐT mới Cầu Giấy, Dịch Vọng Hậu, Cầu Giấy, Hà Nội | DMS (quản lý tài liệu, tích hợp OnlyOffice, đánh mã & template xuất báo cáo) |
 

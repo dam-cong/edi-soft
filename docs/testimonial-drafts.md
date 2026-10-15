@@ -34,7 +34,7 @@ Quy trình: gửi khách mẫu tin nhắn (mục 1) kèm câu nhận xét gợi 
 | 1 | Enkei Vietnam Co., Ltd | "Quy trình mua hàng và quản lý kho giờ nằm trên một hệ thống, số liệu tồn kho rõ ràng hơn và đội ngũ không còn phải đối chiếu nhiều file Excel." | | Chưa gửi |
 | 2 | Krapower (KRA Group JSC) | "Bán hàng, dự án và nhân sự được quản lý tập trung trên Odoo, ban lãnh đạo theo dõi tình hình nhanh hơn. Đội EDI hỗ trợ sát sao trong suốt quá trình triển khai." | | Chưa gửi |
 | 3 | Công ty Cổ phần VTE (VTE.JSC) | "EDI Soft hiểu quy trình sản xuất của nhà máy và tùy biến hệ thống đúng cách chúng tôi vận hành, từ nguyên vật liệu, BOM đến tồn kho." | | Chưa gửi |
-| 4 | Pack Vitus GmbH | "Our stores, inventory and accounting are now in sync on one system. The EDI team was responsive throughout Go-live and beyond." | | Chưa gửi |
+| 4 | Pack Vitus GmbH | "Both Pack Vitus GmbH and Pack Vitus Erlangen now run retail and wholesale on one Odoo system, with inventory and accounting in sync. The EDI team was responsive throughout Go-live and beyond." | | Chưa gửi |
 | 5 | Velora Vietnam Travel | "Khách hàng từ website được tiếp nhận và chăm sóc ngay trên CRM, đội kinh doanh không bỏ sót yêu cầu nào." | | Chưa gửi |
 | 6 | Công ty CP Đầu tư và Công nghệ THG | "Tài liệu được lưu trữ, soạn thảo trực tiếp và xuất báo cáo theo mẫu ngay trên hệ thống, tiết kiệm nhiều thời gian tìm kiếm và tổng hợp." | | Chưa gửi |
 
