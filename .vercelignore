@@ -1,2 +1,4 @@
 # Files in the repo that must not be deployed (internal docs, company profile PDF)
 docs/
+# Claude Code skills/agents/instructions: internal, keep out of the public site
+.claude/
