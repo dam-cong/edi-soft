@@ -70,8 +70,8 @@ Mỗi khuyến nghị phải có: **bằng chứng** (dẫn `index.html:dòng`),
 - Không xóa/đổi tên `google325a807a1bdab251.html`, `robots.txt`, `sitemap.xml`.
 - Sửa text hiển thị → sửa **cả** HTML mặc định (VI) **và** cả hai bản `vi`/`en` trong `src/js/i18n.js`, giữ nguyên key. Nội dung EN chỉ đổi bằng JS nên Google chủ yếu index bản VI — tối ưu từ khóa trên bản VI.
 - Đổi nội dung trang → cập nhật `<lastmod>` trong `sitemap.xml`.
-- Sửa xong chạy lại `seo-check.js` và `node .claude/skills/commit-push/scripts/precheck.js` (kiểm tra i18n + JSON-LD).
-- Chỉ commit/push khi được yêu cầu (dùng skill `commit-push`).
+- Sửa xong chạy lại `seo-check.js`; sửa text thì tự kiểm tra key i18n đủ cả `vi`/`en`.
+- Chỉ commit/push khi được yêu cầu, theo `docs/git-convention.md`.
 
 ## Ghi chú thị trường Việt Nam
 

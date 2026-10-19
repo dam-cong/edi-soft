@@ -12,7 +12,7 @@ Dùng JSON-LD trong `<head>` (Google khuyến nghị), đặt trong HTML tĩnh �
 Thiếu `@context`/`@type` · URL tương đối · ngày sai ISO 8601 · dữ liệu trong schema không có trên trang · placeholder quên điền · `sameAs` trỏ trang chết · trùng `@id` cho hai thực thể khác nhau.
 
 ## Kiểm chứng
-`precheck.js`/`seo-check.js` chỉ kiểm cú pháp. Kiểm ngữ nghĩa: Rich Results Test (https://search.google.com/test/rich-results) và Schema Markup Validator (https://validator.schema.org/) — nhắc người dùng chạy với URL live sau deploy.
+`seo-check.js` chỉ kiểm cú pháp. Kiểm ngữ nghĩa: Rich Results Test (https://search.google.com/test/rich-results) và Schema Markup Validator (https://validator.schema.org/) — nhắc người dùng chạy với URL live sau deploy.
 
 ## Mẫu phù hợp EDI Soft
 
