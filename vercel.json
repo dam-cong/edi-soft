@@ -5,9 +5,9 @@
   "outputDirectory": ".",
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "edi-soft.vercel.app" }],
-      "destination": "https://info.editech.vn/:path*",
+      "destination": "https://info.editech.vn/$1",
       "permanent": true
     }
   ],
