@@ -5,7 +5,7 @@ description: Commit (và push nếu được yêu cầu) code của repo website
 
 # Commit & push — website EDI Soft
 
-Repo: `dam-cong/edi-soft` (GitHub), nhánh production `main`, mỗi lần push lên `main` Vercel tự deploy `https://edi-soft.vercel.app/`. Quy ước đầy đủ: [docs/git-convention.md](../../../docs/git-convention.md). Trao đổi với người dùng bằng **tiếng Việt**; commit message bằng **tiếng Anh**.
+Repo: `dam-cong/edi-soft` (GitHub), nhánh production `main`, mỗi lần push lên `main` Vercel tự deploy `https://info.editech.vn/`. Quy ước đầy đủ: [docs/git-convention.md](../../../docs/git-convention.md). Trao đổi với người dùng bằng **tiếng Việt**; commit message bằng **tiếng Anh**.
 
 ## Nguyên tắc (và lý do)
 
@@ -95,7 +95,7 @@ git push origin <branch>          # nhánh mới: git push -u origin <branch>
 - Push lên `main`: kiểm tra deploy **một lần** sau ~1 phút (không chạy vòng lặp chờ):
 
 ```bash
-curl -s -o /dev/null -w '%{http_code}\n' https://edi-soft.vercel.app/
+curl -s -o /dev/null -w '%{http_code}\n' https://info.editech.vn/
 ```
 
 Nếu cần, grep một chuỗi đặc trưng của thay đổi vừa push trong HTML trả về để xác nhận bản mới đã lên. Chưa thấy thì báo người dùng đợi thêm, không poll liên tục.

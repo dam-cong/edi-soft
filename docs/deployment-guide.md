@@ -29,50 +29,22 @@ robots.txt, sitemap.xml
 google325a807a1bdab251.html   # xác minh Google Search Console — không xóa, không đổi tên
 ```
 
-Thư mục `docs/` (tài liệu nội bộ, hồ sơ năng lực PDF) **không được deploy**: đã loại trong `.vercelignore`. Khi thêm tài liệu nội bộ mới, đặt vào `docs/`. Khi dùng cPanel/VPS (mục 4.2, 4.3), cũng không upload `docs/`.
+Thư mục `docs/` (tài liệu nội bộ, hồ sơ năng lực PDF) **không được deploy**: đã loại trong `.vercelignore`. Khi thêm tài liệu nội bộ mới, đặt vào `docs/`.
 
 ---
 
 ## 4. Triển khai
 
-### 4.1. Vercel (đang sử dụng)
+### Vercel
 
 Cấu hình nằm trong `vercel.json`: site tĩnh, không install, không build, phục vụ thư mục gốc.
 
 1. Import Git repository trên [Vercel Dashboard](https://vercel.com/), Production Branch: `main`
 2. Mỗi lần push lên `main` Vercel sẽ tự deploy
-3. Hoặc dùng CLI: `npm install -g vercel` → `vercel --prod`
+3. Push nhánh khác `main` → Vercel tạo Preview Deployment (URL riêng) để xem trước
+4. Xem trạng thái/log deploy trên Dashboard → Deployments
+5. Hoặc dùng CLI: `npm install -g vercel` → `vercel --prod`
 
-### 4.2. cPanel / hosting FTP
-
-Upload `index.html`, `assets/`, `src/` vào thư mục gốc (thường là `public_html/` hoặc `www/`).
-
-### 4.3. VPS (Nginx / Apache)
-
-```bash
-scp -r index.html assets src user@your-server:/var/www/edi-soft/
-```
-
-Ví dụ cấu hình **Nginx**:
-
-```nginx
-server {
-    listen 80;
-    server_name edi-soft.vn www.edi-soft.vn;
-
-    root /var/www/edi-soft;
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-}
-```
-
-### 4.4. Netlify / Cloudflare Pages
-
-- **Build command**: để trống
-- **Output / publish directory**: `/` (thư mục gốc)
 ---
 
 ## 5. Kiểm tra Sau Triển khai
@@ -128,7 +100,7 @@ Khi có thay đổi nội dung:
 
 | Vấn đề | Nguyên nhân | Giải pháp |
 |--------|-------------|-----------|
-| 404 khi refresh trang | Server không config fallback | Thêm `try_files $uri $uri/ /index.html` vào Nginx |
-| Ảnh/icon không load | Đường dẫn sai | Kiểm tra đường dẫn trong `<img src="">` và thư mục `public/` |
+| 404 trên Vercel | File bị `.vercelignore` loại hoặc sai đường dẫn/hoa-thường | Kiểm tra `.vercelignore`, đường dẫn tương đối và tên file (Vercel phân biệt hoa thường) |
+| Ảnh/icon không load | Đường dẫn sai | Kiểm tra đường dẫn trong `<img src="">` và thư mục `assets/` |
 | Form gửi nhưng không thấy câu trả lời trong Google Form | Form bị đổi câu hỏi → `entry.*` thay đổi, hoặc form bật "yêu cầu đăng nhập" | Lấy lại ID `entry.*` của form và cập nhật `GOOGLE_FORM_FIELDS` trong `src/js/main.js`; tắt yêu cầu đăng nhập |
 | Ngôn ngữ không lưu | Browser block localStorage | Kiểm tra setting Privacy & Security của trình duyệt |
