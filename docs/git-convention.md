@@ -1,6 +1,6 @@
 # Quy tắc sử dụng Git
 
-Áp dụng cho repo [`dam-cong/edi-soft`](https://github.com/dam-cong/edi-soft) (GitHub). Nhánh production: `main`, deploy tự động lên Vercel ([edi-soft.vercel.app](https://edi-soft.vercel.app/)).
+Áp dụng cho repo [`dam-cong/edi-soft`](https://github.com/dam-cong/edi-soft) (GitHub). Nhánh production: `main`, deploy tự động lên Vercel ([info.editech.vn](https://info.editech.vn/)).
 
 ---
 

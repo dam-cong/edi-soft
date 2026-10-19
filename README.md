@@ -2,7 +2,7 @@
 
 Website giới thiệu năng lực của **EDI Soft** (EDI Team) — tư vấn, thiết kế và triển khai giải pháp Odoo Community & Enterprise tích hợp AI Agent, Chatbot, OCR và tự động hóa quy trình cho doanh nghiệp SME.
 
-🌐 **Website**: [edi-soft.vercel.app](https://edi-soft.vercel.app/)
+🌐 **Website**: [info.editech.vn](https://info.editech.vn/)
 
 ---
 

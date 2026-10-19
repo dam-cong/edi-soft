@@ -1987,8 +1987,8 @@ a.contact-value:hover {
   }
 }
 
-/* The 4-item desktop menu fits from ~860px (EN is the longest); below 900px use the hamburger menu */
-@media (max-width: 900px) {
+/* The 6-item desktop menu fits from ~1000px (VI is the longest); at 1024px and below use the hamburger menu */
+@media (max-width: 1024px) {
   .desktop-nav {
     display: none;
   }

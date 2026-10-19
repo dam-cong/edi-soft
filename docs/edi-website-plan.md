@@ -1,6 +1,6 @@
 # Tài liệu Website Landing Page EDI Soft
 
-Tài liệu mô tả nội dung, thiết kế và cách vận hành website giới thiệu năng lực của **EDI Soft** (EDI Team), hiện chạy tại [edi-soft.vercel.app](https://edi-soft.vercel.app/).
+Tài liệu mô tả nội dung, thiết kế và cách vận hành website giới thiệu năng lực của **EDI Soft** (EDI Team), hiện chạy tại [info.editech.vn](https://info.editech.vn/).
 
 Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước git: [git-convention.md](git-convention.md).
 
@@ -25,12 +25,12 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 
 | # | Section (`id`) | Nội dung |
 |---|---|---|
-| 1 | Header | Logo, menu 4 mục **Giới thiệu · Dịch vụ · Quy trình · Dự án**, nút VI/EN, nút sáng/tối, CTA "Nhận tư vấn". Menu hamburger khi màn hình ≤ 900px. Menu mobile và footer dùng cùng 4 mục. "Lợi thế" được tính là một phần của Giới thiệu, "Đội ngũ" là một phần của Dự án (menu sáng theo mục cha khi cuộn qua) |
-| 2 | Hero (`#hero`) | Badge "Odoo ERP · AI Agent · Tự động hóa quy trình", thông điệp chính, 2 CTA (tư vấn → `#contact`, xem dự án → `#portfolio`), đồ họa lõi EDI với các icon Odoo / AI / Chatbot / OCR / RPA / API / Mobile / DevOps. Ngay dưới hero: **dải công nghệ** Odoo 10 → 19 · Python · PostgreSQL · Django · Laravel · Flutter · Claude AI · MCP |
+| 1 | Header | Logo, menu 6 mục **Giới thiệu · Dịch vụ · AI · Quy trình · Dự án · Hỏi đáp**, nút VI/EN, nút sáng/tối, CTA "Nhận tư vấn". Menu hamburger khi màn hình ≤ 1024px. Menu mobile và footer dùng cùng 6 mục. "Lợi thế" được tính là một phần của Giới thiệu, "Đội ngũ" là một phần của Dự án (menu sáng theo mục cha khi cuộn qua) |
+| 2 | Hero (`#hero`) | Badge "Odoo ERP · AI Agent · Tự động hóa quy trình", thông điệp chính, 2 CTA (tư vấn → `#contact`, xem dự án → `#portfolio`), H1 chứa từ khóa chính "Triển khai Odoo ERP & AI Agent cho doanh nghiệp SME", khẩu hiệu "Chúng tôi không bán phần mềm..." đặt ở đoạn mô tả; đồ họa lõi EDI với các icon Odoo / AI / Chatbot / OCR / RPA / API / Mobile / DevOps. Ngay dưới hero: **dải công nghệ** Odoo 10 → 19 · Python · PostgreSQL · Django · Laravel · Flutter · Claude AI · MCP |
 | 3 | Về chúng tôi (`#about`) | Sứ mệnh; 3 chỉ số: **2024** thành lập · **6** dự án tiêu biểu · **SME** dưới 300 nhân sự; 3 điểm: Delivery Team chuyên sâu, hiểu vận hành doanh nghiệp Việt, chi phí phù hợp SME |
 | 4 | Lợi thế (`#strengths`) | 6 card: chuyên sâu Odoo CE & EE, BA & Developer đồng hành, ERP kết hợp AI & tự động hóa, quy trình triển khai chuẩn, giải pháp "may đo", đồng hành dài hạn |
 | 5 | Dịch vụ (`#services`) | 6 dịch vụ đánh số 01–06: tư vấn & khảo sát, thiết kế giải pháp ERP, triển khai & tùy biến Odoo, đào tạo & chuyển giao, bảo trì, hỗ trợ & nâng cấp, **phát triển ứng dụng mobile (Flutter)** kết nối Odoo |
-| 5b | AI & tự động hóa (`#ai`) | Use case thực tế: **Claude AI kết nối Odoo qua MCP** để tạo dự án, tạo & giao nhiệm vụ, log work (timesheet), thống kê tình trạng dự án. Khung chat **có nhãn "Minh họa"**, dùng dự án giả "Công ty ABC" (không dùng tên khách thật). Sơ đồ: Claude AI ⇄ MCP Server ⇄ Odoo. Menu sáng "Dịch vụ" |
+| 5b | AI & tự động hóa (`#ai`) | Use case thực tế: **Claude AI kết nối Odoo qua MCP** để tạo dự án, tạo & giao nhiệm vụ, log work (timesheet), thống kê tình trạng dự án. Khung chat **có nhãn "Minh họa"**, dùng dự án giả "Công ty ABC" (không dùng tên khách thật). Sơ đồ: Claude AI ⇄ MCP Server ⇄ Odoo. Có mục menu "AI" riêng |
 | 6 | Hình thức hợp tác (`#engagement`) | 4 card: Khảo sát & tư vấn · Triển khai trọn gói · Phát triển theo yêu cầu · Bảo trì & đồng hành, mỗi card có mục "Phù hợp khi". **Không công khai giá**: "Chi phí được báo giá theo phạm vi sau buổi khảo sát" + nút Nhận tư vấn. Khi cuộn tới, menu sáng "Dịch vụ" |
 | 7 | Quy trình (`#process`) | Timeline 6 bước: khảo sát → thiết kế & kế hoạch → cấu hình & phát triển → UAT → Go-live → hỗ trợ sau Go-live. Bước đang xem tự sáng lên khi cuộn |
 | 8 | Dự án (`#portfolio`) | 6 dự án, hiển thị **tên và địa chỉ thật** của khách hàng (xem mục 3). Mỗi card có dòng **"Giá trị mang lại"** (định tính, chỉ diễn đạt lại phạm vi đã làm, không có số liệu). Nhận xét khách hàng: bản nháp chờ duyệt ở [testimonial-drafts.md](testimonial-drafts.md), **chưa đưa lên web** |
@@ -38,7 +38,7 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 | 10 | Cam kết | Chất lượng & tiến độ · Bảo mật dữ liệu (sẵn sàng ký NDA) · Minh bạch phạm vi & chi phí |
 | 11 | FAQ (`#faq`) | 7 câu hỏi dạng accordion (`<details>`, không cần JS): CE hay EE · thời gian triển khai · license Odoo · chuyển dữ liệu cũ · cloud hay máy chủ riêng · tích hợp AI/OCR vào Odoo đang dùng · hỗ trợ sau Go-live. Câu trả lời **không đưa con số thời gian hay giá** chưa xác nhận |
 | 12 | Liên hệ (`#contact`) | Email, hotline, **Zalo** (zalo.me/0363729276), **Messenger** (m.me/edisoft.vn), Facebook; form liên hệ (xem mục 4). Góc dưới bên phải có nút nổi xếp chồng từ dưới lên: **Zalo → Messenger → back-to-top** (class chung `.chat-float`, khoảng cách chỉnh bằng biến `--float-edge` / `--float-step`) |
-| 13 | Footer | Mô tả ngắn, cùng 4 link như menu, bản quyền |
+| 13 | Footer | Mô tả ngắn, cùng 6 link như menu, bản quyền |
 
 **Sửa FAQ:** nội dung câu hỏi và trả lời nằm ở 3 chỗ, phải sửa cả 3 cho khớp: `index.html` (bản VI mặc định), `src/js/i18n.js` (key `faq-N-q` / `faq-N-a`, cả `vi` và `en`), và node `FAQPage` trong JSON-LD ở `<head>` (bản VI).
 
@@ -95,8 +95,8 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 
 | Mốc | Thay đổi |
 |---|---|
-| > 900px | Menu desktop 4 mục (vừa từ ~860px với bản EN) |
-| ≤ 900px | Menu hamburger (vẫn giữ nút "Nhận tư vấn" ở header đến 768px) |
+| > 1024px | Menu desktop 6 mục (vừa từ ~1000px với bản VI) |
+| ≤ 1024px | Menu hamburger (vẫn giữ nút "Nhận tư vấn" ở header đến 768px) |
 | ≤ 1024px | Hero 1 cột; giảm padding section xuống 80px |
 | 601–768px | Lưới "Lợi thế" và "Dự án" giữ 2 cột |
 | ≤ 768px | Bố cục mobile; timeline 1 cột; padding section 64px |
@@ -124,9 +124,9 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
   - Chỉ dùng đường dẫn tương đối.
   - Không dùng `type="module"` hay `import` / `export`.
   - `i18n.js` phải nạp trước `main.js`.
-- Font: Inter (nội dung) và Outfit (tiêu đề), tải từ Google Fonts.
+- Font: Inter 400–600 (nội dung) và Outfit 500–800 (tiêu đề), tải từ Google Fonts — chỉ nạp các weight CSS thực dùng.
 - **SEO:**
-  - Title khoảng 56 ký tự và description khoảng 154 ký tự; canonical, Open Graph và Twitter card trỏ về `https://edi-soft.vercel.app/`.
+  - Title khoảng 56 ký tự và description khoảng 154 ký tự; canonical, Open Graph và Twitter card trỏ về `https://info.editech.vn/`.
   - Ảnh chia sẻ `assets/img/og-image.png` kích thước 1200×630. Khi đổi thông điệp chính, nhớ làm lại ảnh này.
   - JSON-LD trong `<head>` gồm `Organization` (dịch vụ, liên hệ, Facebook), `Person` (founder, LinkedIn), `WebSite` và `FAQPage` (7 câu hỏi, bản VI). Không khai báo địa chỉ vì team chưa có pháp nhân.
   - `robots.txt` và `sitemap.xml` ở thư mục gốc. Cập nhật `<lastmod>` trong sitemap mỗi khi nội dung thay đổi đáng kể.

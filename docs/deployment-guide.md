@@ -92,7 +92,7 @@ server {
 
 ```bash
 # Kiểm tra meta tags (chạy trên server sau deploy)
-curl -s https://edi-soft.vercel.app | grep -E '<title>|<meta name="description"|<meta property="og:'
+curl -s https://info.editech.vn | grep -E '<title>|<meta name="description"|<meta property="og:'
 ```
 
 - [ ] Title tag hiển thị đúng
