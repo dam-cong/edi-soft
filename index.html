@@ -21,7 +21,7 @@
         var html = document.documentElement;
         var theme = localStorage.getItem('theme');
         if (theme !== 'light' && theme !== 'dark') {
-          theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          theme = 'light';
         }
         html.setAttribute('data-theme', theme);
         if (localStorage.getItem('preferred-lang') === 'en') {
@@ -52,10 +52,10 @@
   <meta name="twitter:image" content="https://info.editech.vn/assets/img/og-image.png">
 
   <!-- Favicon & browser UI -->
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
-  <link rel="apple-touch-icon" href="assets/img/icon.png">
-  <meta name="theme-color" content="#030712" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
+  <link rel="icon" type="image/png" href="assets/img/logo-512.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a1628">
 
   <!-- Structured data (schema.org) -->
   <script type="application/ld+json">
@@ -73,7 +73,7 @@
         "url": "https://info.editech.vn/",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://info.editech.vn/assets/img/icon.png",
+          "url": "https://info.editech.vn/assets/img/logo-512.png",
           "width": 500,
           "height": 500
         },
@@ -306,6 +306,8 @@
 </head>
 <body>
 
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
   <!-- Background Glow Effects -->
   <div class="bg-glows" aria-hidden="true">
     <div class="bg-glow bg-glow-1"></div>
@@ -317,7 +319,7 @@
   <header class="header" id="site-header">
     <div class="container header-container">
       <a href="#hero" class="logo-area" data-i18n-aria="logo-aria" aria-label="Trở về trang chủ EDI Soft">
-        <img src="assets/img/icon.png" alt="EDI Soft" class="logo-img" width="40" height="40">
+        <img src="assets/img/logo.svg" alt="EDI Soft" class="logo-img" width="44" height="44">
         <span class="logo-text">EDI <span class="text-gradient">Soft</span></span>
       </a>
 
@@ -335,7 +337,7 @@
 
       <div class="header-actions">
         <button class="lang-toggle" id="lang-toggle" data-i18n-aria="lang-aria" data-i18n-title="lang-title" aria-label="Chuyển sang tiếng Anh" title="English">
-          <span id="lang-text">EN</span>
+          <span class="lang-opt" data-l="vi">VI</span><span class="lang-opt" data-l="en">EN</span>
         </button>
         <button class="theme-toggle" id="theme-toggle" data-i18n-aria="theme-aria" data-i18n-title="theme-title" aria-label="Chuyển đổi giao diện sáng/tối" title="Chuyển đổi giao diện">
           <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -376,123 +378,75 @@
             <span data-i18n="hero-badge">Odoo ERP · AI Agent · Tự động hóa quy trình</span>
           </div>
           <h1 class="hero-title">
-            <span data-i18n="hero-title-1">Triển khai </span><span class="text-gradient" data-i18n="hero-title-2">Odoo ERP &amp; AI Agent</span><span data-i18n="hero-title-3"> cho doanh nghiệp SME</span>
+            <span data-i18n="hero-title-1">Triển khai </span><span class="hl" data-i18n="hero-title-2">Odoo ERP &amp; AI Agent</span><span data-i18n="hero-title-3"> cho doanh nghiệp SME</span>
           </h1>
           <p class="hero-description" data-i18n="hero-desc">Chúng tôi không bán phần mềm, chúng tôi triển khai giải pháp tối ưu vận hành. Chuyên sâu Odoo Community &amp; Enterprise kết hợp AI Agent, Chatbot, OCR và tự động hóa quy trình.</p>
           <div class="hero-cta-group">
             <a href="#contact" class="btn btn-primary" id="btn-hero-cta-contact" data-i18n="hero-cta-contact" data-i18n-aria="hero-cta-contact-aria" aria-label="Đăng ký tư vấn ERP">Nhận tư vấn giải pháp</a>
             <a href="#portfolio" class="btn btn-secondary" id="btn-hero-cta-more" data-i18n="hero-cta-more" data-i18n-aria="hero-cta-more-aria" aria-label="Xem các dự án EDI Soft đã triển khai">Xem dự án đã triển khai</a>
           </div>
+          <ul class="hero-chips">
+            <li class="hero-chip">Odoo 10 → 19</li>
+            <li class="hero-chip">Claude AI · MCP</li>
+            <li class="hero-chip" data-i18n="hero-chip-3">Đồng hành sau Go-live</li>
+          </ul>
         </div>
           <div class="hero-graphics">
-          <div class="hero-visual-container">
-            <svg class="tech-grid-svg" viewBox="0 0 400 400" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Grid background -->
-              <circle cx="200" cy="200" r="180" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
-              <circle cx="200" cy="200" r="130" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" stroke-dasharray="5 5"/>
-              <circle cx="200" cy="200" r="80" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1"/>
-              
-              <!-- Orbital Nodes -->
-              <g class="orbit-1">
-                <circle cx="200" cy="20" r="6" fill="#8A2BE2" />
-                <path d="M200 20 L200 200" stroke="rgba(138, 43, 226, 0.2)" stroke-width="1"/>
-              </g>
-              <g class="orbit-2">
-                <circle cx="70" cy="200" r="8" fill="#1E90FF" />
-                <path d="M70 200 L200 200" stroke="rgba(30, 144, 255, 0.2)" stroke-width="1"/>
-              </g>
-              <g class="orbit-3">
-                <circle cx="330" cy="200" r="7" fill="#00F5FF" />
-                <path d="M330 200 L200 200" stroke="rgba(0, 245, 255, 0.2)" stroke-width="1"/>
-              </g>
-              
-              <!-- Connection Lines -->
-              <path d="M200 20 L70 200 L330 200 Z" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1.5" />
-              
-              <!-- Central Logo Graphic -->
-              <circle cx="200" cy="200" r="50" fill="url(#central-glow)" />
-              <circle cx="200" cy="200" r="40" stroke="rgba(255,255,255,0.15)" stroke-width="2" />
-              <text x="200" y="195" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="800" font-size="20" fill="#FFFFFF" letter-spacing="2">EDI</text>
-              <text x="200" y="215" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="8" fill="#9CA3AF" letter-spacing="1">SOFT</text>
-
-              <!-- Gradients Definition -->
-              <defs>
-                <radialGradient id="central-glow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#1E90FF" stop-opacity="0.4"/>
-                  <stop offset="60%" stop-color="#8A2BE2" stop-opacity="0.1"/>
-                  <stop offset="100%" stop-color="#030712" stop-opacity="0"/>
-                </radialGradient>
-              </defs>
-            </svg>
-
-            <!-- Floating Tech Icons -->
-            <div class="float-icon float-icon-odoo" aria-hidden="true">
-              <div class="float-icon-inner">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                <span>Odoo</span>
+            <div class="mock" aria-hidden="true">
+              <div class="mock-window">
+                <div class="mock-bar"><i></i><i></i><i></i><span data-i18n="mock-title">Odoo · Tổng quan</span></div>
+                <div class="mock-body">
+                  <div class="mock-side"><i></i><i></i><i></i><i></i><i></i></div>
+                  <div class="mock-main">
+                    <div class="mock-kpis">
+                      <div class="mock-kpi"><span data-i18n="mock-kpi-1">Doanh thu</span><b></b></div>
+                      <div class="mock-kpi"><span data-i18n="mock-kpi-2">Đơn hàng</span><b></b></div>
+                      <div class="mock-kpi"><span data-i18n="mock-kpi-3">Tồn kho</span><b></b></div>
+                    </div>
+                    <div class="mock-chart">
+                      <i style="--h:38%"></i><i style="--h:56%"></i><i style="--h:44%"></i><i style="--h:72%"></i><i style="--h:60%"></i><i style="--h:86%"></i><i style="--h:68%"></i>
+                    </div>
+                    <div class="mock-rows"><i></i><i></i><i></i></div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="float-icon float-icon-ai" aria-hidden="true">
-              <div class="float-icon-inner">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <span>AI</span>
+              <div class="mock-chat">
+                <p class="mock-q" data-i18n="mock-chat-q">Tạo dự án mới cho Công ty ABC</p>
+                <p class="mock-a" data-i18n="mock-chat-a">Đã tạo dự án và giao 5 nhiệm vụ.</p>
               </div>
-            </div>
-            <div class="float-icon float-icon-chatbot" aria-hidden="true">
-              <div class="float-icon-inner">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                <span>Chatbot</span>
-              </div>
-            </div>
-            <div class="float-icon float-icon-devops" aria-hidden="true">
-              <div class="float-icon-inner">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                <span>DevOps</span>
-              </div>
-            </div>
-            <div class="float-icon float-icon-api" aria-hidden="true">
-              <div class="float-icon-inner">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                <span>API</span>
-              </div>
-            </div>
-            <div class="float-icon float-icon-ocr" aria-hidden="true">
-              <div class="float-icon-inner">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="7" y1="9" x2="17" y2="9"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="13" y2="17"/></svg>
-                <span>OCR</span>
-              </div>
-            </div>
-            <div class="float-icon float-icon-rpa" aria-hidden="true">
-              <div class="float-icon-inner">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-                <span>RPA</span>
-              </div>
-            </div>
-            <div class="float-icon float-icon-mobile" aria-hidden="true">
-              <div class="float-icon-inner">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                <span>Mobile</span>
-              </div>
+              <span class="mock-sticker mock-sticker-1" data-i18n="mock-sticker-1">OCR đọc hóa đơn</span>
+              <span class="mock-sticker mock-sticker-2" data-i18n="mock-sticker-2">Tự động hóa</span>
+              <span class="mock-note" data-i18n="mock-note">Hình minh họa</span>
             </div>
           </div>
-        </div>
       </div>
     </section>
+
+    <!-- Clients -->
+    <div class="clients-strip">
+      <div class="container">
+        <p class="tech-label" data-i18n="clients-label">Đã triển khai cho</p>
+        <ul class="clients-list">
+          <li>Enkei Vietnam</li>
+          <li>Krapower</li>
+          <li>VTE</li>
+          <li>Pack Vitus</li>
+          <li>Velora Vietnam Travel</li>
+          <li>THG</li>
+        </ul>
+      </div>
+    </div>
 
     <!-- Tech Stack Strip -->
     <div class="tech-strip">
       <div class="container">
         <p class="tech-label" data-i18n="tech-label">Công nghệ chúng tôi làm chủ</p>
-        <ul class="tech-list">
-          <li>Odoo 10 → 19</li>
-          <li>Python</li>
-          <li>PostgreSQL</li>
-          <li>Django</li>
-          <li>Laravel</li>
-          <li>Flutter</li>
-          <li>Claude AI</li>
-          <li>MCP</li>
-        </ul>
+      </div>
+      <div class="tech-marquee">
+        <div class="tech-track">
+          <ul class="tech-list"><li>Odoo 10 → 19</li><li>Python</li><li>PostgreSQL</li><li>Django</li><li>Laravel</li><li>Flutter</li><li>Claude AI</li><li>MCP</li></ul>
+          <ul class="tech-list" aria-hidden="true"><li>Odoo 10 → 19</li><li>Python</li><li>PostgreSQL</li><li>Django</li><li>Laravel</li><li>Flutter</li><li>Claude AI</li><li>MCP</li></ul>
+        </div>
       </div>
     </div>
 
@@ -515,7 +469,7 @@
                 <span class="stat-label" data-i18n="about-stat-1-label">Thành lập</span>
               </div>
               <div class="stat-item">
-                <span class="stat-num text-gradient">6</span>
+                <span class="stat-num text-gradient" data-count="6">6</span>
                 <span class="stat-label" data-i18n="about-stat-2-label">Dự án tiêu biểu</span>
               </div>
               <div class="stat-item">
@@ -1192,7 +1146,7 @@
         <div class="section-header">
           <span class="section-subtitle" data-i18n="team-subtitle">Đội ngũ</span>
           <h2 class="section-title" data-i18n="team-title">Tinh gọn, chuyên sâu, trực tiếp triển khai</h2>
-          <p class="section-desc" data-i18n="team-desc">EDI Soft là team 4 thành viên gồm Solution Architect, Business Analyst và Developer Odoo, trực tiếp đồng hành cùng doanh nghiệp từ khảo sát, thiết kế giải pháp đến triển khai và vận hành hệ thống ERP.</p>
+          <p class="section-desc" data-i18n="team-desc">Đội ngũ EDI Soft gồm Solution Architect, Business Analyst và Developer Odoo, trực tiếp đồng hành cùng doanh nghiệp từ khảo sát, thiết kế giải pháp đến triển khai và vận hành hệ thống ERP.</p>
         </div>
         
         <div class="team-grid">
@@ -1229,8 +1183,8 @@
 
           <!-- Team summary -->
           <div class="team-card glass-card team-summary-card">
-            <div class="team-summary-num text-gradient">4</div>
-            <h3 class="member-name" data-i18n="team-summary-title">Thành viên chuyên sâu Odoo</h3>
+            <div class="team-summary-num text-gradient">EDI Team</div>
+            <h3 class="member-name" data-i18n="team-summary-title">Đội ngũ của EDI Soft</h3>
             <p class="member-role" data-i18n="team-summary-role">Solution Architect · Business Analyst · Developer</p>
             <ul class="member-detail-list">
               <li class="member-detail-item">
@@ -1451,7 +1405,7 @@
     <div class="container footer-container">
       <div class="footer-brand">
         <a href="#hero" class="logo-area">
-          <img src="assets/img/icon.png" alt="EDI Soft" class="logo-img" width="40" height="40" loading="lazy">
+          <img src="assets/img/logo.svg" alt="EDI Soft" class="logo-img" width="44" height="44" loading="lazy">
           <span class="logo-text">EDI <span class="text-gradient">Soft</span></span>
         </a>
         <p class="footer-desc" data-i18n="footer-desc">Tư vấn và triển khai Odoo ERP kết hợp AI &amp; tự động hóa cho doanh nghiệp SME.</p>

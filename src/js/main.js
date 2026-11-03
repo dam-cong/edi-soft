@@ -12,6 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initNavScrollSpy();
   initNavHover();
+  initScrollProgress();
+  initCardSpotlight();
+  initCountUp();
+  initStagger();
+  initCursorGlow();
+  initMockTilt();
+  initChatLoop();
+  initConsoleHello();
 });
 
 /**
@@ -25,7 +33,7 @@ function initThemeToggle() {
   const getPreferredTheme = () => {
     const saved = localStorage.getItem('theme');
     if (saved === 'light' || saved === 'dark') return saved;
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    return 'light';
   };
 
   const applyTheme = (theme) => html.setAttribute('data-theme', theme);
@@ -38,14 +46,6 @@ function initThemeToggle() {
     const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     applyTheme(next);
     localStorage.setItem('theme', next);
-  });
-
-  // Listen for system preference changes (only if no saved preference)
-  const systemQuery = window.matchMedia('(prefers-color-scheme: light)');
-  systemQuery.addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) {
-      applyTheme(e.matches ? 'light' : 'dark');
-    }
   });
 }
 
@@ -379,4 +379,139 @@ function initNavHover() {
       if (target) target.classList.remove('section-highlight');
     });
   });
+}
+
+/**
+ * 11. UI polish: scroll progress bar, card spotlight, count-up numbers
+ */
+function initScrollProgress() {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+  const update = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? Math.min(window.scrollY / max, 1) : 0})`;
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}
+
+function initCardSpotlight() {
+  document.addEventListener('pointermove', (e) => {
+    const card = e.target.closest && e.target.closest('.glass-card, .service-item');
+    if (!card) return;
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+    card.style.setProperty('--my', `${e.clientY - r.top}px`);
+  }, { passive: true });
+}
+
+function initCountUp() {
+  const els = document.querySelectorAll('[data-count]');
+  if (!els.length || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) return;
+      io.unobserve(target);
+      const end = +target.dataset.count;
+      const t0 = performance.now();
+      const tick = (t) => {
+        const p = Math.min((t - t0) / 1200, 1);
+        target.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.6 });
+  els.forEach(el => io.observe(el));
+}
+
+/**
+ * 12. Hand-made touches: cursor glow, magnetic buttons, mockup tilt, live chat, staggered reveal
+ */
+const canHover = () => window.matchMedia('(hover: hover)').matches;
+const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function initCursorGlow() {
+  if (!canHover() || reducedMotion()) return;
+  const glow = document.createElement('div');
+  glow.className = 'cursor-glow';
+  glow.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(glow);
+
+  let tx = 0, ty = 0, x = 0, y = 0;
+  document.addEventListener('pointermove', (e) => {
+    tx = e.clientX;
+    ty = e.clientY;
+    glow.classList.add('on');
+  }, { passive: true });
+  document.documentElement.addEventListener('pointerleave', () => glow.classList.remove('on'));
+
+  const follow = () => {
+    x += (tx - x) * 0.12;
+    y += (ty - y) * 0.12;
+    glow.style.transform = `translate(${x}px, ${y}px)`;
+    requestAnimationFrame(follow);
+  };
+  follow();
+}
+
+function initMockTilt() {
+  const mock = document.querySelector('.mock');
+  const hero = document.getElementById('hero');
+  if (!mock || !hero || !canHover() || reducedMotion()) return;
+  hero.addEventListener('pointermove', (e) => {
+    const r = mock.getBoundingClientRect();
+    const x = (e.clientX - (r.left + r.width / 2)) / r.width;
+    const y = (e.clientY - (r.top + r.height / 2)) / r.height;
+    mock.style.setProperty('--ry', `${(x * 8).toFixed(2)}deg`);
+    mock.style.setProperty('--rx', `${(-y * 8).toFixed(2)}deg`);
+  });
+  hero.addEventListener('pointerleave', () => {
+    mock.style.setProperty('--rx', '0deg');
+    mock.style.setProperty('--ry', '0deg');
+  });
+}
+
+function initChatLoop() {
+  const chat = document.querySelector('.mock-chat');
+  const q = document.querySelector('.mock-q');
+  const a = document.querySelector('.mock-a');
+  if (!chat || !q || !a || reducedMotion()) return;
+  chat.classList.add('chat-live');
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  (async function loop() {
+    for (;;) {
+      q.classList.remove('show');
+      a.classList.remove('show', 'typing');
+      a.textContent = '';
+      await wait(700);
+      q.classList.add('show');
+      await wait(800);
+      a.classList.add('show', 'typing');
+      await wait(900);
+      const text = translations[getCurrentLang()]['mock-chat-a'] || '';
+      for (let i = 1; i <= text.length; i++) {
+        a.textContent = text.slice(0, i);
+        await wait(34);
+      }
+      a.classList.remove('typing');
+      await wait(4500);
+    }
+  })();
+}
+
+function initStagger() {
+  document.documentElement.classList.add('js-ready');
+  document.querySelectorAll('.scroll-reveal').forEach((section) => {
+    section.querySelectorAll('.glass-card:not(.modal-content), .service-item, .feature-item-mini, .faq-item').forEach((el, i) => {
+      el.classList.add('stagger');
+      el.style.setProperty('--d', `${(i % 6) * 70}ms`);
+    });
+  });
+}
+
+function initConsoleHello() {
+  console.log('%cEDI Soft', 'font:800 24px sans-serif;color:#2563eb');
+  console.log('Odoo ERP · AI Agent · Automation — hiendc.edi@gmail.com');
 }
