@@ -299,12 +299,13 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Project Stylesheet -->
   <link rel="stylesheet" href="src/styles/main.css">
 </head>
 <body>
+  <a href="#main" class="skip-link" data-i18n="skip-link">Bỏ qua, tới nội dung chính</a>
 
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
@@ -328,10 +329,8 @@
         <ul class="nav-list">
           <li><a href="#about" class="nav-link" data-i18n="nav-about">Giới thiệu</a></li>
           <li><a href="#services" class="nav-link" data-i18n="nav-services">Dịch vụ</a></li>
-          <li><a href="#ai" class="nav-link" data-i18n="nav-ai">AI</a></li>
-          <li><a href="#process" class="nav-link" data-i18n="nav-process">Quy trình</a></li>
+          <li><a href="#ai" class="nav-link nav-link-ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg><span data-i18n="nav-ai">Giải pháp AI</span></a></li>
           <li><a href="#portfolio" class="nav-link" data-i18n="nav-portfolio">Dự án</a></li>
-          <li><a href="#faq" class="nav-link" data-i18n="nav-faq">Hỏi đáp</a></li>
         </ul>
       </nav>
 
@@ -359,16 +358,16 @@
       <ul class="mobile-nav-list">
         <li><a href="#about" class="mobile-nav-link" data-i18n="nav-about">Giới thiệu</a></li>
         <li><a href="#services" class="mobile-nav-link" data-i18n="nav-services">Dịch vụ</a></li>
-        <li><a href="#ai" class="mobile-nav-link" data-i18n="nav-ai">AI</a></li>
-        <li><a href="#process" class="mobile-nav-link" data-i18n="nav-process">Quy trình</a></li>
+        <li><a href="#ai" class="mobile-nav-link" data-i18n="nav-ai">Giải pháp AI</a></li>
         <li><a href="#portfolio" class="mobile-nav-link" data-i18n="nav-portfolio">Dự án</a></li>
-        <li><a href="#faq" class="mobile-nav-link" data-i18n="nav-faq">Hỏi đáp</a></li>
+        <li class="mobile-nav-sub"><a href="#process" class="mobile-nav-link mobile-nav-link-sub" data-i18n="nav-process">Quy trình</a></li>
+        <li><a href="#faq" class="mobile-nav-link mobile-nav-link-sub" data-i18n="nav-faq">Hỏi đáp</a></li>
         <li><a href="#contact" class="mobile-nav-link mobile-nav-link-cta" data-i18n="mobile-cta">Nhận tư vấn</a></li>
       </ul>
     </nav>
   </div>
 
-  <main>
+  <main id="main">
     <!-- Hero Section -->
     <section class="hero-section" id="hero">
       <div class="container hero-container">
@@ -380,14 +379,15 @@
           <h1 class="hero-title">
             <span data-i18n="hero-title-1">Triển khai </span><span class="hl" data-i18n="hero-title-2">Odoo ERP &amp; AI Agent</span><span data-i18n="hero-title-3"> cho doanh nghiệp SME</span>
           </h1>
-          <p class="hero-description" data-i18n="hero-desc">Chúng tôi không bán phần mềm, chúng tôi triển khai giải pháp tối ưu vận hành. Chuyên sâu Odoo Community &amp; Enterprise kết hợp AI Agent, Chatbot, OCR và tự động hóa quy trình.</p>
+          <p class="hero-description" data-i18n="hero-desc">Chúng tôi không bán phần mềm, chúng tôi triển khai giải pháp tối ưu vận hành. Chuyên sâu Odoo Community &amp; Enterprise kết hợp AI Agent, Chatbot, OCR, tự động hóa quy trình và ứng dụng Mobile iOS/Android.</p>
           <div class="hero-cta-group">
             <a href="#contact" class="btn btn-primary" id="btn-hero-cta-contact" data-i18n="hero-cta-contact" data-i18n-aria="hero-cta-contact-aria" aria-label="Đăng ký tư vấn ERP">Nhận tư vấn giải pháp</a>
             <a href="#portfolio" class="btn btn-secondary" id="btn-hero-cta-more" data-i18n="hero-cta-more" data-i18n-aria="hero-cta-more-aria" aria-label="Xem các dự án EDI Soft đã triển khai">Xem dự án đã triển khai</a>
           </div>
           <ul class="hero-chips">
-            <li class="hero-chip">Odoo 10 → 19</li>
+            <li class="hero-chip">Odoo 10 → 20</li>
             <li class="hero-chip">Claude AI · MCP</li>
+            <li class="hero-chip">Mobile App iOS · Android</li>
             <li class="hero-chip" data-i18n="hero-chip-3">Đồng hành sau Go-live</li>
           </ul>
         </div>
@@ -427,25 +427,32 @@
       <div class="container">
         <p class="tech-label" data-i18n="clients-label">Đã triển khai cho</p>
         <ul class="clients-list">
-          <li>Enkei Vietnam</li>
-          <li>Krapower</li>
-          <li>VTE</li>
           <li>Pack Vitus</li>
           <li>Velora Vietnam Travel</li>
+          <li>Krapower</li>
           <li>THG</li>
+        </ul>
+        <ul class="proof-stats">
+          <li><strong data-count="4">4</strong><span data-i18n="proof-1">dự án tiêu biểu</span></li>
+          <li><strong>10 → 20</strong><span data-i18n="proof-2">phiên bản Odoo đã làm việc</span></li>
+          <li><strong>1</strong><span data-i18n="proof-3">ngày làm việc để phản hồi</span></li>
         </ul>
       </div>
     </div>
 
     <!-- Tech Stack Strip -->
     <div class="tech-strip">
-      <div class="container">
+      <div class="container tech-head">
         <p class="tech-label" data-i18n="tech-label">Công nghệ chúng tôi làm chủ</p>
+        <button type="button" class="marquee-toggle" id="marquee-toggle" aria-pressed="false" aria-label="Tạm dừng dải công nghệ">
+          <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+          <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
       </div>
       <div class="tech-marquee">
         <div class="tech-track">
-          <ul class="tech-list"><li>Odoo 10 → 19</li><li>Python</li><li>PostgreSQL</li><li>Django</li><li>Laravel</li><li>Flutter</li><li>Claude AI</li><li>MCP</li></ul>
-          <ul class="tech-list" aria-hidden="true"><li>Odoo 10 → 19</li><li>Python</li><li>PostgreSQL</li><li>Django</li><li>Laravel</li><li>Flutter</li><li>Claude AI</li><li>MCP</li></ul>
+          <ul class="tech-list"><li>Odoo 10 → 20</li><li>Python</li><li>PostgreSQL</li><li>Django</li><li>Laravel</li><li>Flutter</li><li>iOS</li><li>Android</li><li>Claude AI</li><li>MCP</li></ul>
+          <ul class="tech-list" aria-hidden="true"><li>Odoo 10 → 20</li><li>Python</li><li>PostgreSQL</li><li>Django</li><li>Laravel</li><li>Flutter</li><li>iOS</li><li>Android</li><li>Claude AI</li><li>MCP</li></ul>
         </div>
       </div>
     </div>
@@ -469,7 +476,7 @@
                 <span class="stat-label" data-i18n="about-stat-1-label">Thành lập</span>
               </div>
               <div class="stat-item">
-                <span class="stat-num text-gradient" data-count="6">6</span>
+                <span class="stat-num text-gradient" data-count="4">4</span>
                 <span class="stat-label" data-i18n="about-stat-2-label">Dự án tiêu biểu</span>
               </div>
               <div class="stat-item">
@@ -481,7 +488,7 @@
           <div class="about-feature-list">
             <div class="feature-item-mini">
               <div class="feature-mini-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
               </div>
               <div>
                 <h3 class="feature-mini-title" data-i18n="about-feature-1-title">Mô hình Delivery Team chuyên sâu</h3>
@@ -490,7 +497,7 @@
             </div>
             <div class="feature-item-mini">
               <div class="feature-mini-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
               </div>
               <div>
                 <h3 class="feature-mini-title" data-i18n="about-feature-2-title">Hiểu vận hành doanh nghiệp Việt</h3>
@@ -499,7 +506,7 @@
             </div>
             <div class="feature-item-mini">
               <div class="feature-mini-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
               </div>
               <div>
                 <h3 class="feature-mini-title" data-i18n="about-feature-3-title">Chi phí phù hợp SME</h3>
@@ -523,9 +530,7 @@
           <!-- Card 1 -->
           <div class="strength-card glass-card">
             <div class="strength-icon-container">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#blue-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-              </svg>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg>
             </div>
             <h3 class="strength-card-title" data-i18n="strength-1-title">Chuyên sâu Odoo Community & Enterprise</h3>
             <p class="strength-card-text" data-i18n="strength-1-text">Am hiểu kiến trúc Odoo Community và Enterprise, tư vấn lựa chọn phiên bản phù hợp, triển khai theo chuẩn và phát triển các tính năng mở rộng, đảm bảo hệ thống ổn định và dễ dàng nâng cấp trong tương lai.</p>
@@ -533,9 +538,7 @@
           <!-- Card 2 -->
           <div class="strength-card glass-card">
             <div class="strength-icon-container">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#purple-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#purple-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
             </div>
             <h3 class="strength-card-title" data-i18n="strength-2-title">Business Analyst &amp; Developer đồng hành</h3>
             <p class="strength-card-text" data-i18n="strength-2-text">Đội ngũ Business Analyst và Developer phối hợp xuyên suốt dự án, giúp chuyển đổi chính xác yêu cầu nghiệp vụ thành giải pháp thực tiễn, giảm sai lệch và rút ngắn thời gian triển khai.</p>
@@ -543,11 +546,7 @@
           <!-- Card 3 -->
           <div class="strength-card glass-card">
             <div class="strength-icon-container">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#teal-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                <line x1="12" y1="22.08" x2="12" y2="12"/>
-              </svg>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#teal-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
             </div>
             <h3 class="strength-card-title" data-i18n="strength-3-title">ERP kết hợp AI &amp; tự động hóa</h3>
             <p class="strength-card-text" data-i18n="strength-3-text">Ứng dụng AI Agent, Chatbot, OCR, RPA và các công nghệ AI hiện đại vào hệ thống ERP, giúp doanh nghiệp tự động hóa quy trình, khai thác dữ liệu thông minh và nâng cao hiệu suất vận hành.</p>
@@ -555,9 +554,7 @@
           <!-- Card 4 -->
           <div class="strength-card glass-card">
             <div class="strength-icon-container">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#blue-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-              </svg>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>
             </div>
             <h3 class="strength-card-title" data-i18n="strength-4-title">Quy trình triển khai chuẩn</h3>
             <p class="strength-card-text" data-i18n="strength-4-text">Triển khai theo quy trình bài bản từ khảo sát, phân tích, thiết kế giải pháp, phát triển, UAT, Go-live đến hỗ trợ sau triển khai. Mọi giai đoạn đều được quản lý chặt chẽ nhằm đảm bảo chất lượng và tiến độ dự án.</p>
@@ -565,9 +562,7 @@
           <!-- Card 5 -->
           <div class="strength-card glass-card">
             <div class="strength-icon-container">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#purple-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/>
-              </svg>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#purple-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/><path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/></svg>
             </div>
             <h3 class="strength-card-title" data-i18n="strength-5-title">Giải pháp "may đo" theo doanh nghiệp</h3>
             <p class="strength-card-text" data-i18n="strength-5-text">Không áp dụng một giải pháp cho mọi doanh nghiệp. EDI Soft phân tích hiện trạng, thiết kế quy trình và xây dựng hệ thống phù hợp với mô hình vận hành, mục tiêu và định hướng phát triển của từng khách hàng.</p>
@@ -575,9 +570,7 @@
           <!-- Card 6 -->
           <div class="strength-card glass-card">
             <div class="strength-icon-container">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#teal-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#teal-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg>
             </div>
             <h3 class="strength-card-title" data-i18n="strength-6-title">Đồng hành phát triển dài hạn</h3>
             <p class="strength-card-text" data-i18n="strength-6-text">EDI Soft không chỉ triển khai ERP mà còn đồng hành cùng doanh nghiệp trong quá trình vận hành, tối ưu và mở rộng hệ thống, đảm bảo giải pháp luôn thích ứng với sự phát triển của tổ chức.</p>
@@ -676,7 +669,7 @@
           <div class="ai-caps">
             <div class="ai-cap">
               <div class="strength-icon-container">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="url(#blue-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 10v6"/><path d="M9 13h6"/><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
               </div>
               <div>
                 <h3 class="ai-cap-title" data-i18n="ai-cap-1-title">Tạo dự án</h3>
@@ -685,7 +678,7 @@
             </div>
             <div class="ai-cap">
               <div class="strength-icon-container">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="url(#purple-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="url(#purple-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
               </div>
               <div>
                 <h3 class="ai-cap-title" data-i18n="ai-cap-2-title">Tạo &amp; giao nhiệm vụ</h3>
@@ -694,7 +687,7 @@
             </div>
             <div class="ai-cap">
               <div class="strength-icon-container">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="url(#teal-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="url(#teal-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>
               </div>
               <div>
                 <h3 class="ai-cap-title" data-i18n="ai-cap-3-title">Log work</h3>
@@ -703,7 +696,7 @@
             </div>
             <div class="ai-cap">
               <div class="strength-icon-container">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="url(#blue-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
               </div>
               <div>
                 <h3 class="ai-cap-title" data-i18n="ai-cap-4-title">Thống kê tình trạng dự án</h3>
@@ -742,7 +735,7 @@
         <div class="engagement-grid">
           <div class="engage-card glass-card">
             <div class="strength-icon-container">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#blue-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
             </div>
             <h3 class="engage-card-title" data-i18n="engage-1-title">Khảo sát &amp; tư vấn</h3>
             <p class="engage-card-text" data-i18n="engage-1-desc">Khảo sát hiện trạng, đề xuất giải pháp và lộ trình, bàn giao tài liệu BRD.</p>
@@ -753,7 +746,7 @@
           </div>
           <div class="engage-card glass-card">
             <div class="strength-icon-container">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#purple-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#purple-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></svg>
             </div>
             <h3 class="engage-card-title" data-i18n="engage-2-title">Triển khai trọn gói</h3>
             <p class="engage-card-text" data-i18n="engage-2-desc">Từ khảo sát, cấu hình, tùy biến, đào tạo đến Go-live, theo phạm vi chốt trước.</p>
@@ -764,7 +757,7 @@
           </div>
           <div class="engage-card glass-card">
             <div class="strength-icon-container">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#teal-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#teal-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
             </div>
             <h3 class="engage-card-title" data-i18n="engage-3-title">Phát triển theo yêu cầu</h3>
             <p class="engage-card-text" data-i18n="engage-3-desc">Tùy biến module, tích hợp API, AI và ứng dụng mobile trên hệ thống Odoo đang chạy.</p>
@@ -775,7 +768,7 @@
           </div>
           <div class="engage-card glass-card">
             <div class="strength-icon-container">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#blue-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
             </div>
             <h3 class="engage-card-title" data-i18n="engage-4-title">Bảo trì &amp; đồng hành</h3>
             <p class="engage-card-text" data-i18n="engage-4-desc">Hỗ trợ người dùng, xử lý sự cố, sao lưu, nâng cấp theo gói định kỳ.</p>
@@ -874,40 +867,44 @@
           <div class="portfolio-card glass-card">
             <div class="portfolio-card-header">
               <div>
-                <h3 class="portfolio-client" data-i18n="p1-client">Enkei Vietnam Co., Ltd</h3>
-                <p class="portfolio-address" data-i18n="p1-location">Khu công nghiệp Thăng Long, Thiên Lộc, Hà Nội</p>
+                <span class="portfolio-featured" data-i18n="portfolio-featured">Dự án tiêu biểu</span>
+                <h3 class="portfolio-client" data-i18n="p4-client">Pack Vitus GmbH</h3>
+                <p class="portfolio-address" data-i18n="p4-location">Siegfriedstr. 182, 10365 Berlin, Germany</p>
               </div>
-              <span class="portfolio-tag" data-i18n="p1-tag">Sản xuất</span>
+              <span class="portfolio-tag" data-i18n="p4-tag">Bán lẻ & Bán buôn</span>
             </div>
             <div class="portfolio-card-body">
               <h4 class="portfolio-label" data-i18n="portfolio-solution-label">Giải pháp triển khai</h4>
               <div class="portfolio-pills">
-                <span class="portfolio-pill">CRM</span>
-                <span class="portfolio-pill">Purchase</span>
+                <span class="portfolio-pill">POS</span>
+                <span class="portfolio-pill">Sales</span>
                 <span class="portfolio-pill">Inventory</span>
+                <span class="portfolio-pill">Accounting</span>
+                <span class="portfolio-pill">Multi-company</span>
+                <span class="portfolio-pill">Wholesale</span>
               </div>
               <h4 class="portfolio-label" data-i18n="portfolio-role-label">Vai trò của EDI Soft</h4>
               <ul class="portfolio-role-list">
                 <li class="portfolio-role-item">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p1-role-1">Khảo sát và phân tích nghiệp vụ.</span>
+                  <span data-i18n="p4-role-1">Cấu hình đa công ty: Pack Vitus GmbH và Pack Vitus Erlangen.</span>
                 </li>
                 <li class="portfolio-role-item">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p1-role-2">Triển khai và tùy biến Odoo.</span>
+                  <span data-i18n="p4-role-2">Quy trình bán lẻ (POS) và bán buôn trên cùng một hệ thống.</span>
                 </li>
                 <li class="portfolio-role-item">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p1-role-3">Đào tạo người dùng và hỗ trợ Go-live.</span>
+                  <span data-i18n="p4-role-3">Quản lý tồn kho, đồng bộ dữ liệu tài chính và kế toán giữa các công ty.</span>
                 </li>
                 <li class="portfolio-role-item">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p1-role-4">Tối ưu quy trình mua hàng và quản lý kho.</span>
+                  <span data-i18n="p4-role-4">Hỗ trợ Go-live và bảo trì hệ thống.</span>
                 </li>
               </ul>
               <p class="portfolio-value">
                 <span class="portfolio-label" data-i18n="portfolio-value-label">Giá trị mang lại</span>
-                <span data-i18n="p1-value">Quy trình mua hàng và kho được chuẩn hóa, quản lý tập trung trên Odoo.</span>
+                <span data-i18n="p4-value">Hai công ty vận hành bán lẻ và bán buôn trên một hệ thống Odoo, tồn kho và kế toán đồng bộ.</span>
               </p>
             </div>
           </div>
@@ -915,6 +912,48 @@
           <div class="portfolio-card glass-card">
             <div class="portfolio-card-header">
               <div>
+                <span class="portfolio-featured" data-i18n="portfolio-featured">Dự án tiêu biểu</span>
+                <h3 class="portfolio-client" data-i18n="p5-client">Velora Vietnam Travel</h3>
+                <p class="portfolio-address" data-i18n="p5-location">The Manor Central Park, Định Công Ward, Hà Nội, Việt Nam</p>
+              </div>
+              <span class="portfolio-tag" data-i18n="p5-tag">Du lịch & Lữ hành</span>
+            </div>
+            <div class="portfolio-card-body">
+              <h4 class="portfolio-label" data-i18n="portfolio-solution-label">Giải pháp triển khai</h4>
+              <div class="portfolio-pills">
+                <span class="portfolio-pill">CRM</span>
+                <span class="portfolio-pill">Website</span>
+              </div>
+              <h4 class="portfolio-label" data-i18n="portfolio-role-label">Vai trò của EDI Soft</h4>
+              <ul class="portfolio-role-list">
+                <li class="portfolio-role-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="p5-role-1">Tư vấn và thiết kế quy trình quản lý khách hàng (CRM).</span>
+                </li>
+                <li class="portfolio-role-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="p5-role-2">Phát triển website doanh nghiệp tích hợp với hệ thống CRM.</span>
+                </li>
+                <li class="portfolio-role-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="p5-role-3">Chuẩn hóa quy trình tiếp nhận, quản lý và chăm sóc khách hàng.</span>
+                </li>
+                <li class="portfolio-role-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="p5-role-4">Xây dựng nền tảng hỗ trợ marketing, bán hàng và quản lý dữ liệu tập trung.</span>
+                </li>
+              </ul>
+              <p class="portfolio-value">
+                <span class="portfolio-label" data-i18n="portfolio-value-label">Giá trị mang lại</span>
+                <span data-i18n="p5-value">Khách hàng từ website được tiếp nhận và chăm sóc trên CRM.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="portfolio-card glass-card">
+            <div class="portfolio-card-header">
+              <div>
+                <span class="portfolio-featured" data-i18n="portfolio-featured">Dự án tiêu biểu</span>
                 <h3 class="portfolio-client" data-i18n="p2-client">Krapower (KRA Group JSC)</h3>
                 <p class="portfolio-address" data-i18n="p2-location">Số 23 Louis VII, KĐT Louis, Hoàng Mai, Hà Nội</p>
               </div>
@@ -951,6 +990,89 @@
               <p class="portfolio-value">
                 <span class="portfolio-label" data-i18n="portfolio-value-label">Giá trị mang lại</span>
                 <span data-i18n="p2-value">Bán hàng, dự án và nhân sự vận hành trên cùng một hệ thống.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="portfolio-card glass-card">
+            <div class="portfolio-card-header">
+              <div>
+                <span class="portfolio-featured" data-i18n="portfolio-featured">Dự án tiêu biểu</span>
+                <h3 class="portfolio-client" data-i18n="p6-client">Công ty Cổ phần Đầu tư và Công nghệ THG</h3>
+                <p class="portfolio-address" data-i18n="p6-location">Lô B12/D21 Khu đô thị mới Cầu Giấy, Ngõ 100 phố Dịch Vọng Hậu, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Hà Nội</p>
+              </div>
+              <span class="portfolio-tag" data-i18n="p6-tag">Đầu tư & Công nghệ</span>
+            </div>
+            <div class="portfolio-card-body">
+              <h4 class="portfolio-label" data-i18n="portfolio-solution-label">Giải pháp triển khai</h4>
+              <div class="portfolio-pills">
+                <span class="portfolio-pill">DMS</span>
+                <span class="portfolio-pill">Documents</span>
+                <span class="portfolio-pill">OnlyOffice</span>
+              </div>
+              <h4 class="portfolio-label" data-i18n="portfolio-role-label">Vai trò của EDI Soft</h4>
+              <ul class="portfolio-role-list">
+                <li class="portfolio-role-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="p6-role-1">Quản lý tài liệu tập trung (DMS).</span>
+                </li>
+                <li class="portfolio-role-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="p6-role-2">Tích hợp OnlyOffice để soạn thảo trực tiếp.</span>
+                </li>
+                <li class="portfolio-role-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="p6-role-3">Tạo, sửa, xóa và xem tài liệu.</span>
+                </li>
+                <li class="portfolio-role-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="p6-role-4">Đánh mã tài liệu và tạo file template để xuất báo cáo.</span>
+                </li>
+              </ul>
+              <p class="portfolio-value">
+                <span class="portfolio-label" data-i18n="portfolio-value-label">Giá trị mang lại</span>
+                <span data-i18n="p6-value">Tài liệu được lưu trữ, soạn thảo và xuất báo cáo tập trung.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="portfolio-card glass-card">
+            <div class="portfolio-card-header">
+              <div>
+                <h3 class="portfolio-client" data-i18n="p1-client">Enkei Vietnam Co., Ltd</h3>
+                <p class="portfolio-address" data-i18n="p1-location">Khu công nghiệp Thăng Long, Thiên Lộc, Hà Nội</p>
+              </div>
+              <span class="portfolio-tag" data-i18n="p1-tag">Sản xuất</span>
+            </div>
+            <div class="portfolio-card-body">
+              <h4 class="portfolio-label" data-i18n="portfolio-solution-label">Giải pháp triển khai</h4>
+              <div class="portfolio-pills">
+                <span class="portfolio-pill">CRM</span>
+                <span class="portfolio-pill">Purchase</span>
+                <span class="portfolio-pill">Inventory</span>
+              </div>
+              <h4 class="portfolio-label" data-i18n="portfolio-role-label">Vai trò của EDI Soft</h4>
+              <ul class="portfolio-role-list">
+                <li class="portfolio-role-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="p1-role-1">Khảo sát và phân tích nghiệp vụ.</span>
+                </li>
+                <li class="portfolio-role-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="p1-role-2">Triển khai và tùy biến Odoo.</span>
+                </li>
+                <li class="portfolio-role-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="p1-role-3">Đào tạo người dùng và hỗ trợ Go-live.</span>
+                </li>
+                <li class="portfolio-role-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="p1-role-4">Tối ưu quy trình mua hàng và quản lý kho.</span>
+                </li>
+              </ul>
+              <p class="portfolio-value">
+                <span class="portfolio-label" data-i18n="portfolio-value-label">Giá trị mang lại</span>
+                <span data-i18n="p1-value">Quy trình mua hàng và kho được chuẩn hóa, quản lý tập trung trên Odoo.</span>
               </p>
             </div>
           </div>
@@ -996,131 +1118,6 @@
               </p>
             </div>
           </div>
-
-          <div class="portfolio-card glass-card">
-            <div class="portfolio-card-header">
-              <div>
-                <h3 class="portfolio-client" data-i18n="p4-client">Pack Vitus GmbH</h3>
-                <p class="portfolio-address" data-i18n="p4-location">Siegfriedstr. 182, 10365 Berlin, Germany</p>
-              </div>
-              <span class="portfolio-tag" data-i18n="p4-tag">Bán lẻ & Bán buôn</span>
-            </div>
-            <div class="portfolio-card-body">
-              <h4 class="portfolio-label" data-i18n="portfolio-solution-label">Giải pháp triển khai</h4>
-              <div class="portfolio-pills">
-                <span class="portfolio-pill">POS</span>
-                <span class="portfolio-pill">Sales</span>
-                <span class="portfolio-pill">Inventory</span>
-                <span class="portfolio-pill">Accounting</span>
-                <span class="portfolio-pill">Multi-company</span>
-                <span class="portfolio-pill">Wholesale</span>
-              </div>
-              <h4 class="portfolio-label" data-i18n="portfolio-role-label">Vai trò của EDI Soft</h4>
-              <ul class="portfolio-role-list">
-                <li class="portfolio-role-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p4-role-1">Cấu hình đa công ty: Pack Vitus GmbH và Pack Vitus Erlangen.</span>
-                </li>
-                <li class="portfolio-role-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p4-role-2">Quy trình bán lẻ (POS) và bán buôn trên cùng một hệ thống.</span>
-                </li>
-                <li class="portfolio-role-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p4-role-3">Quản lý tồn kho, đồng bộ dữ liệu tài chính và kế toán giữa các công ty.</span>
-                </li>
-                <li class="portfolio-role-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p4-role-4">Hỗ trợ Go-live và bảo trì hệ thống.</span>
-                </li>
-              </ul>
-              <p class="portfolio-value">
-                <span class="portfolio-label" data-i18n="portfolio-value-label">Giá trị mang lại</span>
-                <span data-i18n="p4-value">Hai công ty vận hành bán lẻ và bán buôn trên một hệ thống Odoo, tồn kho và kế toán đồng bộ.</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="portfolio-card glass-card">
-            <div class="portfolio-card-header">
-              <div>
-                <h3 class="portfolio-client" data-i18n="p5-client">Velora Vietnam Travel</h3>
-                <p class="portfolio-address" data-i18n="p5-location">The Manor Central Park, Định Công Ward, Hà Nội, Việt Nam</p>
-              </div>
-              <span class="portfolio-tag" data-i18n="p5-tag">Du lịch & Lữ hành</span>
-            </div>
-            <div class="portfolio-card-body">
-              <h4 class="portfolio-label" data-i18n="portfolio-solution-label">Giải pháp triển khai</h4>
-              <div class="portfolio-pills">
-                <span class="portfolio-pill">CRM</span>
-                <span class="portfolio-pill">Website</span>
-              </div>
-              <h4 class="portfolio-label" data-i18n="portfolio-role-label">Vai trò của EDI Soft</h4>
-              <ul class="portfolio-role-list">
-                <li class="portfolio-role-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p5-role-1">Tư vấn và thiết kế quy trình quản lý khách hàng (CRM).</span>
-                </li>
-                <li class="portfolio-role-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p5-role-2">Phát triển website doanh nghiệp tích hợp với hệ thống CRM.</span>
-                </li>
-                <li class="portfolio-role-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p5-role-3">Chuẩn hóa quy trình tiếp nhận, quản lý và chăm sóc khách hàng.</span>
-                </li>
-                <li class="portfolio-role-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p5-role-4">Xây dựng nền tảng hỗ trợ marketing, bán hàng và quản lý dữ liệu tập trung.</span>
-                </li>
-              </ul>
-              <p class="portfolio-value">
-                <span class="portfolio-label" data-i18n="portfolio-value-label">Giá trị mang lại</span>
-                <span data-i18n="p5-value">Khách hàng từ website được tiếp nhận và chăm sóc trên CRM.</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="portfolio-card glass-card">
-            <div class="portfolio-card-header">
-              <div>
-                <h3 class="portfolio-client" data-i18n="p6-client">Công ty Cổ phần Đầu tư và Công nghệ THG</h3>
-                <p class="portfolio-address" data-i18n="p6-location">Lô B12/D21 Khu đô thị mới Cầu Giấy, Ngõ 100 phố Dịch Vọng Hậu, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Hà Nội</p>
-              </div>
-              <span class="portfolio-tag" data-i18n="p6-tag">Đầu tư & Công nghệ</span>
-            </div>
-            <div class="portfolio-card-body">
-              <h4 class="portfolio-label" data-i18n="portfolio-solution-label">Giải pháp triển khai</h4>
-              <div class="portfolio-pills">
-                <span class="portfolio-pill">DMS</span>
-                <span class="portfolio-pill">Documents</span>
-                <span class="portfolio-pill">OnlyOffice</span>
-              </div>
-              <h4 class="portfolio-label" data-i18n="portfolio-role-label">Vai trò của EDI Soft</h4>
-              <ul class="portfolio-role-list">
-                <li class="portfolio-role-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p6-role-1">Quản lý tài liệu tập trung (DMS).</span>
-                </li>
-                <li class="portfolio-role-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p6-role-2">Tích hợp OnlyOffice để soạn thảo trực tiếp.</span>
-                </li>
-                <li class="portfolio-role-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p6-role-3">Tạo, sửa, xóa và xem tài liệu.</span>
-                </li>
-                <li class="portfolio-role-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span data-i18n="p6-role-4">Đánh mã tài liệu và tạo file template để xuất báo cáo.</span>
-                </li>
-              </ul>
-              <p class="portfolio-value">
-                <span class="portfolio-label" data-i18n="portfolio-value-label">Giá trị mang lại</span>
-                <span data-i18n="p6-value">Tài liệu được lưu trữ, soạn thảo và xuất báo cáo tập trung.</span>
-              </p>
-            </div>
-          </div>
         </div>
 
         <div class="portfolio-summary-values">
@@ -1150,61 +1147,52 @@
         </div>
         
         <div class="team-grid">
-          <!-- Member 1: Đàm Công Hiến -->
-          <div class="team-card glass-card">
-            <div class="member-avatar-wrapper">
-              <img src="assets/img/hiendc.jpg" alt="Đàm Công Hiến" class="member-avatar-img" width="200" height="200" loading="lazy">
+          <!-- Founder -->
+          <article class="team-card founder-card">
+            <div class="founder-top">
+              <img src="assets/img/hiendc.jpg" alt="Đàm Công Hiến, Founder và Solution Architect của EDI Soft" class="founder-photo" width="132" height="132" loading="lazy">
+              <div>
+                <h3 class="member-name" data-i18n="member-1-name">Đàm Công Hiến</h3>
+                <p class="founder-role" data-i18n="member-1-role">Founder & Solution Architect</p>
+                <ul class="founder-chips" aria-label="Python, PostgreSQL, Odoo Framework, DevOps">
+                  <li>Python</li><li>PostgreSQL</li><li>Odoo Framework</li><li>DevOps</li>
+                </ul>
+              </div>
             </div>
-            <h3 class="member-name" data-i18n="member-1-name">Đàm Công Hiến</h3>
-            <p class="member-role" data-i18n="member-1-role">Founder & Solution Architect</p>
-            <ul class="member-detail-list">
-              <li class="member-detail-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                <span data-i18n="member-1-detail-1">Định hướng công nghệ và chịu trách nhiệm chất lượng giải pháp của mọi dự án.</span>
-              </li>
-              <li class="member-detail-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                <span data-i18n="member-1-detail-2">Chuyên sâu Python, PostgreSQL, Odoo Framework và DevOps.</span>
-              </li>
-              <li class="member-detail-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                <span data-i18n="member-1-detail-3">Thiết kế kiến trúc hệ thống, phát triển giải pháp ERP và tích hợp AI.</span>
-              </li>
-              <li class="member-detail-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                <span data-i18n="member-1-detail-4">Tư vấn giải pháp, tối ưu hiệu năng và đảm bảo khả năng mở rộng của hệ thống.</span>
-              </li>
+            <ul class="team-points">
+              <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span data-i18n="member-1-detail-1">Định hướng công nghệ và chịu trách nhiệm chất lượng giải pháp của mọi dự án.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span data-i18n="member-1-detail-3">Thiết kế kiến trúc hệ thống, phát triển giải pháp ERP và tích hợp AI.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span data-i18n="member-1-detail-4">Tư vấn giải pháp, tối ưu hiệu năng và đảm bảo khả năng mở rộng của hệ thống.</span></li>
             </ul>
-            <a href="https://www.linkedin.com/in/hien-dc-463276266/" class="member-linkedin" target="_blank" rel="noopener noreferrer" data-i18n-aria="member-1-linkedin-aria" aria-label="Xem LinkedIn của Đàm Công Hiến">
+            <a href="https://www.linkedin.com/in/hien-dc-463276266/" class="member-linkedin btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer" data-i18n-aria="member-1-linkedin-aria" aria-label="Xem LinkedIn của Đàm Công Hiến">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
               <span data-i18n="linkedin-label">LinkedIn Profile</span>
             </a>
-          </div>
+          </article>
 
-          <!-- Team summary -->
-          <div class="team-card glass-card team-summary-card">
-            <div class="team-summary-num text-gradient">EDI Team</div>
+          <!-- Team by role -->
+          <article class="team-card team-summary-card">
+            <span class="team-eyebrow">EDI Team</span>
             <h3 class="member-name" data-i18n="team-summary-title">Đội ngũ của EDI Soft</h3>
-            <p class="member-role" data-i18n="team-summary-role">Solution Architect · Business Analyst · Developer</p>
-            <ul class="member-detail-list">
-              <li class="member-detail-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                <span data-i18n="team-summary-1">Business Analyst khảo sát, phân tích và chuẩn hóa quy trình nghiệp vụ.</span>
+            <ul class="team-roles">
+              <li class="role-row">
+                <span class="role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg></span>
+                <div><h4 class="role-name">Solution Architect</h4><p class="role-desc" data-i18n="team-role-sa-desc">Thiết kế kiến trúc hệ thống, giải pháp ERP và tích hợp AI.</p></div>
               </li>
-              <li class="member-detail-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                <span data-i18n="team-summary-2">Developer Odoo cấu hình, tùy biến module và tích hợp hệ thống.</span>
+              <li class="role-row">
+                <span class="role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg></span>
+                <div><h4 class="role-name">Business Analyst</h4><p class="role-desc" data-i18n="team-role-ba-desc">Khảo sát, phân tích và chuẩn hóa quy trình nghiệp vụ.</p></div>
               </li>
-              <li class="member-detail-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                <span data-i18n="team-summary-3">Người tư vấn cũng là người trực tiếp triển khai, không qua trung gian.</span>
-              </li>
-              <li class="member-detail-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                <span data-i18n="team-summary-4">Mỗi dự án có một đầu mối phụ trách xuyên suốt từ khảo sát đến Go-live.</span>
+              <li class="role-row">
+                <span class="role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span>
+                <div><h4 class="role-name" data-i18n="team-role-dev">Developer Odoo</h4><p class="role-desc" data-i18n="team-role-dev-desc">Cấu hình, tùy biến module và tích hợp hệ thống.</p></div>
               </li>
             </ul>
-          </div>
+            <ul class="team-promise">
+              <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span data-i18n="team-summary-3">Người tư vấn cũng là người trực tiếp triển khai, không qua trung gian.</span></li>
+              <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><span data-i18n="team-summary-4">Mỗi dự án có một đầu mối phụ trách xuyên suốt từ khảo sát đến Go-live.</span></li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
@@ -1238,60 +1226,80 @@
     <!-- FAQ Section -->
     <section class="faq-section scroll-reveal" id="faq">
       <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle" data-i18n="faq-subtitle">Câu hỏi thường gặp</span>
-          <h2 class="section-title" data-i18n="faq-title">Giải đáp trước khi bắt đầu</h2>
-        </div>
+        <div class="faq-layout">
+          <aside class="faq-aside">
+            <span class="section-subtitle" data-i18n="faq-subtitle">Câu hỏi thường gặp</span>
+            <h2 class="section-title" data-i18n="faq-title">Giải đáp trước khi bắt đầu</h2>
+            <p class="faq-aside-desc" data-i18n="faq-desc">Những thắc mắc khách hàng hỏi nhiều nhất trước khi triển khai Odoo. Chưa thấy câu bạn cần? Hỏi trực tiếp, chúng tôi phản hồi trong 1 ngày làm việc.</p>
+            <div class="faq-help">
+              <div class="faq-help-head">
+                <span class="faq-help-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></svg></span>
+                <div>
+                  <h3 class="faq-help-title" data-i18n="faq-help-title">Cần tư vấn riêng?</h3>
+                  <p class="faq-help-text" data-i18n="faq-help-text">Trao đổi trực tiếp với người sẽ triển khai cho bạn.</p>
+                </div>
+              </div>
+              <div class="faq-help-actions">
+                <a href="#contact" class="btn btn-primary btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg><span data-i18n="mobile-cta">Nhận tư vấn</span></a>
+                <a href="https://zalo.me/0363729276" class="btn btn-secondary btn-sm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span data-i18n="faq-help-zalo">Chat Zalo</span></a>
+              </div>
+              <a href="tel:0363729276" class="faq-help-phone">
+                <span class="faq-help-phone-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                <span class="faq-help-phone-text"><small>Hotline</small><strong>036 3729 276</strong></span>
+              </a>
+            </div>
+          </aside>
         <div class="faq-list">
-          <details class="faq-item">
+          <details class="faq-item" name="faq">
             <summary>
               <h3 class="faq-q" data-i18n="faq-1-q">Nên chọn Odoo Community hay Enterprise?</h3>
               <span class="faq-icon" aria-hidden="true"></span>
             </summary>
             <p class="faq-a" data-i18n="faq-1-a">Community miễn phí license, phù hợp khi nhu cầu cơ bản và chấp nhận phát triển thêm. Enterprise có thêm nhiều phân hệ và tính năng (kế toán đầy đủ, Studio, ứng dụng mobile…), tính phí license theo người dùng. EDI Soft tư vấn phiên bản phù hợp sau khi khảo sát.</p>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" name="faq">
             <summary>
               <h3 class="faq-q" data-i18n="faq-2-q">Triển khai mất bao lâu?</h3>
               <span class="faq-icon" aria-hidden="true"></span>
             </summary>
             <p class="faq-a" data-i18n="faq-2-a">Tùy số phân hệ và mức độ tùy biến. Chúng tôi chia theo giai đoạn để phân hệ quan trọng nhất đi vào vận hành trước; thời gian cụ thể được chốt trong kế hoạch sau khảo sát.</p>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" name="faq">
             <summary>
               <h3 class="faq-q" data-i18n="faq-3-q">Chi phí license Odoo tính như thế nào?</h3>
               <span class="faq-icon" aria-hidden="true"></span>
             </summary>
             <p class="faq-a" data-i18n="faq-3-a">Community không mất phí license. Enterprise tính theo số người dùng và trả trực tiếp cho Odoo. Phí tư vấn và triển khai của EDI Soft được báo giá riêng theo phạm vi.</p>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" name="faq">
             <summary>
               <h3 class="faq-q" data-i18n="faq-4-q">Dữ liệu trên Excel hoặc phần mềm cũ có chuyển sang được không?</h3>
               <span class="faq-icon" aria-hidden="true"></span>
             </summary>
             <p class="faq-a" data-i18n="faq-4-a">Có. Dữ liệu khách hàng, sản phẩm, tồn kho đầu kỳ, công nợ… được chuẩn hóa và import vào Odoo trước Go-live.</p>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" name="faq">
             <summary>
               <h3 class="faq-q" data-i18n="faq-5-q">Hệ thống chạy trên cloud hay máy chủ riêng?</h3>
               <span class="faq-icon" aria-hidden="true"></span>
             </summary>
             <p class="faq-a" data-i18n="faq-5-a">Cả hai đều được: Odoo.sh, cloud server hoặc máy chủ tại doanh nghiệp. Chúng tôi tư vấn dựa trên yêu cầu bảo mật, chi phí và quy mô.</p>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" name="faq">
             <summary>
               <h3 class="faq-q" data-i18n="faq-6-q">Có tích hợp AI, OCR vào hệ thống Odoo đang dùng được không?</h3>
               <span class="faq-icon" aria-hidden="true"></span>
             </summary>
             <p class="faq-a" data-i18n="faq-6-a">Được. Chúng tôi tích hợp AI Agent, Chatbot, OCR và tự động hóa vào hệ thống Odoo hiện có, không bắt buộc phải triển khai lại từ đầu.</p>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" name="faq">
             <summary>
               <h3 class="faq-q" data-i18n="faq-7-q">Sau Go-live được hỗ trợ như thế nào?</h3>
               <span class="faq-icon" aria-hidden="true"></span>
             </summary>
             <p class="faq-a" data-i18n="faq-7-a">EDI Soft hỗ trợ người dùng, xử lý sự cố và tối ưu hệ thống sau Go-live; có gói bảo trì định kỳ khi doanh nghiệp cần.</p>
           </details>
+        </div>
         </div>
       </div>
     </section>
@@ -1309,7 +1317,7 @@
           <div class="contact-details">
             <div class="contact-detail-item">
               <div class="contact-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
               </div>
               <div>
                 <span class="contact-label" data-i18n="contact-email-label">Email liên hệ:</span>

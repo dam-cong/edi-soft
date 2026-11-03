@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMockTilt();
   initChatLoop();
   initConsoleHello();
+  initMarqueeToggle();
 });
 
 /**
@@ -344,7 +345,7 @@ function initNavScrollSpy() {
   if (sections.length === 0 || navLinks.length === 0) return;
 
   // Sections without their own menu item highlight the item they belong to
-  const NAV_PARENT = { strengths: 'about', engagement: 'services', team: 'portfolio' };
+  const NAV_PARENT = { strengths: 'about', engagement: 'services', process: 'services', team: 'portfolio' };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -514,4 +515,23 @@ function initStagger() {
 function initConsoleHello() {
   console.log('%cEDI Soft', 'font:800 24px sans-serif;color:#2563eb');
   console.log('Odoo ERP · AI Agent · Automation — hiendc.edi@gmail.com');
+}
+
+function initMarqueeToggle() {
+  const btn = document.getElementById('marquee-toggle');
+  const marquee = document.querySelector('.tech-marquee');
+  if (!btn || !marquee) return;
+  const label = () => {
+    const t = translations[getCurrentLang()] || {};
+    const paused = btn.getAttribute('aria-pressed') === 'true';
+    btn.setAttribute('aria-label', (paused ? t['marquee-play'] : t['marquee-pause']) || '');
+  };
+  btn.addEventListener('click', () => {
+    const paused = btn.getAttribute('aria-pressed') !== 'true';
+    btn.setAttribute('aria-pressed', paused);
+    marquee.classList.toggle('paused', paused);
+    label();
+  });
+  document.getElementById('lang-toggle')?.addEventListener('click', () => setTimeout(label));
+  label();
 }
