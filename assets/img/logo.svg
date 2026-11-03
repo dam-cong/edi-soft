@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="EDI Soft">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c5cff"/>
+      <stop offset="0.55" stop-color="#3b6cf6"/>
+      <stop offset="1" stop-color="#00c2d1"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="54" fill="none" stroke="url(#g)" stroke-width="3"/>
+  <circle cx="6" cy="60" r="6" fill="url(#g)"/>
+  <circle cx="114" cy="60" r="6" fill="url(#g)"/>
+  <circle cx="60" cy="60" r="44" fill="url(#g)"/>
+  <g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M49 47H37v26h12M37 60h10"/>
+    <path d="M55 47v26h7a13 13 0 0 0 0-26z"/>
+    <path d="M83 47v26"/>
+  </g>
+</svg>
