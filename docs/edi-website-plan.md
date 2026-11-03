@@ -25,15 +25,15 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 
 | # | Section (`id`) | Nội dung |
 |---|---|---|
-| 1 | Header | Logo, menu 6 mục **Giới thiệu · Dịch vụ · AI · Quy trình · Dự án · Hỏi đáp**, nút VI/EN, nút sáng/tối, CTA "Nhận tư vấn". Menu hamburger khi màn hình ≤ 1024px. Menu mobile và footer dùng cùng 6 mục. "Lợi thế" được tính là một phần của Giới thiệu, "Đội ngũ" là một phần của Dự án (menu sáng theo mục cha khi cuộn qua) |
-| 2 | Hero (`#hero`) | Badge "Odoo ERP · AI Agent · Tự động hóa quy trình", thông điệp chính, 2 CTA (tư vấn → `#contact`, xem dự án → `#portfolio`), H1 chứa từ khóa chính "Triển khai Odoo ERP & AI Agent cho doanh nghiệp SME", khẩu hiệu "Chúng tôi không bán phần mềm..." đặt ở đoạn mô tả; đồ họa lõi EDI với các icon Odoo / AI / Chatbot / OCR / RPA / API / Mobile / DevOps. Ngay dưới hero: **dải công nghệ** Odoo 10 → 19 · Python · PostgreSQL · Django · Laravel · Flutter · Claude AI · MCP |
-| 3 | Về chúng tôi (`#about`) | Sứ mệnh; 3 chỉ số: **2024** thành lập · **6** dự án tiêu biểu · **SME** dưới 300 nhân sự; 3 điểm: Delivery Team chuyên sâu, hiểu vận hành doanh nghiệp Việt, chi phí phù hợp SME |
+| 1 | Header | Logo, menu 4 mục **Giới thiệu · Dịch vụ · Giải pháp AI (nổi bật dạng pill) · Dự án**, nút VI/EN, nút sáng/tối, CTA "Nhận tư vấn". Menu hamburger khi màn hình ≤ 1024px. Menu mobile có thêm 2 link phụ **Quy trình**, **Hỏi đáp**; footer giữ đủ 6 link. "Lợi thế" được tính là một phần của Giới thiệu, "Quy trình" và "Hợp tác" thuộc Dịch vụ, "Đội ngũ" thuộc Dự án (menu sáng theo mục cha khi cuộn qua) |
+| 2 | Hero (`#hero`) | Badge "Odoo ERP · AI Agent · Tự động hóa quy trình", thông điệp chính, 2 CTA (tư vấn → `#contact`, xem dự án → `#portfolio`), H1 chứa từ khóa chính "Triển khai Odoo ERP & AI Agent cho doanh nghiệp SME", khẩu hiệu "Chúng tôi không bán phần mềm..." đặt ở đoạn mô tả; đồ họa lõi EDI với các icon Odoo / AI / Chatbot / OCR / RPA / API / Mobile / DevOps. Ngay dưới hero: **dải công nghệ** Odoo 10 → 20 · Python · PostgreSQL · Django · Laravel · Flutter · Claude AI · MCP |
+| 3 | Về chúng tôi (`#about`) | Sứ mệnh; 3 chỉ số: **2024** thành lập · **4** dự án tiêu biểu · **SME** dưới 300 nhân sự; 3 điểm: Delivery Team chuyên sâu, hiểu vận hành doanh nghiệp Việt, chi phí phù hợp SME |
 | 4 | Lợi thế (`#strengths`) | 6 card: chuyên sâu Odoo CE & EE, BA & Developer đồng hành, ERP kết hợp AI & tự động hóa, quy trình triển khai chuẩn, giải pháp "may đo", đồng hành dài hạn |
 | 5 | Dịch vụ (`#services`) | 6 dịch vụ đánh số 01–06: tư vấn & khảo sát, thiết kế giải pháp ERP, triển khai & tùy biến Odoo, đào tạo & chuyển giao, bảo trì, hỗ trợ & nâng cấp, **phát triển ứng dụng mobile (Flutter)** kết nối Odoo |
 | 5b | AI & tự động hóa (`#ai`) | Use case thực tế: **Claude AI kết nối Odoo qua MCP** để tạo dự án, tạo & giao nhiệm vụ, log work (timesheet), thống kê tình trạng dự án. Khung chat **có nhãn "Minh họa"**, dùng dự án giả "Công ty ABC" (không dùng tên khách thật). Sơ đồ: Claude AI ⇄ MCP Server ⇄ Odoo. Có mục menu "AI" riêng |
 | 6 | Hình thức hợp tác (`#engagement`) | 4 card: Khảo sát & tư vấn · Triển khai trọn gói · Phát triển theo yêu cầu · Bảo trì & đồng hành, mỗi card có mục "Phù hợp khi". **Không công khai giá**: "Chi phí được báo giá theo phạm vi sau buổi khảo sát" + nút Nhận tư vấn. Khi cuộn tới, menu sáng "Dịch vụ" |
 | 7 | Quy trình (`#process`) | Timeline 6 bước: khảo sát → thiết kế & kế hoạch → cấu hình & phát triển → UAT → Go-live → hỗ trợ sau Go-live. Bước đang xem tự sáng lên khi cuộn |
-| 8 | Dự án (`#portfolio`) | 6 dự án, hiển thị **tên và địa chỉ thật** của khách hàng (xem mục 3). Mỗi card có dòng **"Giá trị mang lại"** (định tính, chỉ diễn đạt lại phạm vi đã làm, không có số liệu). Nhận xét khách hàng: bản nháp chờ duyệt ở [testimonial-drafts.md](testimonial-drafts.md), **chưa đưa lên web** |
+| 8 | Dự án (`#portfolio`) | 6 dự án, trong đó **4 dự án tiêu biểu** (Pack Vitus, Velora, Krapower, THG) có nhãn "Dự án tiêu biểu" và là số liệu "4" ở dải khách hàng / mục Về chúng tôi; hiển thị **tên và địa chỉ thật** của khách hàng (xem mục 3). Mỗi card có dòng **"Giá trị mang lại"** (định tính, chỉ diễn đạt lại phạm vi đã làm, không có số liệu). Nhận xét khách hàng: bản nháp chờ duyệt ở [testimonial-drafts.md](testimonial-drafts.md), **chưa đưa lên web** |
 | 9 | Đội ngũ (`#team`) | Card **Đàm Công Hiến** (Founder & Solution Architect, có ảnh và LinkedIn) và card tóm tắt "4 thành viên chuyên sâu Odoo". Chỉ công khai thông tin của founder |
 | 10 | Cam kết | Chất lượng & tiến độ · Bảo mật dữ liệu (sẵn sàng ký NDA) · Minh bạch phạm vi & chi phí |
 | 11 | FAQ (`#faq`) | 7 câu hỏi dạng accordion (`<details>`, không cần JS): CE hay EE · thời gian triển khai · license Odoo · chuyển dữ liệu cũ · cloud hay máy chủ riêng · tích hợp AI/OCR vào Odoo đang dùng · hỗ trợ sau Go-live. Câu trả lời **không đưa con số thời gian hay giá** chưa xác nhận |
@@ -46,19 +46,19 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 
 ## 3. Dự án tiêu biểu
 
-| # | Khách hàng | Địa chỉ | Giải pháp |
+| # | Khách hàng (1–4 tiêu biểu) | Địa chỉ | Giải pháp |
 |---|---|---|---|
-| 1 | Enkei Vietnam Co., Ltd | KCN Thăng Long, Thiên Lộc, Hà Nội | CRM, Purchase, Inventory |
-| 2 | Krapower (KRA Group JSC) | Số 23 Louis VII, KĐT Louis, Hoàng Mai, Hà Nội | CRM, Sales, Project, Inventory, HRM |
-| 3 | Công ty Cổ phần VTE (VTE.JSC) | Thôn Cổ Điển A, Tứ Hiệp, Thanh Trì, Hà Nội | CRM, MRP, Inventory, HRM |
-| 4 | Pack Vitus GmbH | Siegfriedstr. 182, 10365 Berlin, Germany | Đa công ty (Pack Vitus GmbH & Pack Vitus Erlangen), bán lẻ (POS) & bán buôn, Sales, Inventory, Accounting |
-| 5 | Velora Vietnam Travel | The Manor Central Park, Định Công, Hà Nội | CRM, Website |
-| 6 | Công ty Cổ phần Đầu tư và Công nghệ THG | Lô B12/D21 KĐT mới Cầu Giấy, Dịch Vọng Hậu, Cầu Giấy, Hà Nội | DMS (quản lý tài liệu, tích hợp OnlyOffice, đánh mã & template xuất báo cáo) |
+| 1 | Pack Vitus GmbH | Siegfriedstr. 182, 10365 Berlin, Germany | Đa công ty (Pack Vitus GmbH & Pack Vitus Erlangen), bán lẻ (POS) & bán buôn, Sales, Inventory, Accounting |
+| 2 | Velora Vietnam Travel | The Manor Central Park, Định Công, Hà Nội | CRM, Website |
+| 3 | Krapower (KRA Group JSC) | Số 23 Louis VII, KĐT Louis, Hoàng Mai, Hà Nội | CRM, Sales, Project, Inventory, HRM |
+| 4 | Công ty Cổ phần Đầu tư và Công nghệ THG | Lô B12/D21 KĐT mới Cầu Giấy, Dịch Vọng Hậu, Cầu Giấy, Hà Nội | DMS (quản lý tài liệu, tích hợp OnlyOffice, đánh mã & template xuất báo cáo) |
+| 5 | Enkei Vietnam Co., Ltd | KCN Thăng Long, Thiên Lộc, Hà Nội | CRM, Purchase, Inventory |
+| 6 | Công ty Cổ phần VTE (VTE.JSC) | Thôn Cổ Điển A, Tứ Hiệp, Thanh Trì, Hà Nội | CRM, MRP, Inventory, HRM |
 
 **Thêm một dự án mới:**
 1. Sao chép một khối `.portfolio-card` trong `index.html`, đổi key thành `p7-*` (`p7-client`, `p7-location`, `p7-tag`, `p7-role-1..4`).
 2. Thêm các key đó vào **cả hai** khối `vi` và `en` trong `src/js/i18n.js`. Nội dung mặc định trong HTML phải giống hệt bản `vi`.
-3. Cập nhật con số "6 dự án tiêu biểu" ở section Về chúng tôi.
+3. Chỉ khi dự án mới thuộc nhóm tiêu biểu: thêm nhãn `portfolio-featured`, tên vào dải khách hàng và cập nhật con số "4" ở Về chúng tôi / dải bằng chứng.
 
 ---
 
