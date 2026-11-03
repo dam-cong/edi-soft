@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initChatLoop();
   initConsoleHello();
   initMarqueeToggle();
+  initAiDemo();
+  initProjectFilter();
 });
 
 /**
@@ -104,31 +106,45 @@ function initMobileMenu() {
   const menuToggle = document.getElementById('menu-toggle');
   const mobileNavPanel = document.getElementById('mobile-nav-panel');
   const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  const header = document.getElementById('site-header');
 
   if (!menuToggle || !mobileNavPanel) return;
 
-  const toggleMenu = () => {
-    const isOpen = menuToggle.classList.toggle('open');
-    mobileNavPanel.classList.toggle('open');
-    
+  const setOpen = (isOpen) => {
+    menuToggle.classList.toggle('open', isOpen);
+    mobileNavPanel.classList.toggle('open', isOpen);
+    document.documentElement.classList.toggle('menu-open', isOpen);
+
     // Accessibility updates
     menuToggle.setAttribute('aria-expanded', isOpen);
     mobileNavPanel.setAttribute('aria-hidden', !isOpen);
-    
+
     // Prevent body scroll when menu is open
     document.body.style.overflow = isOpen ? 'hidden' : '';
+    if (isOpen) mobileNavLinks[0]?.focus({ preventScroll: true });
   };
 
-  menuToggle.addEventListener('click', toggleMenu);
+  const isOpen = () => menuToggle.classList.contains('open');
+
+  menuToggle.addEventListener('click', () => setOpen(!isOpen()));
 
   // Close menu when clicking on nav links
-  mobileNavLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (menuToggle.classList.contains('open')) {
-        toggleMenu();
-      }
-    });
+  mobileNavLinks.forEach(link => link.addEventListener('click', () => isOpen() && setOpen(false)));
+
+  // Esc closes and hands focus back to the toggle; a click on the dimmed page closes too
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen()) {
+      setOpen(false);
+      menuToggle.focus();
+    }
   });
+
+  document.addEventListener('click', (e) => {
+    if (isOpen() && !mobileNavPanel.contains(e.target) && !(header && header.contains(e.target))) setOpen(false);
+  });
+
+  // Back to a wide screen: never leave the page locked
+  window.matchMedia('(min-width: 1025px)').addEventListener('change', (e) => e.matches && isOpen() && setOpen(false));
 }
 
 /**
@@ -162,36 +178,29 @@ function initScrollReveal() {
  * 5. Interactive Timeline animation scroll-linked
  */
 function initInteractiveTimeline() {
-  const steps = document.querySelectorAll('.timeline-step');
-  if (steps.length === 0) return;
+  const steps = [...document.querySelectorAll('.proc-step')];
+  if (!steps.length) return;
 
-  if ('IntersectionObserver' in window) {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-20% 0px -40% 0px', // Trigger when item is in middle area of viewport
-      threshold: 0.2
-    };
+  // A step is "done" once its node passes the reading line; the last one passed is "current"
+  const update = () => {
+    const line = window.innerHeight * 0.55;
+    let current = -1;
+    steps.forEach((step, i) => {
+      if (step.querySelector('.proc-node').getBoundingClientRect().top < line) current = i;
+    });
+    steps.forEach((step, i) => {
+      step.classList.toggle('done', i < current);
+      step.classList.toggle('current', i === current);
+    });
+  };
 
-    const timelineObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const currentStepNum = parseInt(entry.target.getAttribute('data-step'), 10);
-          
-          // Activate current step and all previous steps, deactivate subsequent steps
-          steps.forEach(step => {
-            const stepNum = parseInt(step.getAttribute('data-step'), 10);
-            if (stepNum <= currentStepNum) {
-              step.classList.add('active');
-            } else {
-              step.classList.remove('active');
-            }
-          });
-        }
-      });
-    }, observerOptions);
-
-    steps.forEach(step => timelineObserver.observe(step));
-  }
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { update(); ticking = false; });
+  }, { passive: true });
+  update();
 }
 
 /**
@@ -398,7 +407,7 @@ function initScrollProgress() {
 
 function initCardSpotlight() {
   document.addEventListener('pointermove', (e) => {
-    const card = e.target.closest && e.target.closest('.glass-card, .service-item');
+    const card = e.target.closest && e.target.closest('.glass-card, .service-item, .svc-card, .eng-card, .adv-card, .proj-card');
     if (!card) return;
     const r = card.getBoundingClientRect();
     card.style.setProperty('--mx', `${e.clientX - r.left}px`);
@@ -505,7 +514,7 @@ function initChatLoop() {
 function initStagger() {
   document.documentElement.classList.add('js-ready');
   document.querySelectorAll('.scroll-reveal').forEach((section) => {
-    section.querySelectorAll('.glass-card:not(.modal-content), .service-item, .feature-item-mini, .faq-item').forEach((el, i) => {
+    section.querySelectorAll('.glass-card:not(.modal-content), .service-item, .svc-card, .eng-card, .adv-card, .proj-card, .about-principle, .feature-item-mini, .faq-item').forEach((el, i) => {
       el.classList.add('stagger');
       el.style.setProperty('--d', `${(i % 6) * 70}ms`);
     });
@@ -534,4 +543,66 @@ function initMarqueeToggle() {
   });
   document.getElementById('lang-toggle')?.addEventListener('click', () => setTimeout(label));
   label();
+}
+
+/**
+ * AI demo: messages appear one by one (bot replies "type" first) and the matching capability lights up.
+ * Without JS or with reduced motion the full conversation stays visible.
+ */
+function initAiDemo() {
+  const chat = document.querySelector('.ai-chat');
+  const demo = document.querySelector('.ai-demo');
+  if (!chat || !demo) return;
+  const msgs = [...chat.querySelectorAll('.ai-msg')];
+  const caps = [...document.querySelectorAll('.ai-cap')];
+  const replay = document.getElementById('ai-replay');
+  if (reducedMotion()) { replay && replay.remove(); return; }
+
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  let run = 0;
+
+  const play = async () => {
+    const id = ++run;
+    chat.classList.add('is-anim');
+    msgs.forEach((m) => m.classList.remove('shown', 'typing'));
+    caps.forEach((c) => c.classList.remove('is-on'));
+    await wait(400);
+    for (let i = 0; i < msgs.length; i++) {
+      if (id !== run) return;
+      const m = msgs[i];
+      caps.forEach((c, k) => c.classList.toggle('is-on', i < 2 ? k < 2 : k >= 2));
+      if (m.classList.contains('ai-msg-bot')) {
+        m.classList.add('shown', 'typing');
+        await wait(1100);
+        m.classList.remove('typing');
+      } else {
+        m.classList.add('shown');
+        await wait(700);
+      }
+      await wait(500);
+    }
+    if (id === run) caps.forEach((c) => c.classList.remove('is-on'));
+  };
+
+  let started = false;
+  const io = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting) && !started) {
+      started = true;
+      io.disconnect();
+      play();
+    }
+  }, { threshold: 0.45 });
+  io.observe(demo);
+  replay && replay.addEventListener('click', play);
+}
+
+function initProjectFilter() {
+  const chips = [...document.querySelectorAll('.proj-chip')];
+  const cards = [...document.querySelectorAll('.proj-card')];
+  if (!chips.length) return;
+  chips.forEach((chip) => chip.addEventListener('click', () => {
+    const only = chip.dataset.filter === 'featured';
+    chips.forEach((c) => c.setAttribute('aria-pressed', c === chip));
+    cards.forEach((card) => { card.hidden = only && card.dataset.featured !== 'true'; });
+  }));
 }
