@@ -21,9 +21,11 @@ Tất cả đường dẫn trong `index.html` đều là đường dẫn tương
 
 ```
 index.html
+ticket.html                   # Trung tâm hỗ trợ: gửi và theo dõi ticket (noindex)
 assets/img/                   # favicon, logo, ảnh founder, og-image
 src/js/i18n.js                # bản dịch VI/EN (nạp trước)
 src/js/main.js                # logic chính
+src/js/ticket.js              # Trung tâm hỗ trợ (chỉ nạp ở ticket.html)
 src/styles/main.css
 robots.txt, sitemap.xml
 google325a807a1bdab251.html   # xác minh Google Search Console — không xóa, không đổi tên

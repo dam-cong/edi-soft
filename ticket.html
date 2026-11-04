@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Trung tâm hỗ trợ khách hàng | EDI Soft</title>
+  <meta name="description" content="Gửi yêu cầu hỗ trợ cho EDI Soft và theo dõi tình trạng ticket bằng mã ticket.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://info.editech.vn/ticket.html">
+
+  <!-- Apply saved theme/language before first paint to avoid flashing -->
+  <script>
+    (function () {
+      try {
+        var html = document.documentElement;
+        var theme = localStorage.getItem('theme');
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = 'light';
+        }
+        html.setAttribute('data-theme', theme);
+        if (localStorage.getItem('preferred-lang') === 'en') {
+          html.classList.add('i18n-pending');
+          setTimeout(function () { html.classList.remove('i18n-pending'); }, 2000); // never stay hidden
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
+  <link rel="icon" type="image/png" href="assets/img/logo-512.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a1628">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/styles/main.css">
+</head>
+<body data-page="support">
+<a href="#main" class="skip-link" data-i18n="skip-link">Bỏ qua, tới nội dung chính</a>
+
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Background Glow Effects -->
+  <div class="bg-glows" aria-hidden="true">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="logo-area" data-i18n-aria="logo-aria" aria-label="Trở về trang chủ EDI Soft">
+        <img src="assets/img/logo.svg" alt="EDI Soft" class="logo-img" width="44" height="44">
+        <span class="logo-text">EDI <span class="text-gradient">Soft</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav" data-i18n-aria="nav-aria" aria-label="Menu chính">
+        <ul class="nav-list">
+          <li><a href="index.html#about" class="nav-link" data-i18n="nav-about">Giới thiệu</a></li>
+          <li><a href="index.html#services" class="nav-link" data-i18n="nav-services">Dịch vụ</a></li>
+          <li><a href="index.html#ai" class="nav-link" data-i18n="nav-ai">Giải pháp AI</a></li>
+          <li><a href="index.html#portfolio" class="nav-link" data-i18n="nav-portfolio">Dự án</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="lang-toggle" id="lang-toggle" data-i18n-aria="lang-aria" data-i18n-title="lang-title" aria-label="Chuyển sang tiếng Anh" title="English">
+          <span class="lang-opt" data-l="vi">VI</span><span class="lang-opt" data-l="en">EN</span>
+        </button>
+        <button class="theme-toggle" id="theme-toggle" data-i18n-aria="theme-aria" data-i18n-title="theme-title" aria-label="Chuyển đổi giao diện sáng/tối" title="Chuyển đổi giao diện">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="ticket.html" class="header-support" aria-current="page" data-i18n-aria="header-support-aria" data-i18n-title="header-support-aria" aria-label="Trung tâm hỗ trợ khách hàng" title="Trung tâm hỗ trợ khách hàng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg><span data-i18n="header-support">Hỗ trợ</span></a>
+        <a href="index.html#contact" class="btn btn-primary btn-sm" id="btn-header-cta" data-i18n="header-cta" data-i18n-aria="header-cta-aria" aria-label="Liên hệ tư vấn giải pháp">Nhận tư vấn</a>
+        <button class="mobile-nav-toggle" id="menu-toggle" data-i18n-aria="menu-aria" aria-label="Mở menu điều hướng di động" aria-expanded="false" aria-controls="mobile-nav-panel">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Panel -->
+  <div class="mobile-nav-panel" id="mobile-nav-panel" aria-hidden="true">
+    <nav data-i18n-aria="mobile-nav-aria" aria-label="Menu di động">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html#about" class="mobile-nav-link" data-i18n="nav-about">Giới thiệu</a></li>
+        <li><a href="index.html#services" class="mobile-nav-link" data-i18n="nav-services">Dịch vụ</a></li>
+        <li><a href="index.html#ai" class="mobile-nav-link" data-i18n="nav-ai">Giải pháp AI</a></li>
+        <li><a href="index.html#portfolio" class="mobile-nav-link" data-i18n="nav-portfolio">Dự án</a></li>
+        <li class="mobile-nav-sub"><a href="index.html#process" class="mobile-nav-link mobile-nav-link-sub" data-i18n="nav-process">Quy trình</a></li>
+        <li><a href="index.html#faq" class="mobile-nav-link mobile-nav-link-sub" data-i18n="nav-faq">Hỏi đáp</a></li>
+        <li><a href="ticket.html" class="mobile-nav-link mobile-nav-link-sub" data-i18n="nav-support">Hỗ trợ khách hàng</a></li>
+        <li><a href="index.html#contact" class="mobile-nav-link mobile-nav-link-cta" data-i18n="mobile-cta">Nhận tư vấn</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main id="main">
+    <section class="tp-hero">
+      <div class="container">
+        <a href="index.html" class="tp-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg><span data-i18n="tp-back">Về trang chủ</span></a>
+        <span class="badge-tech"><span class="badge-dot"></span><span data-i18n="tp-badge">Cổng hỗ trợ khách hàng</span></span>
+        <h1 class="tp-title" data-i18n="tp-title">Trung tâm hỗ trợ khách hàng</h1>
+        <p class="tp-desc" data-i18n="tp-desc">Gửi yêu cầu hỗ trợ cho EDI Soft và theo dõi tiến độ xử lý bằng mã ticket, không cần đăng nhập.</p>
+
+        <div class="tp-tabs" role="tablist" data-i18n-aria="tp-tabs-aria" aria-label="Chọn chức năng">
+          <button type="button" role="tab" id="tab-create" class="tp-tab" data-tab="create" aria-selected="true" aria-controls="panel-create"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="M9 15h6"/></svg><span data-i18n="tp-tab-create">Gửi yêu cầu hỗ trợ</span></button>
+          <button type="button" role="tab" id="tab-track" class="tp-tab" data-tab="track" aria-selected="false" aria-controls="panel-track" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span data-i18n="tp-tab-track">Theo dõi ticket</span><b class="tp-count" id="tp-count" hidden>0</b></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tp-body" id="support-center">
+      <div class="container">
+
+        <!-- ===== Tab 1: create a ticket ===== -->
+        <div role="tabpanel" id="panel-create" aria-labelledby="tab-create" class="tp-panel">
+          <div class="tp-grid">
+            <div class="tp-card">
+              <form id="support-form" class="contact-form" novalidate>
+                <h2 class="tp-card-title" data-i18n="sf-title">Gửi yêu cầu hỗ trợ</h2>
+                <p class="tp-card-intro" data-i18n="sf-intro">Mô tả vấn đề càng rõ, chúng tôi xử lý càng nhanh.</p>
+
+                <div class="sf-step"><span class="sf-step-no">1</span><span data-i18n="sf-step-contact">Thông tin liên hệ</span></div>
+                <div class="form-row">
+              <div class="form-group">
+                <label for="sf-name"><span data-i18n="form-name-label">Họ và tên</span> <span class="required-star">*</span></label>
+                <input type="text" id="sf-name" name="name" autocomplete="name" data-i18n-placeholder="form-name-placeholder" placeholder="Nguyễn Văn A" required aria-required="true">
+                <span class="error-msg" id="se-name" aria-live="polite"></span>
+              </div>
+              <div class="form-group">
+                <label for="sf-phone"><span data-i18n="form-phone-label">Số điện thoại</span> <span class="required-star">*</span></label>
+                <input type="tel" id="sf-phone" name="phone" autocomplete="tel" data-i18n-placeholder="form-phone-placeholder" placeholder="0912345678" required aria-required="true">
+                <span class="error-msg" id="se-phone" aria-live="polite"></span>
+              </div>
+                </div>
+                <div class="form-row">
+              <div class="form-group">
+                <label for="sf-email"><span data-i18n="form-email-label">Email công việc</span> <span class="required-star">*</span></label>
+                <input type="email" id="sf-email" name="email" autocomplete="email" data-i18n-placeholder="form-email-placeholder" placeholder="email@company.com" required aria-required="true">
+                <span class="error-msg" id="se-email" aria-live="polite"></span>
+              </div>
+              <div class="form-group">
+                <label for="sf-company"><span data-i18n="form-company-label">Tên doanh nghiệp</span></label>
+                <input type="text" id="sf-company" name="company" autocomplete="organization" data-i18n-placeholder="form-company-placeholder" placeholder="Công ty TNHH Công nghệ...">
+                <span class="error-msg" id="se-company" aria-live="polite"></span>
+              </div>
+                </div>
+
+                <div class="sf-step"><span class="sf-step-no">2</span><span data-i18n="sf-step-detail">Nội dung yêu cầu</span></div>
+                <fieldset class="sf-group">
+                  <legend data-i18n="sf-category">Loại yêu cầu</legend>
+                  <div class="sf-choices">
+                    <label class="sf-chip" data-tone="bug"><input type="radio" name="category" value="bug"><span class="sf-chip-body"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><span data-i18n="sf-cat-bug">Báo lỗi</span></span></label>
+                    <label class="sf-chip" data-tone="usage"><input type="radio" name="category" value="usage" checked><span class="sf-chip-body"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span data-i18n="sf-cat-usage">Hỗ trợ sử dụng</span></span></label>
+                    <label class="sf-chip" data-tone="feature"><input type="radio" name="category" value="feature"><span class="sf-chip-body"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg><span data-i18n="sf-cat-feature">Yêu cầu tính năng</span></span></label>
+                    <label class="sf-chip" data-tone="other"><input type="radio" name="category" value="other"><span class="sf-chip-body"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg><span data-i18n="sf-cat-other">Khác</span></span></label>
+                  </div>
+                </fieldset>
+
+                <fieldset class="sf-group">
+                  <legend data-i18n="sf-priority">Mức độ</legend>
+                  <div class="sf-choices">
+                    <label class="sf-chip" data-tone="normal"><input type="radio" name="priority" value="normal" checked><span class="sf-chip-body"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="sf-pri-normal">Thường</span></span></label>
+                    <label class="sf-chip" data-tone="urgent"><input type="radio" name="priority" value="urgent"><span class="sf-chip-body"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg><span data-i18n="sf-pri-urgent">Gấp</span></span></label>
+                  </div>
+                  <p class="sf-hint" data-i18n="sf-pri-hint">Chọn "Gấp" khi hệ thống ngừng hoạt động hoặc ảnh hưởng nhiều người dùng.</p>
+                  <div class="sf-urgent" id="sf-urgent" hidden>
+                    <p data-i18n="sf-pri-urgent-hint">Rất khẩn cấp? Gọi hoặc nhắn Zalo để được hỗ trợ nhanh nhất.</p>
+                    <div class="sf-urgent-links"><a href="tel:0363729276"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>036 3729 276</a><a href="https://zalo.me/0363729276" target="_blank" rel="noopener noreferrer">Zalo</a></div>
+                  </div>
+                </fieldset>
+
+              <div class="form-group">
+                <label for="sf-subject"><span data-i18n="sf-subject">Tiêu đề</span> <span class="required-star">*</span></label>
+                <input type="text" id="sf-subject" name="subject" maxlength="120" autocomplete="off" data-i18n-placeholder="sf-subject-ph" placeholder="Ví dụ: Không in được phiếu xuất kho" required aria-required="true">
+                <span class="error-msg" id="se-subject" aria-live="polite"></span>
+              </div>
+              <div class="form-group">
+                <label for="sf-description"><span data-i18n="sf-desc">Mô tả chi tiết</span> <span class="required-star">*</span></label>
+                <textarea id="sf-description" name="description" rows="6" maxlength="3000" data-i18n-placeholder="sf-desc-ph" placeholder="Chuyện gì xảy ra, ở màn hình hoặc chức năng nào, bạn đã thử những gì?" required aria-required="true"></textarea>
+                <div class="sf-meta"><span class="error-msg" id="se-description" aria-live="polite"></span><span class="sf-count" id="sf-count">0/3000</span></div>
+              </div>
+              <div class="form-group">
+                <label for="sf-link"><span data-i18n="sf-link">Link ảnh hoặc tài liệu (không bắt buộc)</span></label>
+                <input type="url" id="sf-link" name="link" maxlength="300" inputmode="url" autocomplete="off" data-i18n-placeholder="sf-link-ph" placeholder="https://drive.google.com/..." >
+                <span class="error-msg" id="se-link" aria-live="polite"></span>
+              </div>
+
+                <div class="hp-field" aria-hidden="true">
+                  <label for="sf-website">Website</label>
+                  <input type="text" id="sf-website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="form-group form-consent">
+                  <label for="sf-consent">
+                    <input type="checkbox" id="sf-consent" name="consent" required aria-required="true">
+                    <span data-i18n="sf-consent">Tôi đồng ý để EDI Soft sử dụng thông tin trên để xử lý yêu cầu hỗ trợ. Thông tin không được chia sẻ cho bên thứ ba.</span>
+                  </label>
+                  <span class="error-msg" id="se-consent" aria-live="polite"></span>
+                </div>
+                <div class="form-group form-consent">
+                  <label for="sf-remember">
+                    <input type="checkbox" id="sf-remember" name="remember" checked>
+                    <span data-i18n="sf-remember">Ghi nhớ ticket trên thiết bị này để theo dõi nhanh</span>
+                  </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="btn-support">
+                  <span data-i18n="sf-submit">Gửi yêu cầu hỗ trợ</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+                <p class="error-msg form-submit-error" id="support-error" role="alert"></p>
+              </form>
+
+              <div class="tp-success" id="support-success" tabindex="-1" hidden>
+                <span class="tp-success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></span>
+                <h2 data-i18n="sx-title">Đã gửi yêu cầu hỗ trợ</h2>
+                <p data-i18n="sx-text">EDI Soft sẽ phản hồi trong 1 ngày làm việc. Hãy lưu mã ticket để theo dõi tiến độ.</p>
+                <div class="tp-code-box">
+                  <div>
+                    <span class="tr-label" data-i18n="ticket-code-label">Mã ticket</span>
+                    <strong class="tp-code" id="sx-code"></strong>
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-sm" id="sx-copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span data-i18n="sx-copy">Sao chép</span></button>
+                </div>
+                <p class="tp-copy-status" id="sx-copy-status" role="status" aria-live="polite"></p>
+                <dl class="tr-dates">
+                  <div><dt data-i18n="sf-subject">Tiêu đề</dt><dd id="sx-subject"></dd></div>
+                  <div><dt data-i18n="sf-category">Loại yêu cầu</dt><dd><span class="tone-chip" id="sx-category"></span></dd></div>
+                  <div><dt data-i18n="sf-priority">Mức độ</dt><dd><span class="tone-chip" id="sx-priority"></span></dd></div>
+                </dl>
+                <p class="tp-saved" id="sx-saved" hidden data-i18n="sx-saved">Đã lưu trong mục "Ticket của tôi" trên thiết bị này.</p>
+                <div class="tp-success-actions">
+                  <button type="button" class="btn btn-primary" id="sx-track"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span data-i18n="sx-track">Theo dõi ticket này</span></button>
+                  <button type="button" class="btn btn-secondary" id="sx-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="M9 15h6"/></svg><span data-i18n="sx-new">Tạo ticket khác</span></button>
+                </div>
+              </div>
+            </div>
+
+            <aside class="tp-side">
+              <div class="tp-how">
+                <h2 class="tp-side-title" data-i18n="tp-how-title">Cách hoạt động</h2>
+                <ol>
+                  <li><span class="tp-how-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg></span><div><h3 data-i18n="tp-how-1">Gửi yêu cầu</h3><p data-i18n="tp-how-1-text">Điền thông tin và mô tả vấn đề, EDI Soft nhận ngay.</p></div></li>
+                  <li><span class="tp-how-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg></span><div><h3 data-i18n="tp-how-2">Nhận mã ticket</h3><p data-i18n="tp-how-2-text">Mã dạng EDI-YYMM-NNNN hiện ngay sau khi gửi. Hãy lưu lại.</p></div></li>
+                  <li><span class="tp-how-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg></span><div><h3 data-i18n="tp-how-3">Theo dõi tiến độ</h3><p data-i18n="tp-how-3-text">Xem trạng thái và ghi chú từ EDI Soft ở tab "Theo dõi ticket".</p></div></li>
+                </ol>
+              </div>
+
+              <div class="tp-how tp-tips">
+                <h2 class="tp-side-title" data-i18n="sf-tips-title">Thông tin giúp xử lý nhanh hơn</h2>
+                <ul>
+                  <li data-i18n="sf-tip-1">Tên màn hình hoặc chức năng đang gặp vấn đề.</li>
+                  <li data-i18n="sf-tip-2">Các bước để lặp lại vấn đề và thông báo lỗi (nếu có).</li>
+                  <li data-i18n="sf-tip-3">Ảnh chụp màn hình, gửi qua link Google Drive hoặc Zalo.</li>
+                </ul>
+              </div>
+
+              <div class="tp-help">
+                <h2 class="tp-side-title" data-i18n="tp-help-title">Cần hỗ trợ thêm?</h2>
+                <p data-i18n="tp-help-text">Chưa có mã hoặc không tra cứu được? Liên hệ trực tiếp, chúng tôi phản hồi trong 1 ngày làm việc.</p>
+                <div class="tp-help-links">
+                  <a href="https://zalo.me/0363729276" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Zalo · 036 3729 276</span></a>
+                  <a href="tel:0363729276"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span><span data-i18n="tp-help-call">Gọi điện</span> · 036 3729 276</span></a>
+                  <a href="mailto:hiendc.edi@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><span>hiendc.edi@gmail.com</span></a>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <!-- ===== Tab 2: follow tickets ===== -->
+        <div role="tabpanel" id="panel-track" aria-labelledby="tab-track" class="tp-panel" hidden>
+          <div class="tp-grid">
+            <div class="tp-stack">
+              <div class="tp-card">
+                <div class="mt-head">
+                  <h2 class="tp-card-title" data-i18n="mt-title">Ticket của tôi</h2>
+                  <div class="mt-actions" id="mt-actions" hidden>
+                    <button type="button" class="btn btn-secondary btn-sm" id="mt-refresh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg><span data-i18n="mt-refresh">Làm mới</span></button>
+                    <button type="button" class="btn btn-secondary btn-sm" id="mt-clear"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg><span data-i18n="mt-clear">Xóa tất cả</span></button>
+                  </div>
+                </div>
+                <p class="mt-checked" id="mt-checked" hidden><span data-i18n="mt-checked">Cập nhật lúc</span> <span id="mt-checked-time"></span></p>
+                <ul class="mt-list" id="mt-list"></ul>
+                <div class="mt-empty" id="mt-empty">
+                  <span class="mt-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg></span>
+                  <p><strong data-i18n="mt-empty">Chưa có ticket nào trên thiết bị này.</strong></p>
+                  <p data-i18n="mt-empty-hint">Ticket bạn gửi (và chọn ghi nhớ) sẽ hiện ở đây. Bạn cũng có thể tra cứu bằng mã ở bên dưới.</p>
+                </div>
+                <p class="mt-privacy" id="mt-privacy" hidden data-i18n="mt-privacy">Mã ticket và số điện thoại chỉ được lưu trên thiết bị này. Hãy bấm "Xóa tất cả" nếu đây là máy dùng chung.</p>
+              </div>
+
+              <div class="tp-card">
+                <h2 class="tp-card-title" data-i18n="lk-title">Tra cứu bằng mã ticket</h2>
+                <p class="tp-card-intro" data-i18n="lk-desc">Dùng khi bạn xem trên thiết bị khác hoặc ticket do EDI Soft tạo giúp.</p>
+                <div class="ticket-panel">
+                  <form id="ticket-form" class="contact-form" novalidate>
+                    <div class="form-group">
+                      <label for="ticket-code" data-i18n="ticket-code-label">Mã ticket</label>
+                      <input type="text" id="ticket-code" name="code" placeholder="EDI-2511-0007" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="ticket-phone" data-i18n="form-phone-label">Số điện thoại</label>
+                      <input type="tel" id="ticket-phone" name="phone" data-i18n-placeholder="form-phone-placeholder" placeholder="0912345678" autocomplete="tel" required>
+                    </div>
+                    <div class="form-group form-consent">
+                      <label for="lk-save">
+                        <input type="checkbox" id="lk-save" checked>
+                        <span data-i18n="lk-save">Lưu ticket này vào thiết bị</span>
+                      </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" id="btn-ticket">
+                      <span data-i18n="ticket-submit">Tra cứu</span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    </button>
+                    <p class="error-msg" id="ticket-error" role="alert"></p>
+                  </form>
+                  <div class="ticket-result" id="lk-result" tabindex="-1" aria-live="polite" hidden></div>
+                </div>
+              </div>
+            </div>
+
+            <aside class="tp-side">
+              <div class="tp-how tp-legend-side">
+                <h2 class="tp-side-title" data-i18n="tp-legend-title">Ý nghĩa các trạng thái</h2>
+                <ul>
+                <li>
+                  <span class="tr-badge" data-status="new" data-i18n="ticket-status-new">Mới</span>
+                  <p data-i18n="tp-meaning-new">EDI Soft đã nhận yêu cầu, chưa bắt đầu xử lý.</p>
+                </li>
+                <li>
+                  <span class="tr-badge" data-status="received" data-i18n="ticket-status-received">Đã tiếp nhận</span>
+                  <p data-i18n="tp-meaning-received">Yêu cầu đã được xác nhận và phân công người phụ trách.</p>
+                </li>
+                <li>
+                  <span class="tr-badge" data-status="in_progress" data-i18n="ticket-status-in_progress">Đang xử lý</span>
+                  <p data-i18n="tp-meaning-in_progress">Đội ngũ đang xử lý yêu cầu của bạn.</p>
+                </li>
+                <li>
+                  <span class="tr-badge" data-status="waiting" data-i18n="ticket-status-waiting">Chờ bạn phản hồi</span>
+                  <p data-i18n="tp-meaning-waiting">EDI Soft cần thêm thông tin hoặc xác nhận từ bạn. Xem ghi chú để biết việc cần làm.</p>
+                </li>
+                <li>
+                  <span class="tr-badge" data-status="done" data-i18n="ticket-status-done">Hoàn thành</span>
+                  <p data-i18n="tp-meaning-done">Yêu cầu đã được xử lý xong.</p>
+                </li>
+                <li>
+                  <span class="tr-badge" data-status="cancelled" data-i18n="ticket-status-cancelled">Đã hủy</span>
+                  <p data-i18n="tp-meaning-cancelled">Yêu cầu đã được hủy.</p>
+                </li>
+                </ul>
+              </div>
+              <div class="tp-help">
+                <h2 class="tp-side-title" data-i18n="tp-help-title">Cần hỗ trợ thêm?</h2>
+                <p data-i18n="tp-help-text">Chưa có mã hoặc không tra cứu được? Liên hệ trực tiếp, chúng tôi phản hồi trong 1 ngày làm việc.</p>
+                <div class="tp-help-links">
+                  <a href="https://zalo.me/0363729276" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Zalo · 036 3729 276</span></a>
+                  <a href="tel:0363729276"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span><span data-i18n="tp-help-call">Gọi điện</span> · 036 3729 276</span></a>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating dock (bottom-right): back-to-top appears after scrolling, then Messenger, then Zalo -->
+  <div class="float-dock">
+    <button type="button" class="back-to-top" id="back-to-top" data-i18n-aria="back-to-top-aria" aria-label="Cuộn lên đầu trang">
+      <span class="float-label" aria-hidden="true" data-i18n="float-top-label">Lên đầu trang</span>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+    <a href="ticket.html" class="chat-float dock-support" data-i18n-aria="header-support-aria" aria-label="Trung tâm hỗ trợ khách hàng">
+      <span class="float-label" aria-hidden="true" data-i18n="float-support-label">Hỗ trợ khách hàng</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+    </a>
+    <a href="https://m.me/edisoft.vn" class="chat-float chat-messenger" target="_blank" rel="noopener noreferrer" data-i18n-aria="messenger-aria" aria-label="Nhắn tin Messenger với EDI Soft">
+      <span class="float-label" aria-hidden="true" data-i18n="float-messenger-label">Messenger</span>
+      <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.13.26.35.27.57l.05 1.78c.04.57.61.94 1.13.71l1.99-.87c.17-.07.36-.09.54-.05.91.25 1.87.38 2.88.38 5.64 0 10-4.13 10-9.7S17.64 2 12 2zm6 7.46l-2.93 4.67c-.47.73-1.47.92-2.17.4l-2.34-1.73a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.33-.97-.17-.69-.63l2.93-4.67c.47-.73 1.47-.92 2.17-.4l2.34 1.73a.6.6 0 0 0 .72 0l3.16-2.4c.42-.33.97.17.69.63z"/></svg>
+    </a>
+    <a href="https://zalo.me/0363729276" class="chat-float chat-zalo" target="_blank" rel="noopener noreferrer" data-i18n-aria="zalo-aria" aria-label="Chat Zalo với EDI Soft">
+      <span class="float-label" aria-hidden="true" data-i18n="float-zalo-label">Chat Zalo</span>
+      <svg width="34" height="34" viewBox="0 0 48 48" aria-hidden="true"><path fill="#fff" d="M24 7C13.5 7 5 14.2 5 23.1c0 5 2.7 9.5 7 12.4L10.6 42l7.2-3.6c1.9.5 4 .8 6.2.8 10.5 0 19-7.2 19-16.1S34.5 7 24 7z"/><text x="24" y="27.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#0068ff">Zalo</text></svg>
+    </a>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="ft-cta">
+        <div>
+          <h2 data-i18n="footer-cta-title">Sẵn sàng bắt đầu với Odoo?</h2>
+          <p data-i18n="footer-cta-text">Trao đổi trực tiếp với đội ngũ sẽ triển khai cho bạn, phản hồi trong 1 ngày làm việc.</p>
+        </div>
+        <a href="index.html#contact" class="btn btn-primary"><span data-i18n="header-cta">Nhận tư vấn</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="ft-grid">
+        <div class="ft-brand">
+          <a href="index.html" class="logo-area">
+            <img src="assets/img/logo.svg" alt="EDI Soft" class="logo-img" width="44" height="44" loading="lazy">
+            <span class="logo-text">EDI <span class="text-gradient">Soft</span></span>
+          </a>
+          <p class="footer-desc" data-i18n="footer-desc">Tư vấn và triển khai Odoo ERP kết hợp AI &amp; tự động hóa cho doanh nghiệp SME.</p>
+          <ul class="ft-social">
+            <li><a href="https://www.facebook.com/edisoft.vn" target="_blank" rel="noopener noreferrer" aria-label="Facebook EDI Soft"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a></li>
+            <li><a href="https://m.me/edisoft.vn" target="_blank" rel="noopener noreferrer" aria-label="Messenger EDI Soft"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.13.26.35.27.57l.05 1.78c.04.57.61.94 1.13.71l1.99-.87c.17-.07.36-.09.54-.05.91.25 1.87.38 2.88.38 5.64 0 10-4.13 10-9.7S17.64 2 12 2zm6 7.46l-2.93 4.67c-.47.73-1.47.92-2.17.4l-2.34-1.73a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.33-.97-.17-.69-.63l2.93-4.67c.47-.73 1.47-.92 2.17-.4l2.34 1.73a.6.6 0 0 0 .72 0l3.16-2.4c.42-.33.97.17.69.63z"/></svg></a></li>
+            <li><a href="https://zalo.me/0363729276" target="_blank" rel="noopener noreferrer" aria-label="Zalo EDI Soft"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a></li>
+          </ul>
+        </div>
+
+        <nav class="ft-col" data-i18n-aria="footer-links-title" aria-label="Điều hướng nhanh">
+          <p class="ft-title" data-i18n="footer-links-title">Điều hướng nhanh</p>
+          <ul>
+            <li><a href="index.html#about" data-i18n="nav-about">Giới thiệu</a></li>
+            <li><a href="index.html#services" data-i18n="nav-services">Dịch vụ</a></li>
+            <li><a href="index.html#ai" data-i18n="nav-ai">Giải pháp AI</a></li>
+            <li><a href="index.html#process" data-i18n="nav-process">Quy trình</a></li>
+            <li><a href="index.html#portfolio" data-i18n="nav-portfolio">Dự án</a></li>
+            <li><a href="index.html#faq" data-i18n="nav-faq">Hỏi đáp</a></li>
+            <li><a href="ticket.html" data-i18n="footer-support">Gửi yêu cầu hỗ trợ</a></li>
+            <li><a href="ticket.html#track" data-i18n="footer-track">Theo dõi ticket</a></li>
+          </ul>
+        </nav>
+
+        <div class="ft-col">
+          <p class="ft-title" data-i18n="footer-contact-title">Liên hệ</p>
+          <ul>
+            <li><a href="tel:0363729276">036 3729 276</a></li>
+            <li><a href="mailto:hiendc.edi@gmail.com">hiendc.edi@gmail.com</a></li>
+            <li><a href="https://zalo.me/0363729276" target="_blank" rel="noopener noreferrer">Zalo · 036 3729 276</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ft-bottom">
+        <p>&copy; 2026 EDI Soft. <span data-i18n="footer-copyright">Bảo lưu mọi quyền.</span></p>
+        <p class="ft-tech">Odoo · AI Agent · Mobile iOS/Android</p>
+      </div>
+    </div>
+  </footer>
+  <script src="src/js/i18n.js" defer></script>
+  <script src="src/js/main.js" defer></script>
+  <script src="src/js/ticket.js" defer></script>
+</body>
+</html>
