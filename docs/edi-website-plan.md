@@ -37,8 +37,9 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 | 9 | Đội ngũ (`#team`) | Card **Đàm Công Hiến** (Founder & Solution Architect, có ảnh và LinkedIn) và card tóm tắt "4 thành viên chuyên sâu Odoo". Chỉ công khai thông tin của founder |
 | 10 | Cam kết | Chất lượng & tiến độ · Bảo mật dữ liệu (sẵn sàng ký NDA) · Minh bạch phạm vi & chi phí |
 | 11 | FAQ (`#faq`) | 7 câu hỏi dạng accordion (`<details>`, không cần JS): CE hay EE · thời gian triển khai · license Odoo · chuyển dữ liệu cũ · cloud hay máy chủ riêng · tích hợp AI/OCR vào Odoo đang dùng · hỗ trợ sau Go-live. Câu trả lời **không đưa con số thời gian hay giá** chưa xác nhận |
-| 12 | Liên hệ (`#contact`) | Email, hotline, **Zalo** (zalo.me/0363729276), **Messenger** (m.me/edisoft.vn), Facebook; form liên hệ (xem mục 4). Góc dưới bên phải có nút nổi xếp chồng từ dưới lên: **Zalo → Messenger → back-to-top** (class chung `.chat-float`, khoảng cách chỉnh bằng biến `--float-edge` / `--float-step`) |
-| 13 | Footer | Mô tả ngắn, cùng 6 link như menu, bản quyền |
+| 12 | Liên hệ (`#contact`) | Email, điện thoại/**Zalo** (zalo.me/0363729276), **Messenger** (m.me/edisoft.vn), Facebook; form liên hệ (xem mục 4). Góc dưới bên phải có nút nổi xếp chồng từ dưới lên: **Zalo → Messenger → back-to-top** (class chung `.chat-float`, khoảng cách chỉnh bằng biến `--float-edge` / `--float-step`) |
+| 12b | Hỗ trợ khách hàng (`#ticket`) | Nằm giữa FAQ và Liên hệ: 2 thẻ dẫn tới Trung tâm hỗ trợ (`ticket.html`): gửi yêu cầu hỗ trợ, theo dõi ticket. Xem mục 4. Lối tắt: nút "Hỗ trợ" ở header và nút cam trong dock nổi góc phải |
+| 13 | Footer | Dải kêu gọi, mô tả ngắn, 6 link như menu + "Tra cứu ticket", cột liên hệ, nút Facebook/Messenger/Zalo, bản quyền |
 
 **Sửa FAQ:** nội dung câu hỏi và trả lời nằm ở 3 chỗ, phải sửa cả 3 cho khớp: `index.html` (bản VI mặc định), `src/js/i18n.js` (key `faq-N-q` / `faq-N-a`, cả `vi` và `en`), và node `FAQPage` trong JSON-LD ở `<head>` (bản VI).
 
@@ -62,19 +63,24 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 
 ---
 
-## 4. Form liên hệ
+## 4. Form liên hệ và Trung tâm hỗ trợ (ticket)
 
-- Dữ liệu được gửi thẳng vào Google Form ([forms.gle/DLQCKXufRs3km3WE9](https://forms.gle/DLQCKXufRs3km3WE9)). Không cần backend.
-- Cấu hình nằm trong `src/js/main.js`:
-  - `GOOGLE_FORM_URL`: link `.../formResponse` của form.
-  - `GOOGLE_FORM_FIELDS`: map từ ô trên web sang `entry.<id>` của từng câu hỏi (Tên, Email, Số điện thoại, Tên doanh nghiệp, Nhu cầu).
-- **Nếu sửa câu hỏi trong Google Form**, ID `entry.*` sẽ thay đổi. Lấy lại ID (xem biến `FB_PUBLIC_LOAD_DATA_` trong mã nguồn trang form) rồi cập nhật `GOOGLE_FORM_FIELDS`. Form **không được** bật "Yêu cầu đăng nhập".
-- Google không trả về kết quả cho website (request `no-cors`), nên web chỉ phát hiện được lỗi mạng. Khi lỗi, web hiện thông báo kèm số hotline.
-- **Validation:**
-  - Họ tên: bắt buộc.
-  - Số điện thoại: di động Việt Nam `0xxxxxxxxx` hoặc `+84xxxxxxxxx`, chấp nhận dấu cách và dấu chấm.
-  - Email: bắt buộc, đúng định dạng.
-  - Ô đồng ý sử dụng thông tin: bắt buộc.
+Dùng chung **một Google Sheet** với một Google Apps Script (web app). Hướng dẫn cài đặt từng bước: [ticket-setup.md](ticket-setup.md). Mã script: [apps-script/ticket.gs](apps-script/ticket.gs). Không dùng Google Form nữa.
+
+| Chức năng | Trên website | Sheet |
+|---|---|---|
+| Liên hệ tư vấn | Form `#contact-form` ở trang chủ → `POST` JSON | **Thông tin liên hệ** (1 dòng mỗi lần gửi) |
+| Gửi ticket hỗ trợ | `ticket.html` tab "Gửi yêu cầu hỗ trợ" → `POST` `action=ticket_create`, trả về mã | **Ticket** (Nguồn = Website) |
+| Theo dõi ticket | `ticket.html` tab "Theo dõi ticket" → `GET lookup` / `lookup_many` | **Ticket** (nhân viên đổi Trạng thái, khách chỉ đọc) |
+
+- Cấu hình: hằng `SHEET_API_URL` trong `src/js/main.js` (URL web app kết thúc `/exec`). Để trống thì mọi form báo lỗi kèm số điện thoại/Zalo.
+- Gửi dữ liệu: `fetch` `POST` với `Content-Type: text/plain` (không gây preflight CORS), body JSON. Ô `website` là **honeypot** ẩn, người thật luôn để trống.
+- **Validation** (phía web, script kiểm tra lại): họ tên bắt buộc; SĐT di động Việt Nam `0xxxxxxxxx` hoặc `+84xxxxxxxxx`; email đúng định dạng; ô đồng ý bắt buộc; với ticket thêm Tiêu đề bắt buộc, Mô tả ≥ 10 ký tự, link (nếu có) phải bắt đầu `http://` hoặc `https://`.
+- **Ticket:** mã `EDI-YYMM-NNNN` (NNNN bắt đầu lại từ 0001 mỗi tháng). Khách chọn **Loại yêu cầu** (Báo lỗi, Hỗ trợ sử dụng, Yêu cầu tính năng, Khác) và **Mức độ** (Thường, Gấp). Trạng thái: Mới, Đã tiếp nhận, Đang xử lý, Chờ khách phản hồi, Hoàn thành, Đã hủy (script trả khóa không dấu `new, received, in_progress, waiting, done, cancelled`, website dịch VI/EN). Giới hạn 5 ticket/SĐT/ngày. Không gửi email cho khách.
+- **`ticket.html` ("Trung tâm hỗ trợ khách hàng", `noindex`, không có trong sitemap):** hero + 2 tab (chuẩn ARIA, điều khiển bằng mũi tên). Tab gửi yêu cầu: form đầy đủ, chọn nhanh loại/mức độ (mỗi lựa chọn một màu, "Gấp" đỏ đặc kèm gợi ý gọi/nhắn Zalo), đếm ký tự, màn hình thành công hiện mã lớn + nút sao chép + "Theo dõi ticket này"; cột bên có "Cách hoạt động", gợi ý thông tin, liên hệ hỗ trợ. Tab theo dõi: **"Ticket của tôi"** (danh sách lưu trên thiết bị khi khách bật "Ghi nhớ", tự cập nhật trạng thái, nút Làm mới/Xóa), tra cứu bằng mã + SĐT cho thiết bị khác, bảng ý nghĩa 6 trạng thái. Dùng chung `main.css`, `i18n.js`, `main.js` và cùng header/footer với trang chủ; logic ở `src/js/ticket.js`.
+- **Tra cứu:** trả về chỉ trạng thái, tiêu đề, loại, mức độ, ngày tạo/cập nhật/hoàn thành và cột "Ghi chú cho khách"; không trả email, mô tả, link hay ghi chú nội bộ. Sai mã hoặc sai SĐT cùng một thông báo; sai quá 5 lần/mã trong 15 phút thì tạm khóa. Không có API liệt kê ticket theo SĐT. Link gửi khách: `https://info.editech.vn/ticket.html?ticket=EDI-2511-0007` (mở tab theo dõi, điền sẵn mã).
+- **Lưu trên máy khách:** `localStorage` khóa `edi-my-tickets` (mã, SĐT, tiêu đề; tối đa 20) chỉ khi khách bật "Ghi nhớ"; có nút "Xóa tất cả".
+- Trang chủ: mục `#ticket` là 2 thẻ hành động ("Gửi yêu cầu hỗ trợ" → `ticket.html`, "Theo dõi ticket" → `ticket.html#track`). Footer có 2 link tương ứng; menu mobile có "Hỗ trợ khách hàng". Menu chính desktop không thêm mục.
 
 ---
 
@@ -139,7 +145,7 @@ Cách chạy và deploy: [deployment-guide.md](deployment-guide.md). Quy ước 
 ├── docs/              # Tài liệu, hồ sơ năng lực (PDF)
 ├── src/
 │   ├── js/i18n.js     # Bản dịch VI/EN + applyLanguage()
-│   ├── js/main.js     # Theme, ngôn ngữ, menu, scroll-reveal, timeline, form → Google Form
+│   ├── js/main.js     # Theme, ngôn ngữ, menu, scroll-reveal, timeline, form → Apps Script (Google Sheet), tra cứu ticket
 │   └── styles/main.css
 ├── index.html
 └── vercel.json

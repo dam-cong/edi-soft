@@ -18,7 +18,8 @@ Website giới thiệu năng lực của **EDI Soft** (EDI Team) — tư vấn, 
 - Dark/Light mode (nhớ lựa chọn, theo hệ thống)
 - Chuyển ngôn ngữ VI/EN
 - Scroll-reveal animations, timeline quy trình tương tác
-- Form liên hệ có validation, gửi dữ liệu về Google Form (cấu hình `GOOGLE_FORM_URL` / `GOOGLE_FORM_FIELDS` trong `src/js/main.js`)
+- Form liên hệ có validation, ghi dữ liệu vào Google Sheet qua Google Apps Script (cấu hình `SHEET_API_URL` trong `src/js/main.js`, hướng dẫn tại `docs/ticket-setup.md`)
+- Trung tâm hỗ trợ (`ticket.html`): khách tự gửi ticket hỗ trợ, nhận mã `EDI-YYMM-NNNN` và theo dõi tiến độ ("Ticket của tôi" hoặc tra cứu bằng mã + số điện thoại). Dữ liệu ở sheet "Ticket", nhân viên cập nhật trạng thái trực tiếp trên Google Sheet
 - Nút chat nổi Zalo và Messenger, FAQ dạng accordion (không cần JS)
 - SEO: JSON-LD (Organization, FAQPage…), sitemap, robots, ảnh chia sẻ 1200×630
 - Responsive (mobile, tablet, desktop)
@@ -63,5 +64,5 @@ Nhánh production là `main`, mỗi lần merge vào `main` Vercel tự deploy. 
 ## Liên hệ
 
 - **Email**: hiendc.edi@gmail.com
-- **Hotline**: 036 3729 276
+- **Điện thoại / Zalo**: 036 3729 276
 - **Facebook**: [facebook.com/edisoft.vn](https://www.facebook.com/edisoft.vn)
