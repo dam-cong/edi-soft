@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Đang chuyển tiếp… | Auto Post</title>
+</head><body style="font:16px system-ui,sans-serif;max-width:480px;margin:60px auto;padding:0 16px">
+<p id="m">Đang quay lại ứng dụng Auto Post…</p>
+<script>
+// Chuyển tiếp OAuth của Facebook về Auto Post chạy trên máy người dùng. Đích cố định, chỉ truyền query string.
+var q = new URLSearchParams(location.search), o = new URLSearchParams();
+["code", "state", "error", "error_reason", "error_description"].forEach(function (k) { if (q.has(k)) o.set(k, q.get(k)); });
+if (o.has("state") && (o.has("code") || o.has("error"))) location.replace("http://localhost:3000/api/fb/oauth/callback?" + o);
+else document.getElementById("m").textContent = "Liên kết không hợp lệ.";
+</script>
+</body></html>
