@@ -709,3 +709,17 @@ function initProjectFilter() {
     }),
   );
 }
+
+/** 13. Mobile float dock: one button that opens the contact shortcuts */
+document.addEventListener("DOMContentLoaded", () => {
+  const dock = document.querySelector(".float-dock");
+  const tg = document.getElementById("dock-toggle");
+  if (!dock || !tg) return;
+  const set = (o) => { dock.classList.toggle("open", o); tg.setAttribute("aria-expanded", o); };
+  tg.addEventListener("click", () => set(!dock.classList.contains("open")));
+  document.addEventListener("click", (e) => !dock.contains(e.target) && set(false));
+  window.addEventListener("scroll", () => set(false), { passive: true });
+});
+// Hide the dock while typing so it never covers a field or the on-screen keyboard
+document.addEventListener("focusin", (e) => document.querySelector(".float-dock")?.classList.toggle("typing", e.target.matches("input,textarea,select")));
+document.addEventListener("focusout", () => document.querySelector(".float-dock")?.classList.remove("typing"));

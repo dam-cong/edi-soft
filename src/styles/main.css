@@ -6090,3 +6090,39 @@ html.menu-open::after {
   .tp-hero { padding: 96px 0 100px; }
 }
 @media (max-width: 1024px) { .header-actions #btn-header-cta { display: none; } }
+
+/* ==========================================
+   MOBILE TOUCH FIXES: collapsible float dock, 16px inputs (no iOS zoom), 44px targets
+   ========================================== */
+.dock-toggle { display: none; }
+.mobile-nav-panel { height: 100dvh; overflow-y: auto; overscroll-behavior: contain; }
+a, button, summary, label, input, select, textarea { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+@media (max-width: 768px), (pointer: coarse) {
+  .float-dock { right: 0.75rem; bottom: calc(0.75rem + env(safe-area-inset-bottom)); }
+  .float-dock .dock-toggle {
+    display: grid; place-items: center; width: 52px; height: 52px; border: 0; border-radius: 50%;
+    background: var(--cta); color: #fff; cursor: pointer;
+    box-shadow: 0 8px 22px rgba(3, 105, 161, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  .dock-toggle svg { width: 24px; height: 24px; grid-area: 1 / 1; transition: opacity 0.2s, transform 0.2s; }
+  .dock-toggle .i-close, .float-dock.open .dock-toggle .i-chat { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+  .float-dock.open .dock-toggle .i-close { opacity: 1; transform: none; }
+  .float-dock:not(.open) > :not(.dock-toggle) { display: none; }
+  .float-dock.open > .back-to-top:not(.show) { display: none; }
+
+  input:not([type="checkbox"]):not([type="radio"]), textarea, select { font-size: 16px !important; }
+  .form-consent label { min-height: 44px; align-items: flex-start; padding: 0.35rem 0; }
+  .form-consent input[type="checkbox"], .sf-chip input { width: 22px; height: 22px; }
+  .logo-area { min-height: 44px; }
+  .ai-replay { width: 44px; height: 44px; }
+  .marquee-toggle { width: 44px; height: 44px; }
+  .footer-links-list a, .contact-value { padding: 0.7rem 0; }
+}
+.float-dock.typing { opacity: 0; pointer-events: none; }
+html, body { touch-action: manipulation; }
+.lang-toggle, .theme-toggle { user-select: none; -webkit-user-select: none; }
+@media (max-width: 768px), (pointer: coarse) {
+  .lang-toggle { min-width: 88px; height: 44px; }
+  .lang-opt { min-width: 44px; }
+}
