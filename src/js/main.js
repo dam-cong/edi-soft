@@ -570,7 +570,13 @@ function initChatLoop() {
   const a = document.querySelector(".mock-a");
   if (!chat || !q || !a || reducedMotion()) return;
   chat.classList.add("chat-live");
-  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  // Idle while off-screen or in a hidden tab, so the typing loop costs nothing
+  let vis = true;
+  new IntersectionObserver(([e]) => (vis = e.isIntersecting)).observe(chat);
+  const wait = async (ms) => {
+    await new Promise((r) => setTimeout(r, ms));
+    while (!vis || document.hidden) await new Promise((r) => setTimeout(r, 400));
+  };
 
   (async function loop() {
     for (;;) {
